@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <stack>
 #include <random>
 #define stringify( name ) #name
 
@@ -13,6 +14,7 @@ enum class Suits
     DIAMONDS,
     HEARTS,
     SPADES,
+    null
 };
 
 // An enum class for the card-names from it being
@@ -31,7 +33,8 @@ enum class CardNames
     TEN,
     JACK,
     QUEEN,
-    KING
+    KING,
+    null
 };
 
 // An enum class whether it's a red card
@@ -39,7 +42,8 @@ enum class CardNames
 enum class CardColor
 {
     RED,
-    BLACK
+    BLACK,
+    null
 };
 
 string convert_suits[] ={
@@ -68,6 +72,7 @@ string convert_names[] ={
 class Card
 {
     public:
+        Card(){ suit = Suits::null; name = CardNames::null; color = CardColor::null; is_flipped = false; img_file.loadFromFile("cards/BACK.png");}
         Suits suit;
         CardNames name;
         CardColor color;
