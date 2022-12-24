@@ -65,7 +65,6 @@ string convert_names[] ={
         stringify(KING)
 };
 
-// The card struct with all of it's needed functions
 class Card
 {
     public:
@@ -74,7 +73,6 @@ class Card
         CardColor color;
         bool is_flipped;
         Texture img_file;
-        Sprite card_sprite;
 };
 
 class Deck
