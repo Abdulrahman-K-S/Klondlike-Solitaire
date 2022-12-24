@@ -3,7 +3,8 @@
 #include <iostream>
 
 // Including the different classes
-#include "Piles.h"
+#include "src/OutlinePile.cpp"
+#include "src/Card.cpp"
 
 // Using Namespace
 using namespace sf;
@@ -12,10 +13,10 @@ using namespace std;
 // Global Variables
 
 // The 12 outlines
-Piles pilesArr[12] = {Piles(290,120), Piles(740,120), Piles(890,120),
-                    Piles(1040,120), Piles(1190,120), Piles(290, 370),
-                    Piles(440, 370), Piles(590, 370), Piles(740, 370),
-                    Piles(890,370), Piles(1040,370), Piles(1190,370)};
+OutlinePile pilesArr[12] = {OutlinePile(290,120), OutlinePile(740,120), OutlinePile(890,120),
+                      OutlinePile(1040,120), OutlinePile(1190,120), OutlinePile(290, 370),
+                      OutlinePile(440, 370), OutlinePile(590, 370), OutlinePile(740, 370),
+                      OutlinePile(890,370), OutlinePile(1040,370), OutlinePile(1190,370)};
 
 
 void DrawPiles(RenderWindow &window)
@@ -27,7 +28,25 @@ void DrawPiles(RenderWindow &window)
 int main()
 {
     RenderWindow window(VideoMode(1600, 900), "Solitaire");
-
+    Deck deck;
+    deck.setDeck();
+    deck.shuffleCards();
+    Sprite spriteArr[52];
+    Sprite normal_pile1[13];
+    Sprite normal_pile2[14];
+    Sprite normal_pile3[15];
+    Sprite normal_pile4[16];
+    Sprite normal_pile5[17];
+    Sprite normal_pile6[18];
+    Sprite normal_pile7[19];
+    stack<Sprite> foundation_pile1;
+    stack<Sprite> foundation_pile2;
+    stack<Sprite> foundation_pile3;
+    stack<Sprite> foundation_pile4;
+    stack<Sprite> shuffled_pile;
+    for(int i = 0; i < 52; ++i){
+        spriteArr[i].setTexture(deck.cards[i].img_file);
+    }
     // Setting up the background of the game
     Texture backgroundTex;
     backgroundTex.loadFromFile("Background.jpg");
@@ -46,7 +65,6 @@ int main()
     score.setCharacterSize(20);
     score.setPosition(730, 30);
 
-
     while (window.isOpen())
     {
 
@@ -57,12 +75,14 @@ int main()
                 window.close();
         }
 
-        
+
         window.clear();
         window.draw(backgroundSpr);
         window.draw(scoreBoard);
         DrawPiles(window);
         window.draw(score);
+        for(int i = 0; i < 52; ++i)
+            window.draw(spriteArr[i]);
         window.display();
     }
 
