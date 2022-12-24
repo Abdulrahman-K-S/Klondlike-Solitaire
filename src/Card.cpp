@@ -20,8 +20,6 @@ void Deck::setDeck() const
             card.suit = (Suits)suit;
             card.is_flipped = false;
             card.img_file.loadFromFile("cards/" + convert_suits[suit - 1] + " - "+ convert_names[name - 1] + ".png");
-            card.card_sprite.setTexture(card.img_file);
-            card.card_sprite.setOrigin(index*-6,index*-6);
             cards[index] = card;
             ++index;
         }
