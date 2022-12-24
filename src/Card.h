@@ -46,14 +46,14 @@ enum class CardColor
     null
 };
 
-string convert_suits[] ={
+static string convert_suits[] = {
         stringify(CLUBS),
         stringify(DIAMONDS),
         stringify(HEARTS),
         stringify(SPADES)
 };
 
-string convert_names[] ={
+static string convert_names[] = {
         stringify(ACE),
         stringify(TWO),
         stringify(THREE),
@@ -71,20 +71,26 @@ string convert_names[] ={
 
 class Card
 {
-    public:
-        Card(){ suit = Suits::null; name = CardNames::null; color = CardColor::null; is_flipped = false; img_file.loadFromFile("cards/BACK.png");}
-        Suits suit;
-        CardNames name;
-        CardColor color;
-        bool is_flipped;
-        Texture img_file;
+public:
+    Card() {
+        suit = Suits::null; name = CardNames::null; \
+            color = CardColor::null; is_flipped = false; \
+            img_file.loadFromFile("cards/BACK.png"); \
+            back_img.loadFromFile("cards/BACK.png");
+    }
+    Suits suit;
+    CardNames name;
+    CardColor color;
+    bool is_flipped;
+    Texture img_file;
+    Texture back_img;
 };
 
 class Deck
-{   
-    public:
-        Card *cards = new Card [52];
-        void setDeck() const;
-        void shuffleCards() const;
-        static void swap(Card *a, Card *b);
+{
+public:
+    Card* cards = new Card[52];
+    void setDeck() const;
+    void shuffleCards() const;
+    static void swap(Card* a, Card* b);
 };
