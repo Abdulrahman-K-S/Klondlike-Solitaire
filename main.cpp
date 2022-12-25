@@ -3,8 +3,8 @@
 #include <iostream>
 
 // Including the different classes
-#include "src/OutlinePile.h"
-#include "src/Pile.h"
+#include "OutlinePile.h"
+#include "Pile.h"
 
 // Using Namespace
 using namespace sf;
@@ -37,7 +37,7 @@ int main()
     RectangleShape scoreBoard(Vector2f(1600, 80));
     scoreBoard.setFillColor(Color(169, 169, 169, 128));
 
-    //Setting the font and adding the score text
+    // Setting the font and adding the score text
     Font scoreFont;
     scoreFont.loadFromFile("Assets/Martian_Mono/MartianMono-VariableFont_wdth,wght.ttf");
     Text score;
@@ -46,6 +46,7 @@ int main()
     score.setCharacterSize(20);
     score.setPosition(600, 30);
 
+    // Setting the timer for the game (Which starts once the game has begun)
     Text Timer;
     Clock clock;
     Time timeElapsed1;
@@ -53,6 +54,7 @@ int main()
     Timer.setCharacterSize(20);
     Timer.setPosition(800, 30);
 
+    // Declaring an object from the class piles to set up the whole game
     Pile pile;
     pile.setDeck();
     pile.shuffleCards();
@@ -75,18 +77,22 @@ int main()
         window.draw(backgroundSpr);
         window.draw(scoreBoard);
         DrawPiles(window);
+
+        // Start of drawing the timer
         Time timeElapsed1 = clock.getElapsedTime();
-        int Minutes = int(timeElapsed1.asSeconds())/60;
-        int Seconds = int(timeElapsed1.asSeconds())%60;
-        if(Minutes < 10 && Seconds >= 10)
+        int Minutes = int(timeElapsed1.asSeconds()) / 60;
+        int Seconds = int(timeElapsed1.asSeconds()) % 60;
+        if (Minutes < 10 && Seconds >= 10)
             Timer.setString("Timer: 0" + to_string(Minutes) + ":" + to_string(Seconds));
-        else if(Seconds < 10 && Minutes >= 10)
+        else if (Seconds < 10 && Minutes >= 10)
             Timer.setString("Timer: " + to_string(Minutes) + ":0" + to_string(Seconds));
-        else if(Minutes < 10 && Seconds < 10)
+        else if (Minutes < 10 && Seconds < 10)
             Timer.setString("Timer: 0" + to_string(Minutes) + ":0" + to_string(Seconds));
         else
             Timer.setString("Timer: " + to_string(Minutes) + ":" + to_string(Seconds));
         window.draw(Timer);
+        // End of drawing the timer
+
         window.draw(score);
         for (int i = 0; i < 52; ++i) {
             window.draw(pile.cards[i].card_sprite);
