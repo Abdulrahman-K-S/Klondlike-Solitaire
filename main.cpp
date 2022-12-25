@@ -98,10 +98,9 @@ int main()
         // If shuffled pile clicked
         if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
             if (mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
-                if (mouse.isButtonPressed(mouse.Left))
+                if (event.key.code == mouse.Left)
                     MoveSuffledCard(window, pile);
                     //cout << "Shuffled pile clicked\n";
-
 
         window.clear(); // Clearing the window
 
