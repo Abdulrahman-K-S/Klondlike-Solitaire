@@ -46,6 +46,22 @@ enum class CardColor
     null
 };
 
+enum class CardPile{
+    SHUFFLED_PILE,
+    DRAW_PILE,
+    NORMAL_PILE1,
+    NORMAL_PILE2,
+    NORMAL_PILE3,
+    NORMAL_PILE4,
+    NORMAL_PILE5,
+    NORMAL_PILE6,
+    NORMAL_PILE7,
+    FOUNDATION_PILE1,
+    FOUNDATION_PILE2,
+    FOUNDATION_PILE3,
+    FOUNDATION_PILE4,
+};
+
 static string convert_suits[] = {
         stringify(CLUBS),
         stringify(DIAMONDS),
@@ -73,24 +89,24 @@ class Card
 {
 public:
     Card() {
-        suit = Suits::null; name = CardNames::null; \
-            color = CardColor::null; is_flipped = false; \
-            img_file.loadFromFile("cards/BACK.png"); \
-            back_img.loadFromFile("cards/BACK.png");
+        suit = Suits::null;
+        name = CardNames::null;
+        color = CardColor::null;
+        pile = CardPile::SHUFFLED_PILE;
+        is_flipped = false;
+        front_img_file.loadFromFile("Assets/Cards/BACK.png");
+        back_img_file.loadFromFile("Assets/Cards/BACK.png");
+        card_sprite.setTexture(back_img_file);
+        xyCoordinates[0] = 0;
+        xyCoordinates[1] = 0;
     }
     Suits suit;
     CardNames name;
     CardColor color;
+    CardPile pile;
     bool is_flipped;
-    Texture img_file;
-    Texture back_img;
-};
-
-class Deck
-{
-public:
-    Card* cards = new Card[52];
-    void setDeck() const;
-    void shuffleCards() const;
-    static void swap(Card* a, Card* b);
+    Texture front_img_file;
+    Texture back_img_file;
+    Sprite card_sprite;
+    float *xyCoordinates = new float[2];
 };
