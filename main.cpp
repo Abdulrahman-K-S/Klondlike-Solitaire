@@ -5,6 +5,7 @@
 // Including the different classes
 #include "OutlinePile.h"
 #include "Pile.h"
+//#include "Game.cpp"
 
 // Using Namespace
 using namespace sf;
@@ -17,6 +18,26 @@ OutlinePile pilesArr[12] = { OutlinePile(290,120),OutlinePile(740,120), OutlineP
                              OutlinePile(1040,120), OutlinePile(1190,120), OutlinePile(290, 370),
                              OutlinePile(440, 370), OutlinePile(590, 370), OutlinePile(740, 370),
                              OutlinePile(890,370), OutlinePile(1040,370), OutlinePile(1190,370) };
+
+void MoveSuffledCard(RenderWindow& window, Pile pile)
+{
+    //cout << "Shuffled pile clicked\n";
+    //cout << pile.draw_pile.empty();
+    if (pile.draw_pile.empty())
+    {
+        Card topCard = pile.draw_pile.top();
+
+        while (topCard.card_sprite.getPosition().x != 460)
+        {
+            topCard.card_sprite.move(10,0);
+            cout << "here";
+        }
+    }
+    else
+    {
+
+    }
+}
 
 void DrawPiles(RenderWindow& window)
 {
@@ -61,6 +82,8 @@ int main()
     pile.setPileCards();
     pile.setSpriteTexture();
 
+    // Declaring an object of the class Mouse
+    Mouse mouse;
 
     while (window.isOpen())
     {
@@ -72,8 +95,16 @@ int main()
                 window.close();
         }
 
+        // If shuffled pile clicked
+        if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
+            if (mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
+                if (mouse.isButtonPressed(mouse.Left))
+                    MoveSuffledCard(window, pile);
+                    //cout << "Shuffled pile clicked\n";
 
-        window.clear();
+
+        window.clear(); // Clearing the window
+
         window.draw(backgroundSpr);
         window.draw(scoreBoard);
         DrawPiles(window);
@@ -97,7 +128,8 @@ int main()
         for (int i = 0; i < 52; ++i) {
             window.draw(pile.cards[i].card_sprite);
         }
-        window.display();
+
+        window.display(); // Displaying the window
     }
 
     return 0;
