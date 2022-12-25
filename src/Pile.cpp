@@ -20,6 +20,7 @@ void Pile::setDeck() const
             card.suit = (Suits)suit;
             card.is_flipped = false;
             card.front_img_file.loadFromFile("Assets/Cards/" + convert_suits[suit - 1] + " - " + convert_names[name - 1] + ".png");
+            //card.card_sprite.setTexture()
             cards[index] = card;
             ++index;
         }
@@ -46,56 +47,56 @@ void Pile::swap(Card* a, Card* b)
 void Pile::setXYCoordinates(Card& c) {
     switch(c.pile){
         case(CardPile::SHUFFLED_PILE):
-            c.xyCoordinates[0] = 285;
-            c.xyCoordinates[1] = 118;
+            c.xCoordinate = 285;
+            c.yCoordinate = 118;
             break;
         case(CardPile::DRAW_PILE):
-            c.xyCoordinates[0] = 0;
-            c.xyCoordinates[1] = 118;
+            c.xCoordinate = 0;
+            c.yCoordinate = 118;
             break;
         case(CardPile::FOUNDATION_PILE1):
-            c.xyCoordinates[0] = 735;
-            c.xyCoordinates[1] = 118;
+            c.xCoordinate = 735;
+            c.yCoordinate = 118;
             break;
         case(CardPile::FOUNDATION_PILE2):
-            c.xyCoordinates[0] = 885;
-            c.xyCoordinates[1] = 118;
+            c.xCoordinate = 885;
+            c.yCoordinate = 118;
             break;
         case(CardPile::FOUNDATION_PILE3):
-            c.xyCoordinates[0] = 1040;
-            c.xyCoordinates[1] = 118;
+            c.xCoordinate = 1040;
+            c.yCoordinate = 118;
             break;
         case(CardPile::FOUNDATION_PILE4):
-            c.xyCoordinates[0] = 1185;
-            c.xyCoordinates[1] = 118;
+            c.xCoordinate = 1185;
+            c.yCoordinate = 118;
             break;
         case(CardPile::NORMAL_PILE1):
-            c.xyCoordinates[0] = 285;
-            c.xyCoordinates[1] = 368;
+            c.xCoordinate = 285;
+            c.yCoordinate = 368;
             break;
         case(CardPile::NORMAL_PILE2):
-            c.xyCoordinates[0] = 435;
-            c.xyCoordinates[1] = 368;
+            c.xCoordinate = 435;
+            c.yCoordinate = 368;
             break;
         case(CardPile::NORMAL_PILE3):
-            c.xyCoordinates[0] = 585;
-            c.xyCoordinates[1] = 368;
+            c.xCoordinate = 585;
+            c.yCoordinate = 368;
             break;
         case(CardPile::NORMAL_PILE4):
-            c.xyCoordinates[0] = 735;
-            c.xyCoordinates[1] = 368;
+            c.xCoordinate = 735;
+            c.yCoordinate = 368;
             break;
         case(CardPile::NORMAL_PILE5):
-            c.xyCoordinates[0] = 885;
-            c.xyCoordinates[1] = 368;
+            c.xCoordinate = 885;
+            c.yCoordinate = 368;
             break;
         case(CardPile::NORMAL_PILE6):
-            c.xyCoordinates[0] = 1035;
-            c.xyCoordinates[1] = 368;
+            c.xCoordinate = 1035;
+            c.yCoordinate = 368;
             break;
         case(CardPile::NORMAL_PILE7):
-            c.xyCoordinates[0] = 1185;
-            c.xyCoordinates[1] = 368;
+            c.xCoordinate = 1185;
+            c.yCoordinate = 368;
             break;
     }
 }
@@ -129,7 +130,7 @@ void Pile::setPileCards()
             setXYCoordinates(cards[i]);
         }
         else if(i >= 21 && i <= 27){
-            cards[i].pile = CardPile::NORMAL_PILE6;
+            cards[i].pile = CardPile::NORMAL_PILE7;
             setXYCoordinates(cards[i]);
         }
         else{
@@ -146,20 +147,20 @@ void Pile::setSpriteTexture()
         if(i == 0 || i == 2 || i == 5 || i == 9 || i == 14 || i == 20 || i == 27)
         {
             cards[i].is_flipped = true;
-            card_sprites[i].setTexture(cards[i].front_img_file);
+            cards[i].card_sprite.setTexture(cards[i].front_img_file);
             if(i == 0)
             {
-                card_sprites[i].setPosition(cards[i].xyCoordinates[0],cards[i].xyCoordinates[1]);
+                cards[i].card_sprite.setPosition(cards[i].xCoordinate,cards[i].yCoordinate);
             }
             else
             {
-                card_sprites[i].setPosition(cards[i].xyCoordinates[0],cards[i].xyCoordinates[1] + (i * 5.0));
+                cards[i].card_sprite.setPosition(cards[i].xCoordinate,cards[i].yCoordinate + (i * 5.0));
             }
         }
         else
         {
-            card_sprites[i].setTexture(cards[i].back_img_file);
-            card_sprites[i].setPosition(cards[i].xyCoordinates[0],cards[i].xyCoordinates[1] + (i * 5.0));
+            cards[i].card_sprite.setTexture(cards[i].back_img_file);
+            cards[i].card_sprite.setPosition(cards[i].xCoordinate,cards[i].yCoordinate + (i * 5.0));
         }
     }
 }
