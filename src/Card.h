@@ -46,7 +46,7 @@ enum class CardColor
     null
 };
 
-enum class CardPile {
+enum class CardPile{
     SHUFFLED_PILE,
     DRAW_PILE,
     NORMAL_PILE1,
@@ -88,43 +88,9 @@ static string convert_names[] = {
 class Card
 {
 public:
-    Card() {
-        suit = Suits::null;
-        name = CardNames::null;
-        color = CardColor::null;
-        pile = CardPile::SHUFFLED_PILE;
-        is_flipped = false;
-        front_img_file.loadFromFile("Assets/Cards/BACK.png");
-        back_img_file.loadFromFile("Assets/Cards/BACK.png");
-        card_sprite.setTexture(back_img_file);
-        xCoordinate = 0;
-        yCoordinate = 0;
-    }
-    Card(const Card& c) {
-        suit = c.suit;
-        name = c.name;
-        color = c.color;
-        pile = c.pile;
-        is_flipped = c.is_flipped;
-        front_img_file = c.front_img_file;
-        back_img_file = c.back_img_file;
-        card_sprite = c.card_sprite;
-        xCoordinate = c.xCoordinate;
-        yCoordinate = c.yCoordinate;
-
-    }
-    void operator=(const Card& c) {
-        suit = c.suit;
-        name = c.name;
-        color = c.color;
-        pile = c.pile;
-        is_flipped = c.is_flipped;
-        front_img_file = c.front_img_file;
-        back_img_file = c.back_img_file;
-        card_sprite = c.card_sprite;
-        xCoordinate = c.xCoordinate;
-        yCoordinate = c.yCoordinate;
-    }
+    Card();
+    Card(Card&);
+    Card const& operator=(Card&);
     Suits suit;
     CardNames name;
     CardColor color;
