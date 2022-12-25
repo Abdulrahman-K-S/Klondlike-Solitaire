@@ -137,17 +137,81 @@ void Pile::setSpriteTexture()
 {
     for (int i = 0; i < 52; i++)
     {
-        if (i == 0 || i == 2 || i == 5 || i == 9 || i == 14 || i == 20 || i == 27)
+        if (i == 0 || i == 1 || i == 3 || i == 6 || i == 10 || i == 15 || i == 21)
         {
-            cards[i].is_flipped = true;
-            cards[i].card_sprite.setTexture(cards[i].front_img_file);
+            cards[i].card_sprite.setTexture(cards[i].back_img_file);
+            cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate);
+
             if (i == 0)
             {
-                cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate);
+                cards[i].card_sprite.setTexture(cards[i].front_img_file);
+                cards[i].is_flipped = true;
             }
-            else
+        }
+        else if (i == 2 || i == 4 || i == 7 || i == 11 || i == 16 || i == 22)
+        {
+            cards[i].card_sprite.setTexture(cards[i].back_img_file);
+            cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 20);
+
+            if (i == 2)
             {
-                cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + (i * 5.0));
+                cards[i].card_sprite.setTexture(cards[i].front_img_file);
+                cards[i].is_flipped = true;
+            }
+        }
+        else if (i == 5 || i == 8 || i == 12 || i == 17 || i == 23)
+        {
+            cards[i].card_sprite.setTexture(cards[i].back_img_file);
+            cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 40);
+
+            if (i == 5)
+            {
+                cards[i].card_sprite.setTexture(cards[i].front_img_file);
+                cards[i].is_flipped = true;
+            }
+        }
+        else if (i == 9 || i == 13 || i == 18 || i == 24)
+        {
+            cards[i].card_sprite.setTexture(cards[i].back_img_file);
+            cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 60);
+
+            if (i == 9)
+            {
+                cards[i].card_sprite.setTexture(cards[i].front_img_file);
+                cards[i].is_flipped = true;
+            }
+        }
+        else if (i == 14 || i == 19 || i == 25)
+        {
+            cards[i].card_sprite.setTexture(cards[i].back_img_file);
+            cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 80);
+
+            if (i == 14)
+            {
+                cards[i].card_sprite.setTexture(cards[i].front_img_file);
+                cards[i].is_flipped = true;
+            }
+        }
+        else if (i == 20 || i == 26)
+        {
+            cards[i].card_sprite.setTexture(cards[i].back_img_file);
+            cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 100);
+
+            if (i == 20)
+            {
+                cards[i].card_sprite.setTexture(cards[i].front_img_file);
+                cards[i].is_flipped = true;
+            }
+        }
+        else if (i == 27)
+        {
+            cards[i].card_sprite.setTexture(cards[i].back_img_file);
+            cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 120);
+
+            if (i == 27)
+            {
+                cards[i].card_sprite.setTexture(cards[i].front_img_file);
+                cards[i].is_flipped = true;
             }
         }
         else
