@@ -48,9 +48,8 @@ int main()
 
     Text Timer;
     Clock clock;
-    Time timeElapsed1 = clock.getElapsedTime();
+    Time timeElapsed1;
     Timer.setFont(scoreFont);
-    Timer.setString("Timer: " + to_string(timeElapsed1.asSeconds()));
     Timer.setCharacterSize(20);
     Timer.setPosition(800, 30);
 
@@ -89,7 +88,6 @@ int main()
             Timer.setString("Timer: " + to_string(Minutes) + ":" + to_string(Seconds));
         window.draw(Timer);
         window.draw(score);
-        window.draw(Timer);
         for (int i = 0; i < 52; ++i) {
             window.draw(pile.cards[i].card_sprite);
         }
