@@ -3,8 +3,8 @@
 #include <iostream>
 
 // Including the different classes
-#include "OutlinePile.h"
-#include "Pile.h"
+#include "src/OutlinePile.h"
+#include "src/Pile.h"
 
 // Using Namespace
 using namespace sf;
@@ -14,9 +14,9 @@ using namespace std;
 
 // The 12 outline piles
 OutlinePile pilesArr[12] = { OutlinePile(290,120),OutlinePile(740,120), OutlinePile(890,120),
-                            OutlinePile(1040,120), OutlinePile(1190,120), OutlinePile(290, 370),
-                            OutlinePile(440, 370), OutlinePile(590, 370), OutlinePile(740, 370),
-                            OutlinePile(890,370), OutlinePile(1040,370), OutlinePile(1190,370) };
+                             OutlinePile(1040,120), OutlinePile(1190,120), OutlinePile(290, 370),
+                             OutlinePile(440, 370), OutlinePile(590, 370), OutlinePile(740, 370),
+                             OutlinePile(890,370), OutlinePile(1040,370), OutlinePile(1190,370) };
 
 void DrawPiles(RenderWindow& window)
 {
