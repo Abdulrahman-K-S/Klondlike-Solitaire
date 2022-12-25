@@ -13,6 +13,3 @@ public:
     OutlinePile(int xPosition, int yPosition);
     RectangleShape getShape();
 };
-
-
-
