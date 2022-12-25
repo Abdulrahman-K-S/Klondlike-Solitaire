@@ -97,8 +97,33 @@ public:
         front_img_file.loadFromFile("Assets/Cards/BACK.png");
         back_img_file.loadFromFile("Assets/Cards/BACK.png");
         card_sprite.setTexture(back_img_file);
-        xyCoordinates[0] = 0;
-        xyCoordinates[1] = 0;
+        xCoordinate = 0;
+        yCoordinate = 0;
+    }
+    Card(const Card& c){
+        suit = c.suit;
+        name = c.name;
+        color = c.color;
+        pile = c.pile;
+        is_flipped = c.is_flipped;
+        front_img_file = c.front_img_file;
+        back_img_file = c.back_img_file;
+        card_sprite = c.card_sprite;
+        xCoordinate = c.xCoordinate;
+        yCoordinate = c.yCoordinate;
+
+    }
+    Card& operator=(const Card& c){
+        suit = c.suit;
+        name = c.name;
+        color = c.color;
+        pile = c.pile;
+        is_flipped = c.is_flipped;
+        front_img_file = c.front_img_file;
+        back_img_file = c.back_img_file;
+        card_sprite = c.card_sprite;
+        xCoordinate = c.xCoordinate;
+        yCoordinate = c.yCoordinate;
     }
     Suits suit;
     CardNames name;
@@ -108,5 +133,6 @@ public:
     Texture front_img_file;
     Texture back_img_file;
     Sprite card_sprite;
-    float *xyCoordinates = new float[2];
+    float xCoordinate;
+    float yCoordinate;
 };
