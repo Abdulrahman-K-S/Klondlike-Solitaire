@@ -46,7 +46,7 @@ enum class CardColor
     null
 };
 
-enum class CardPile{
+enum class CardPile {
     SHUFFLED_PILE,
     DRAW_PILE,
     NORMAL_PILE1,
@@ -100,7 +100,7 @@ public:
         xCoordinate = 0;
         yCoordinate = 0;
     }
-    Card(const Card& c){
+    Card(const Card& c) {
         suit = c.suit;
         name = c.name;
         color = c.color;
@@ -113,7 +113,7 @@ public:
         yCoordinate = c.yCoordinate;
 
     }
-    Card& operator=(const Card& c){
+    void operator=(const Card& c) {
         suit = c.suit;
         name = c.name;
         color = c.color;
