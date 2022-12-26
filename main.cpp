@@ -1,4 +1,3 @@
-// Including the sfml and iostream libraires
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -29,7 +28,7 @@ void MoveSuffledCard(RenderWindow& window, Pile pile)
 
         while (topCard.card_sprite.getPosition().x != 460)
         {
-            topCard.card_sprite.move(10,0);
+            topCard.card_sprite.move(10, 0);
             cout << "here";
         }
     }
@@ -84,10 +83,35 @@ int main()
 
     // Declaring an object of the class Mouse
     Mouse mouse;
-
     while (window.isOpen())
     {
-
+        Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+                window.close();
+        }
+        
+        window.clear();
+        window.draw(backgroundSpr);
+        Text Start;
+        Start.setFont(scoreFont);
+        Start.setString("Start");
+        Start.setCharacterSize(20);
+        Start.setPosition(600, 30);
+        window.draw(Start);
+        window.display();
+        if (mouse.getPosition(window).x >= 600 && mouse.getPosition(window).x <= 620)
+            if (mouse.getPosition(window).y >= 30 && mouse.getPosition(window).y <= 50)
+                if (event.key.code == mouse.Left)
+                {
+                    cout << "Start button clicked\n";
+                    break;
+                }
+    }
+    
+    while (window.isOpen())
+    {
         Event event;
         while (window.pollEvent(event))
         {
@@ -99,9 +123,16 @@ int main()
         if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
             if (mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
                 if (event.key.code == mouse.Left)
-                    MoveSuffledCard(window, pile);
-                    //cout << "Shuffled pile clicked\n";
+                {
+                    //MoveSuffledCard(window, pile);
+                    cout << "Shuffled pile clicked\n";
+                    while (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410 && mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
+                    {
+                        continue;
+                    }
+                }
 
+        //MoveSuffledCard(window, pile);
         window.clear(); // Clearing the window
 
         window.draw(backgroundSpr);
@@ -124,6 +155,7 @@ int main()
         // End of drawing the timer
 
         window.draw(score);
+
         for (int i = 0; i < 52; ++i) {
             window.draw(pile.cards[i].card_sprite);
         }
@@ -133,3 +165,5 @@ int main()
 
     return 0;
 }
+
+
