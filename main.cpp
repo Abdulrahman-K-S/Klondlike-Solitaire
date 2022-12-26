@@ -47,6 +47,8 @@ void DrawPiles(RenderWindow& window)
 int main()
 {
     RenderWindow window(VideoMode(1600, 900), "Solitaire");
+    window.setFramerateLimit(5);
+
 
     // Setting up the background of the game
     Texture backgroundTex;
@@ -83,6 +85,9 @@ int main()
 
     // Declaring an object of the class Mouse
     Mouse mouse;
+
+
+    // While loop for the welcome message to the game
     while (window.isOpen())
     {
         Event event;
@@ -91,9 +96,10 @@ int main()
             if (event.type == Event::Closed)
                 window.close();
         }
-        
+
         window.clear();
         window.draw(backgroundSpr);
+
         Text Start;
         Start.setFont(scoreFont);
         Start.setString("Start");
@@ -109,7 +115,10 @@ int main()
                     break;
                 }
     }
-    
+    // End of the while loop for the message display
+
+
+    // Start of the while loop for the gameplay
     while (window.isOpen())
     {
         Event event;
@@ -117,20 +126,21 @@ int main()
         {
             if (event.type == Event::Closed)
                 window.close();
+        
+            // If shuffled pile clicked
+            if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
+                if (mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
+                    if (event.key.code == mouse.Left)
+                    {
+                        //MoveSuffledCard(window, pile);
+                        cout << "Shuffled pile clicked\n";
+                        while (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410 && mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
+                        {
+                            continue;
+                        }
+                    }
         }
 
-        // If shuffled pile clicked
-        if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
-            if (mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
-                if (event.key.code == mouse.Left)
-                {
-                    //MoveSuffledCard(window, pile);
-                    cout << "Shuffled pile clicked\n";
-                    while (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410 && mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
-                    {
-                        continue;
-                    }
-                }
 
         //MoveSuffledCard(window, pile);
         window.clear(); // Clearing the window
@@ -162,8 +172,8 @@ int main()
 
         window.display(); // Displaying the window
     }
+    // End of the while loop for the gameplay
 
     return 0;
 }
-
 
