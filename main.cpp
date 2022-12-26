@@ -1,5 +1,8 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 // Including the different classes
 #include "OutlinePile.h"
@@ -47,8 +50,6 @@ void DrawPiles(RenderWindow& window)
 int main()
 {
     RenderWindow window(VideoMode(1600, 900), "Solitaire");
-    window.setFramerateLimit(5);
-
 
     // Setting up the background of the game
     Texture backgroundTex;
@@ -72,6 +73,7 @@ int main()
     Text Timer;
     Clock clock;
     Time timeElapsed1;
+    Time timeElapsed2;
     Timer.setFont(scoreFont);
     Timer.setCharacterSize(20);
     Timer.setPosition(800, 30);
@@ -83,11 +85,14 @@ int main()
     pile.setPileCards();
     pile.setSpriteTexture();
 
+    //Adding a sound effect for start
+    SoundBuffer StartBuffer;
+    StartBuffer.loadFromFile("Assets/ES_Multimedia839.wav");
+    Sound StartSound;
+    StartSound.setBuffer(StartBuffer);
+
     // Declaring an object of the class Mouse
     Mouse mouse;
-
-
-    // While loop for the welcome message to the game
     while (window.isOpen())
     {
         Event event;
@@ -96,29 +101,35 @@ int main()
             if (event.type == Event::Closed)
                 window.close();
         }
-
+        RectangleShape StartButton(Vector2f(250, 70));
+        StartButton.setPosition(Vector2f(675, 415));
+        StartButton.setFillColor(Color(0, 181, 212, 700));
+        timeElapsed1 = clock.getElapsedTime();
         window.clear();
         window.draw(backgroundSpr);
-
         Text Start;
+        Text StartMessage;
         Start.setFont(scoreFont);
         Start.setString("Start");
-        Start.setCharacterSize(20);
-        Start.setPosition(600, 30);
+        Start.setCharacterSize(25);
+        Start.setPosition(750, 435);
+        StartMessage.setFont(scoreFont);
+        StartMessage.setString("Welcome to our Solitaire!!\n\n\n\n\n\n\n   Press start to begin");
+        StartMessage.setCharacterSize(25);
+        StartMessage.setPosition(546, 300);
+        window.draw(StartButton);
         window.draw(Start);
+        window.draw(StartMessage);
         window.display();
-        if (mouse.getPosition(window).x >= 600 && mouse.getPosition(window).x <= 620)
-            if (mouse.getPosition(window).y >= 30 && mouse.getPosition(window).y <= 50)
+        if (mouse.getPosition(window).x >= 675 && mouse.getPosition(window).x <= 925)
+            if (mouse.getPosition(window).y >= 415 && mouse.getPosition(window).y <= 485)
                 if (event.key.code == mouse.Left)
                 {
-                    cout << "Start button clicked\n";
+                    StartSound.play();
                     break;
                 }
     }
-    // End of the while loop for the message display
-
-
-    // Start of the while loop for the gameplay
+    
     while (window.isOpen())
     {
         Event event;
@@ -126,21 +137,26 @@ int main()
         {
             if (event.type == Event::Closed)
                 window.close();
-        
-            // If shuffled pile clicked
-            if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
-                if (mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
-                    if (event.key.code == mouse.Left)
-                    {
-                        //MoveSuffledCard(window, pile);
-                        cout << "Shuffled pile clicked\n";
-                        while (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410 && mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
-                        {
-                            continue;
-                        }
-                    }
         }
 
+        // If shuffled pile clicked
+        if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
+            if (mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
+                switch (event.type)
+                {
+                    case Event::MouseButtonPressed:
+                        if (event.key.code == Mouse::Left)
+                        {
+                            cout << "Shuffled pile clicked\n";
+                            this_thread::sleep_for(chrono::milliseconds(300));
+                            //MoveSuffledCard(window, pile);
+                            break;
+                        }
+                    case Event::MouseButtonReleased:
+                        continue;
+                    default:
+                        break;
+                }
 
         //MoveSuffledCard(window, pile);
         window.clear(); // Clearing the window
@@ -150,9 +166,9 @@ int main()
         DrawPiles(window);
 
         // Start of drawing the timer
-        Time timeElapsed1 = clock.getElapsedTime();
-        int Minutes = int(timeElapsed1.asSeconds()) / 60;
-        int Seconds = int(timeElapsed1.asSeconds()) % 60;
+        timeElapsed2 = clock.getElapsedTime() - timeElapsed1;
+        int Minutes = int(timeElapsed2.asSeconds()) / 60;
+        int Seconds = int(timeElapsed2.asSeconds()) % 60;
         if (Minutes < 10 && Seconds >= 10)
             Timer.setString("Timer: 0" + to_string(Minutes) + ":" + to_string(Seconds));
         else if (Seconds < 10 && Minutes >= 10)
@@ -172,8 +188,8 @@ int main()
 
         window.display(); // Displaying the window
     }
-    // End of the while loop for the gameplay
 
     return 0;
 }
+
 
