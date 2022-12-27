@@ -1,5 +1,31 @@
 #include "Pile.h"
 
+Pile::Pile()
+{
+    Card nullCard;
+
+    for (int i = 0; i < 13; i++)
+        normal_pile1[i] = nullCard;
+
+    for (int i = 0; i < 14; i++)
+        normal_pile2[i] = nullCard;
+
+    for (int i = 0; i < 15; i++)
+        normal_pile3[i] = nullCard;
+
+    for (int i = 0; i < 16; i++)
+        normal_pile4[i] = nullCard;
+
+    for (int i = 0; i < 17; i++)
+        normal_pile5[i] = nullCard;
+
+    for (int i = 0; i < 18; i++)
+        normal_pile6[i] = nullCard;
+
+    for (int i = 0; i < 19; i++)
+        normal_pile7[i] = nullCard;
+}
+
 void Pile::setDeck()
 {
     int index = 0;
@@ -89,48 +115,57 @@ void Pile::setPileCards()
 {
     for (int i = 0; i < 52; i++)
     {
-        if (i == 0)
+        if (i == 0) 
         {
             cards[i].pile = CardPile::NORMAL_PILE1;
+            normal_pile1[normal_pile1_index++] = cards[i];
             setXYCoordinates(cards[i]);
         }
-        else if (i >= 1 && i <= 2)
+        else if (i >= 1 && i <= 2) 
         {
             cards[i].pile = CardPile::NORMAL_PILE2;
+            normal_pile2[normal_pile2_index++] = cards[i];
             setXYCoordinates(cards[i]);
         }
-        else if (i >= 3 && i <= 5)
+        else if (i >= 3 && i <= 5) 
         {
             cards[i].pile = CardPile::NORMAL_PILE3;
+            normal_pile3[normal_pile3_index++] = cards[i];
             setXYCoordinates(cards[i]);
         }
-        else if (i >= 6 && i <= 9)
+        else if (i >= 6 && i <= 9) 
         {
             cards[i].pile = CardPile::NORMAL_PILE4;
+            normal_pile4[normal_pile4_index++] = cards[i];
             setXYCoordinates(cards[i]);
         }
-        else if (i >= 10 && i <= 14)
+        else if (i >= 10 && i <= 14) 
         {
             cards[i].pile = CardPile::NORMAL_PILE5;
+            normal_pile5[normal_pile5_index++] = cards[i];
             setXYCoordinates(cards[i]);
         }
-        else if (i >= 15 && i <= 20)
+        else if (i >= 15 && i <= 20) 
         {
             cards[i].pile = CardPile::NORMAL_PILE6;
+            normal_pile6[normal_pile6_index++] = cards[i];
             setXYCoordinates(cards[i]);
         }
-        else if (i >= 21 && i <= 27)
+        else if (i >= 21 && i <= 27) 
         {
             cards[i].pile = CardPile::NORMAL_PILE7;
+            normal_pile7[normal_pile7_index++] = cards[i];
             setXYCoordinates(cards[i]);
         }
-        else
+        else 
         {
             cards[i].pile = CardPile::SHUFFLED_PILE;
-            draw_pile.push(cards[i]);
+            shuffled_pile.push(cards[i]);
             setXYCoordinates(cards[i]);
         }
     }
+
+    //delete[] cards;
 }
 
 void Pile::setSpriteTexture()
@@ -141,7 +176,7 @@ void Pile::setSpriteTexture()
         {
             cards[i].card_sprite.setTexture(cards[i].back_img_file);
             cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate);
-
+            
             if (i == 0)
             {
                 cards[i].card_sprite.setTexture(cards[i].front_img_file);
@@ -153,11 +188,12 @@ void Pile::setSpriteTexture()
             cards[i].card_sprite.setTexture(cards[i].back_img_file);
             cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 20);
             cards[i].yCoordinate = cards[i].yCoordinate + 20;
-
+            
             if (i == 2)
             {
                 cards[i].card_sprite.setTexture(cards[i].front_img_file);
                 cards[i].is_flipped = true;
+                cards[i].yCoordinate = cards[i].yCoordinate + 20;
             }
         }
         else if (i == 5 || i == 8 || i == 12 || i == 17 || i == 23)
@@ -165,11 +201,12 @@ void Pile::setSpriteTexture()
             cards[i].card_sprite.setTexture(cards[i].back_img_file);
             cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 40);
             cards[i].yCoordinate = cards[i].yCoordinate + 40;
-
+            
             if (i == 5)
             {
                 cards[i].card_sprite.setTexture(cards[i].front_img_file);
                 cards[i].is_flipped = true;
+                cards[i].yCoordinate = cards[i].yCoordinate + 40;
             }
         }
         else if (i == 9 || i == 13 || i == 18 || i == 24)
@@ -177,11 +214,12 @@ void Pile::setSpriteTexture()
             cards[i].card_sprite.setTexture(cards[i].back_img_file);
             cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 60);
             cards[i].yCoordinate = cards[i].yCoordinate + 60;
-
+            
             if (i == 9)
             {
                 cards[i].card_sprite.setTexture(cards[i].front_img_file);
                 cards[i].is_flipped = true;
+                cards[i].yCoordinate = cards[i].yCoordinate + 60;
             }
         }
         else if (i == 14 || i == 19 || i == 25)
@@ -189,11 +227,12 @@ void Pile::setSpriteTexture()
             cards[i].card_sprite.setTexture(cards[i].back_img_file);
             cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 80);
             cards[i].yCoordinate = cards[i].yCoordinate + 80;
-
+            
             if (i == 14)
             {
                 cards[i].card_sprite.setTexture(cards[i].front_img_file);
                 cards[i].is_flipped = true;
+                cards[i].yCoordinate = cards[i].yCoordinate + 80;
             }
         }
         else if (i == 20 || i == 26)
@@ -201,15 +240,16 @@ void Pile::setSpriteTexture()
             cards[i].card_sprite.setTexture(cards[i].back_img_file);
             cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 100);
             cards[i].yCoordinate = cards[i].yCoordinate + 100;
-
+            
             if (i == 20)
             {
-                cards[i].card_sprite.setTexture(cards[i].front_img_file);
                 cards[i].is_flipped = true;
+                cards[i].card_sprite.setTexture(cards[i].front_img_file);
             }
         }
         else if (i == 27)
-        {
+        {            
+            cards[i].is_flipped = true;
             cards[i].card_sprite.setTexture(cards[i].front_img_file);
             cards[i].card_sprite.setPosition(cards[i].xCoordinate, cards[i].yCoordinate + 120);
             cards[i].yCoordinate = cards[i].yCoordinate + 120;
@@ -220,4 +260,48 @@ void Pile::setSpriteTexture()
             cards[i].card_sprite.setPosition(285, 118);
         }
     }
+}
+
+void Pile::displayCards(RenderWindow& window)
+{
+    for (int i = 0; i < shuffled_pile.size(); i++) // Shuffle Pile
+        window.draw(shuffled_pile.top().card_sprite);
+
+    for (int i = 0; i < draw_pile.size(); i++) // Draw pile
+        window.draw(draw_pile.top().card_sprite);
+
+    // Foundation piles
+    for (int i = 0; i < foundation_pile1.size(); i++) // Foundation pile 1
+        window.draw(foundation_pile1.top().card_sprite);
+
+    for (int i = 0; i < foundation_pile2.size(); i++) // Foundation pile 2
+        window.draw(foundation_pile2.top().card_sprite);
+
+    for (int i = 0; i < foundation_pile3.size(); i++) // Foundation pile 3
+        window.draw(foundation_pile3.top().card_sprite);
+
+    for (int i = 0; i < foundation_pile4.size(); i++) // Foundation pile 4
+        window.draw(foundation_pile4.top().card_sprite);
+
+    // Normal piles
+    for (int i = 0; i <= normal_pile1_index; i++) // Normal pile 1
+        window.draw(normal_pile1[i].card_sprite);
+
+    for (int i = 0; i <= normal_pile2_index; i++) // Normal pile 2
+        window.draw(normal_pile2[i].card_sprite);
+
+    for (int i = 0; i <= normal_pile3_index; i++) // Normal pile 3
+        window.draw(normal_pile3[i].card_sprite);
+
+    for (int i = 0; i <= normal_pile4_index; i++) // Normal pile 4
+        window.draw(normal_pile4[i].card_sprite);
+
+    for (int i = 0; i <= normal_pile5_index; i++) // Normal pile 5
+        window.draw(normal_pile5[i].card_sprite);
+
+    for (int i = 0; i <= normal_pile6_index; i++) // Normal pile 6
+        window.draw(normal_pile6[i].card_sprite);
+
+    for (int i = 0; i <= normal_pile7_index; i++) // Normal pile 7
+        window.draw(normal_pile7[i].card_sprite);
 }
