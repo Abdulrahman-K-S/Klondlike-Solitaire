@@ -21,23 +21,19 @@ OutlinePile pilesArr[12] = { OutlinePile(290,120),OutlinePile(740,120), OutlineP
                              OutlinePile(440, 370), OutlinePile(590, 370), OutlinePile(740, 370),
                              OutlinePile(890,370), OutlinePile(1040,370), OutlinePile(1190,370) };
 
-void MoveSuffledCard(RenderWindow& window, Pile pile)
+void MoveSuffledCard(RenderWindow& window, stack<Card> &shuffled_pile)
 {
     //cout << "Shuffled pile clicked\n";
-    //cout << pile.draw_pile.empty();
-    if (pile.draw_pile.empty())
+    //cout << shuffled_pile.empty() << endl;
+    if (!shuffled_pile.empty())
     {
-        Card topCard = pile.draw_pile.top();
+        Card drawCard = shuffled_pile.top();
+        shuffled_pile.pop();
 
-        while (topCard.card_sprite.getPosition().x != 460)
-        {
-            topCard.card_sprite.move(10, 0);
-            cout << "here";
-        }
-    }
-    else
-    {
-
+        drawCard.card_sprite.setPosition(410, 290);
+        window.draw(drawCard.card_sprite);
+        window.display();
+        this_thread::sleep_for(chrono::seconds(15));
     }
 }
 
@@ -87,13 +83,14 @@ int main()
 
     //Adding a sound effect for start
     SoundBuffer StartBuffer;
-    StartBuffer.loadFromFile("Assets/ES_Multimedia839.wav");
+    StartBuffer.loadFromFile("Assets/Sounds/Start Sound.wav");
     Sound StartSound;
     StartSound.setBuffer(StartBuffer);
 
     // Declaring an object of the class Mouse
     Mouse mouse;
-    while (window.isOpen())
+
+    /*while (window.isOpen())
     {
         Event event;
         while (window.pollEvent(event))
@@ -128,8 +125,8 @@ int main()
                     StartSound.play();
                     break;
                 }
-    }
-    
+    }*/
+
     while (window.isOpen())
     {
         Event event;
@@ -137,26 +134,26 @@ int main()
         {
             if (event.type == Event::Closed)
                 window.close();
-        }
 
-        // If shuffled pile clicked
-        if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
-            if (mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
-                switch (event.type)
-                {
+            // If shuffled pile clicked
+            if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
+                if (mouse.getPosition(window).y >= 118 && mouse.getPosition(window).y <= 283)
+                    switch (event.type)
+                    {
                     case Event::MouseButtonPressed:
                         if (event.key.code == Mouse::Left)
                         {
                             cout << "Shuffled pile clicked\n";
                             this_thread::sleep_for(chrono::milliseconds(300));
-                            //MoveSuffledCard(window, pile);
+                            MoveSuffledCard(window, pile.shuffled_pile);
                             break;
                         }
                     case Event::MouseButtonReleased:
                         continue;
                     default:
                         break;
-                }
+                    }
+        }
 
         //MoveSuffledCard(window, pile);
         window.clear(); // Clearing the window
@@ -180,16 +177,14 @@ int main()
         window.draw(Timer);
         // End of drawing the timer
 
+        //pile.displayCards(window);
+
+        for (int i = 0; i < pile.normal_pile7_index; i++)
+            window.draw(pile.normal_pile7[i].card_sprite);
+
         window.draw(score);
-
-        for (int i = 0; i < 52; ++i) {
-            window.draw(pile.cards[i].card_sprite);
-        }
-
         window.display(); // Displaying the window
     }
 
     return 0;
 }
-
-
