@@ -1,17 +1,14 @@
 #include "OutlinePile.h"
 
-OutlinePile::OutlinePile(int xPosition, int yPosition)
+OutlinePile::OutlinePile(int startXPosition, int startYPosition, int endXPosition, int endYPosition)
 {
-    this->xPosition = xPosition;
-    this->yPosition = yPosition;
+    this->startXPosition = startXPosition;
+    this->startYPosition = startYPosition;
+    this->endXPosition = endXPosition;
+    this->endYPosition = endYPosition;
     pileOutline.setSize(Vector2f(120, 164));
-    pileOutline.setPosition(Vector2f(xPosition, yPosition));
+    pileOutline.setPosition(Vector2f(startXPosition, startYPosition));
     pileOutline.setFillColor(Color::Transparent);
     pileOutline.setOutlineColor(Color::White);
     pileOutline.setOutlineThickness(1);
-}
-
-RectangleShape OutlinePile::getShape()
-{
-    return pileOutline;
 }
