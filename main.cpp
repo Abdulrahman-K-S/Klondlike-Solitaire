@@ -16,10 +16,10 @@ using namespace std;
 // Global Variables:
 
 // The 12 outline piles
-OutlinePile pilesArr[12] = {OutlinePile(290,120,410,285),OutlinePile(740,120,860,285), OutlinePile(890,120,1010,285),
+OutlinePile pilesArr[12] = { OutlinePile(290,120,410,285),OutlinePile(740,120,860,285), OutlinePile(890,120,1010,285),
                              OutlinePile(1040,120,1160,285), OutlinePile(1190,120,1310,285), OutlinePile(290,370,410,535),
                              OutlinePile(440,370,560,535), OutlinePile(590,370,710,535), OutlinePile(740,370,860,535),
-                             OutlinePile(890,370,1010,535), OutlinePile(1040,370,1160,535), OutlinePile(1190,370,1310,535)};
+                             OutlinePile(890,370,1010,535), OutlinePile(1040,370,1160,535), OutlinePile(1190,370,1310,535) };
 
 void DrawPiles(RenderWindow& window)
 {
@@ -70,6 +70,21 @@ int main()
     StartBuffer.loadFromFile("Assets/Sounds/Start Sound.wav");
     Sound StartSound;
     StartSound.setBuffer(StartBuffer);
+    SoundBuffer StartWindowBuffer;
+    StartWindowBuffer.loadFromFile("Assets/Sounds/Start Music.wav");
+    Sound StartWindowMusic;
+    StartWindowMusic.setBuffer(StartWindowBuffer);
+    StartWindowMusic.play();
+    Text MadeBy;
+    MadeBy.setFont(scoreFont);
+    MadeBy.setString("Made  By\n TRYERZ");
+    MadeBy.setCharacterSize(20);
+    MadeBy.setPosition(1300, 680);
+    Texture TryerzTex;
+    TryerzTex.loadFromFile("Assets/Tryerz.jpg");
+    Sprite TryerzPic(TryerzTex);
+    TryerzPic.setPosition(1290,740);
+    TryerzPic.setScale(0.23,0.23);
 
     // Declaring an object of the class Mouse
     Mouse mouse;
@@ -101,12 +116,15 @@ int main()
         window.draw(StartButton);
         window.draw(Start);
         window.draw(StartMessage);
+        window.draw(MadeBy);
+        window.draw(TryerzPic);
         window.display();
         if (mouse.getPosition(window).x >= 675 && mouse.getPosition(window).x <= 925)
             if (mouse.getPosition(window).y >= 415 && mouse.getPosition(window).y <= 485)
                 if (event.key.code == mouse.Left)
                 {
                     StartSound.play();
+                    StartWindowMusic.stop();
                     break;
                 }
     }
