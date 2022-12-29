@@ -16,31 +16,15 @@ using namespace std;
 // Global Variables:
 
 // The 12 outline piles
-OutlinePile pilesArr[12] = { OutlinePile(290,120),OutlinePile(740,120), OutlinePile(890,120),
-                             OutlinePile(1040,120), OutlinePile(1190,120), OutlinePile(290, 370),
-                             OutlinePile(440, 370), OutlinePile(590, 370), OutlinePile(740, 370),
-                             OutlinePile(890,370), OutlinePile(1040,370), OutlinePile(1190,370) };
-
-void MoveSuffledCard(RenderWindow& window, stack<Card> &shuffled_pile)
-{
-    //cout << "Shuffled pile clicked\n";
-    //cout << shuffled_pile.empty() << endl;
-    if (!shuffled_pile.empty())
-    {
-        Card drawCard = shuffled_pile.top();
-        shuffled_pile.pop();
-
-        drawCard.card_sprite.setPosition(410, 290);
-        window.draw(drawCard.card_sprite);
-        window.display();
-        this_thread::sleep_for(chrono::seconds(15));
-    }
-}
+OutlinePile pilesArr[12] = {OutlinePile(290,120,410,285),OutlinePile(740,120,860,285), OutlinePile(890,120,1010,285),
+                             OutlinePile(1040,120,1160,285), OutlinePile(1190,120,1310,285), OutlinePile(290,370,410,535),
+                             OutlinePile(440,370,560,535), OutlinePile(590,370,710,535), OutlinePile(740,370,860,535),
+                             OutlinePile(890,370,1010,535), OutlinePile(1040,370,1160,535), OutlinePile(1190,370,1310,535)};
 
 void DrawPiles(RenderWindow& window)
 {
     for (int i = 0; i < 12; i++)
-        window.draw(pilesArr[i].getShape());
+        window.draw(pilesArr[i].pileOutline);
 }
 
 int main()
@@ -90,7 +74,7 @@ int main()
     // Declaring an object of the class Mouse
     Mouse mouse;
 
-    /*while (window.isOpen())
+    while (window.isOpen())
     {
         Event event;
         while (window.pollEvent(event))
@@ -125,7 +109,7 @@ int main()
                     StartSound.play();
                     break;
                 }
-    }*/
+    }
 
     while (window.isOpen())
     {
@@ -143,9 +127,8 @@ int main()
                     case Event::MouseButtonPressed:
                         if (event.key.code == Mouse::Left)
                         {
-                            cout << "Shuffled pile clicked\n";
-                            this_thread::sleep_for(chrono::milliseconds(300));
-                            MoveSuffledCard(window, pile.shuffled_pile);
+                            pile.MoveShuffledCard();
+                            this_thread::sleep_for(chrono::milliseconds(100));
                             break;
                         }
                     case Event::MouseButtonReleased:
@@ -177,10 +160,7 @@ int main()
         window.draw(Timer);
         // End of drawing the timer
 
-        //pile.displayCards(window);
-
-        for (int i = 0; i < pile.normal_pile7_index; i++)
-            window.draw(pile.normal_pile7[i].card_sprite);
+        pile.displayCards(window);
 
         window.draw(score);
         window.display(); // Displaying the window
