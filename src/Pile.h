@@ -32,16 +32,27 @@ public:
     stack<Card> foundation_pile4;
 
     Card* cards = new Card[52];
+
+    int offset = 20;
+
     Pile();
     void setDeck();
     void shuffleCards();
     void swap(Card*, Card*);
+    
     void setSpriteTexture();
     void setSpriteTexture(int pile_number);
     void setPileCards();
     void setXYCoordinates(Card&);
 
+    void displayCards(RenderWindow& window);
+
     void MoveShuffledCard();
 
-    void displayCards(RenderWindow& window);
+    void MoveCard(int pile_number);
+    void MoveFromDrawPile();
+    void MoveFromFoundation1Pile();
+    /*void MoveFromFoundation2Pile();
+    void MoveFromFoundation3Pile();
+    void MoveFromFoundation4Pile();*/
 };
