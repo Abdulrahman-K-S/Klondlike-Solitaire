@@ -18,8 +18,8 @@ public:
     vector<Card> normal_pile1;
     vector<Card> normal_pile2;
     vector<Card> normal_pile3;
-    vector<Card> normal_pile4;
-    vector<Card> normal_pile5;
+	vector<Card> normal_pile4;
+	vector<Card> normal_pile5;
     vector<Card> normal_pile6;
     vector<Card> normal_pile7;
 
@@ -39,7 +39,7 @@ public:
     void setDeck();
     void shuffleCards();
     void swap(Card*, Card*);
-
+    
     void setSpriteTexture();
     void setSpriteTexture(int pile_number);
     void setPileCards();
@@ -48,9 +48,14 @@ public:
     void displayCards(RenderWindow& window);
 
     void MoveShuffledCard();
+    void checkIfSpriteIsClicked(Vector2f mouse);
 
-    void checkIfSpriteIsClicked(Vector2f);
-    void moveFromDrawPile();
-
-    void moveCard(int pile_number);
+    void MoveCard(int pile_number);
+    void MoveFromDrawPile();
+    void MoveFromFoundationPile1();
+    void MoveFromFoundationPile2();
+    void MoveFromFoundationPile3();
+    void MoveFromFoundationPile4();
+    void MoveFromNormalPile1();
+    void MoveFromNormalPile2();
 };
