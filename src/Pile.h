@@ -47,15 +47,13 @@ public:
 
     void displayCards(RenderWindow& window);
 
-    void MoveShuffledCard();
     void checkIfSpriteIsClicked(Vector2f mouse);
 
-    void MoveCard(int pile_number);
+    void MoveCard(int pile_number, stack<Card> &fPile, vector<Card> &nPile);
+    void MoveFromShuffledPile();
     void MoveFromDrawPile();
-    void MoveFromFoundationPile1();
-    void MoveFromFoundationPile2();
-    void MoveFromFoundationPile3();
-    void MoveFromFoundationPile4();
+    void MoveFromFoundationPile(stack<Card> &pile);
+    void MoveFromNormalPile(vector<Card> &pile);
     void MoveFromNormalPile1();
     void MoveFromNormalPile2();
 };
