@@ -62,7 +62,7 @@ int main()
     // Declaring an object from the class piles to set up the whole game
     Pile pile;
     pile.setDeck();
-    //pile.shuffleCards();
+    pile.shuffleCards();
     pile.setPileCards();
     pile.setSpriteTexture();
 
