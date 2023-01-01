@@ -51,9 +51,9 @@ void Pile::swap(Card* a, Card* b)
     *b = temp;
 }
 
-void Pile::setXYCoordinates(Card& c) 
+void Pile::setXYCoordinates(Card& c)
 {
-    switch (c.pile) 
+    switch (c.pile)
     {
     case(CardPile::SHUFFLED_PILE):
         c.xCoordinate = 285;
@@ -104,11 +104,11 @@ void Pile::setPileCards()
             setXYCoordinates(cards[i]);
             normal_pile1.push_back(cards[i]);
         }
-        else if (i >= 1 && i <= 2) 
+        else if (i >= 1 && i <= 2)
         {
             cards[i].pile = CardPile::NORMAL_PILE2;
             setXYCoordinates(cards[i]);
-			normal_pile2.push_back(cards[i]);
+            normal_pile2.push_back(cards[i]);
         }
         else if (i >= 3 && i <= 5)
         {
@@ -116,31 +116,31 @@ void Pile::setPileCards()
             setXYCoordinates(cards[i]);
             normal_pile3.push_back(cards[i]);
         }
-        else if (i >= 6 && i <= 9) 
+        else if (i >= 6 && i <= 9)
         {
             cards[i].pile = CardPile::NORMAL_PILE4;
             setXYCoordinates(cards[i]);
             normal_pile4.push_back(cards[i]);
         }
-        else if (i >= 10 && i <= 14) 
+        else if (i >= 10 && i <= 14)
         {
             cards[i].pile = CardPile::NORMAL_PILE5;
             setXYCoordinates(cards[i]);
-			normal_pile5.push_back(cards[i]);
+            normal_pile5.push_back(cards[i]);
         }
-        else if (i >= 15 && i <= 20) 
+        else if (i >= 15 && i <= 20)
         {
             cards[i].pile = CardPile::NORMAL_PILE6;
             setXYCoordinates(cards[i]);
             normal_pile6.push_back(cards[i]);
         }
-        else if (i >= 21 && i <= 27) 
+        else if (i >= 21 && i <= 27)
         {
             cards[i].pile = CardPile::NORMAL_PILE7;
             setXYCoordinates(cards[i]);
             normal_pile7.push_back(cards[i]);
         }
-        else 
+        else
         {
             cards[i].pile = CardPile::SHUFFLED_PILE;
             setXYCoordinates(cards[i]);
@@ -160,7 +160,7 @@ void Pile::setSpriteTexture()
     for (int i = 0; i < normal_pile2.size(); ++i)
     {
         normal_pile2.at(i).card_sprite.setTexture(normal_pile2.at(i).back_img_file);
-        normal_pile2.at(i).card_sprite.setPosition(normal_pile2.at(i).xCoordinate, normal_pile2.at(i).yCoordinate + (i*offset));
+        normal_pile2.at(i).card_sprite.setPosition(normal_pile2.at(i).xCoordinate, normal_pile2.at(i).yCoordinate + (i * offset));
 
         if (i == normal_pile2.size() - 1)
         {
@@ -253,24 +253,24 @@ void Pile::setSpriteTexture(int pile_number)
         foundation_pile1.top().card_sprite.setTexture(foundation_pile1.top().front_img_file);
         foundation_pile1.top().xCoordinate = 740;
         foundation_pile1.top().yCoordinate = 120;
-		foundation_pile1.top().card_sprite.setPosition(foundation_pile1.top().xCoordinate, foundation_pile1.top().yCoordinate);
+        foundation_pile1.top().card_sprite.setPosition(foundation_pile1.top().xCoordinate, foundation_pile1.top().yCoordinate);
         break;
     case 4: // Foundation pile 2
         foundation_pile2.top().card_sprite.setTexture(foundation_pile2.top().front_img_file);
-		foundation_pile2.top().xCoordinate = 890;
-		foundation_pile2.top().yCoordinate = 120;
+        foundation_pile2.top().xCoordinate = 890;
+        foundation_pile2.top().yCoordinate = 120;
         foundation_pile2.top().card_sprite.setPosition(foundation_pile2.top().xCoordinate, foundation_pile2.top().yCoordinate);
         break;
     case 5: // Foundation pile 3
         foundation_pile3.top().card_sprite.setTexture(foundation_pile3.top().front_img_file);
-		foundation_pile3.top().xCoordinate = 1040;
-		foundation_pile3.top().yCoordinate = 120;
+        foundation_pile3.top().xCoordinate = 1040;
+        foundation_pile3.top().yCoordinate = 120;
         foundation_pile3.top().card_sprite.setPosition(foundation_pile3.top().xCoordinate, foundation_pile3.top().yCoordinate);
         break;
     case 6: // Foundation pile 4
         foundation_pile4.top().card_sprite.setTexture(foundation_pile4.top().front_img_file);
-		foundation_pile4.top().xCoordinate = 1190;
-		foundation_pile4.top().yCoordinate = 120;
+        foundation_pile4.top().xCoordinate = 1190;
+        foundation_pile4.top().yCoordinate = 120;
         foundation_pile4.top().card_sprite.setPosition(foundation_pile4.top().xCoordinate, foundation_pile4.top().yCoordinate);
         break;
     case 7: // Normal pile 1
@@ -293,8 +293,8 @@ void Pile::setSpriteTexture(int pile_number)
         }
         break;
     case 8: // Normal pile 2
-		for (int i = 0; i < normal_pile2.size(); ++i)
-		{
+        for (int i = 0; i < normal_pile2.size(); ++i)
+        {
             if (normal_pile2[i].is_flipped == true)
             {
                 normal_pile2[i].card_sprite.setTexture(normal_pile2[i].front_img_file);
@@ -309,10 +309,10 @@ void Pile::setSpriteTexture(int pile_number)
                 normal_pile2[i].yCoordinate = 368;
                 normal_pile2[i].card_sprite.setPosition(normal_pile2[i].xCoordinate, normal_pile2[i].yCoordinate + (offset * i));
             }
-		}
+        }
         break;
     case 9: // Normal pile 3
-        for(int i = 0; i < normal_pile3.size(); ++i)
+        for (int i = 0; i < normal_pile3.size(); ++i)
         {
             if (normal_pile3[i].is_flipped == true)
             {
@@ -324,7 +324,7 @@ void Pile::setSpriteTexture(int pile_number)
             else
             {
                 normal_pile3[i].card_sprite.setTexture(normal_pile3[i].back_img_file);
-				normal_pile3[i].xCoordinate = 585;
+                normal_pile3[i].xCoordinate = 585;
                 normal_pile3[i].yCoordinate = 368;
                 normal_pile3[i].card_sprite.setPosition(normal_pile3[i].xCoordinate, normal_pile3[i].yCoordinate + (offset * i));
             }
@@ -350,8 +350,8 @@ void Pile::setSpriteTexture(int pile_number)
         }
         break;
     case 11: // Normal pile 5
-		for (int i = 0; i < normal_pile5.size(); ++i)
-		{
+        for (int i = 0; i < normal_pile5.size(); ++i)
+        {
             if (normal_pile5[i].is_flipped == true)
             {
                 normal_pile5[i].card_sprite.setTexture(normal_pile5[i].front_img_file);
@@ -366,7 +366,7 @@ void Pile::setSpriteTexture(int pile_number)
                 normal_pile5[i].yCoordinate = 368;
                 normal_pile5[i].card_sprite.setPosition(normal_pile5[i].xCoordinate, normal_pile5[i].yCoordinate + (offset * i));
             }
-		}
+        }
         break;
     case 12: // Normal pile 6
         for (int i = 0; i < normal_pile6.size(); ++i)
@@ -388,7 +388,7 @@ void Pile::setSpriteTexture(int pile_number)
         }
         break;
     case 13: // Normal pile 7
-        for(int i = 0; i < normal_pile7.size(); ++i)
+        for (int i = 0; i < normal_pile7.size(); ++i)
         {
             if (normal_pile7[i].is_flipped == true)
             {
@@ -480,16 +480,6 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
     if (!draw_pile.empty())
         bounds = draw_pile.top().card_sprite.getGlobalBounds();
     if (bounds.contains(mouse)) {
-        MoveCard(2, foundation_pile1, normal_pile1);
-        return;
-    }
-    
-    // Shuffle Pile
-    if (!shuffled_pile.empty())
-        bounds = shuffled_pile.top().card_sprite.getGlobalBounds();
-    else if (shuffled_pile.empty())
-        MoveFromShuffledPile();
-    if (bounds.contains(mouse)) {
         MoveCard(1, foundation_pile1, normal_pile1);
         return;
     }
@@ -498,35 +488,35 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
         bounds = foundation_pile1.top().card_sprite.getGlobalBounds();
     if (bounds.contains(mouse)) {
         cout << "f1\n";
-        MoveCard(3, foundation_pile1, normal_pile1);
+        MoveCard(2, foundation_pile1, normal_pile1);
         return;
     }
     if (!foundation_pile2.empty())
         bounds = foundation_pile2.top().card_sprite.getGlobalBounds();
     if (bounds.contains(mouse)) {
         cout << "f2\n";
-        MoveCard(3, foundation_pile2, normal_pile1);
+        MoveCard(2, foundation_pile2, normal_pile1);
         return;
     }
     if (!foundation_pile3.empty())
         bounds = foundation_pile3.top().card_sprite.getGlobalBounds();
     if (bounds.contains(mouse)) {
         cout << "f3\n";
-        MoveCard(3, foundation_pile3, normal_pile1);
+        MoveCard(2, foundation_pile3, normal_pile1);
         return;
     }
     if (!foundation_pile4.empty())
         bounds = foundation_pile4.top().card_sprite.getGlobalBounds();
     if (bounds.contains(mouse)) {
         cout << "f4\n";
-        MoveCard(3, foundation_pile4, normal_pile1);
+        MoveCard(2, foundation_pile4, normal_pile1);
         return;
     }
     for (int i = 0; i < normal_pile1.size(); ++i) {
         bounds = normal_pile1[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile1[i].is_flipped) 
+        if (bounds.contains(mouse) && normal_pile1[i].is_flipped)
         {
-            MoveCard(4, foundation_pile1, normal_pile1);
+            MoveCard(3, foundation_pile1, normal_pile1);
             cout << "n1 element " << i + 1 << "\n";
             return;
         }
@@ -534,7 +524,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
     for (int i = 0; i < normal_pile2.size(); ++i) {
         bounds = normal_pile2[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile2[i].is_flipped) {
-            MoveCard(4, foundation_pile1, normal_pile2);
+            MoveCard(3, foundation_pile1, normal_pile2);
             cout << "n2 element " << i + 1 << "\n";
             return;
         }
@@ -542,7 +532,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
     for (int i = 0; i < normal_pile3.size(); ++i) {
         bounds = normal_pile3[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile3[i].is_flipped) {
-            MoveCard(4, foundation_pile1, normal_pile3);
+            MoveCard(3, foundation_pile1, normal_pile3);
             cout << "n3 element " << i + 1 << "\n";
             return;
         }
@@ -550,7 +540,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
     for (int i = 0; i < normal_pile4.size(); ++i) {
         bounds = normal_pile4[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile4[i].is_flipped) {
-            MoveCard(4, foundation_pile1, normal_pile4);
+            MoveCard(3, foundation_pile1, normal_pile4);
             cout << "n4 element " << i + 1 << "\n";
             return;
         }
@@ -558,7 +548,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
     for (int i = 0; i < normal_pile5.size(); ++i) {
         bounds = normal_pile5[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile5[i].is_flipped) {
-            MoveCard(4, foundation_pile1, normal_pile5);
+            MoveCard(3, foundation_pile1, normal_pile5);
             cout << "n5 element " << i + 1 << "\n";
             return;
         }
@@ -566,7 +556,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
     for (int i = 0; i < normal_pile6.size(); ++i) {
         bounds = normal_pile6[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile6[i].is_flipped) {
-            MoveCard(4, foundation_pile1, normal_pile6);
+            MoveCard(3, foundation_pile1, normal_pile6);
             cout << "n6 element " << i + 1 << "\n";
             return;
         }
@@ -574,27 +564,24 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
     for (int i = 0; i < normal_pile7.size(); ++i) {
         bounds = normal_pile7[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile7[i].is_flipped) {
-            MoveCard(4, foundation_pile1, normal_pile7);
+            MoveCard(3, foundation_pile1, normal_pile7);
             cout << "n7 element " << i + 1 << "\n";
             return;
         }
     }
 }
 
-void Pile::MoveCard(int pile_number, stack<Card> &fPile, vector<Card> &nPile)
+void Pile::MoveCard(int pile_number, stack<Card>& fPile, vector<Card>& nPile)
 {
     switch (pile_number)
     {
-    case 1: // Shuffled Pile
-        MoveFromShuffledPile();
-        break;
-    case 2: // Draw Pile
+    case 1: // Draw Pile
         MoveFromDrawPile();
         return;
-    case 3: // Foundation Pile
+    case 2: // Foundation Pile
         MoveFromFoundationPile(fPile);
         return;
-    case 4: // Normal Pile
+    case 3: // Normal Pile
         MoveFromNormalPile(nPile);
         return;
     }
@@ -829,7 +816,7 @@ void Pile::MoveFromDrawPile()
     return;
 }
 
-void Pile::MoveFromFoundationPile(stack<Card> &pile)
+void Pile::MoveFromFoundationPile(stack<Card>& pile)
 {
     if (foundation_pile1.empty() && int(pile.top().name) == 1)
     {
@@ -929,7 +916,7 @@ void Pile::MoveFromFoundationPile(stack<Card> &pile)
     return;
 }
 
-void Pile::MoveFromNormalPile(vector<Card> &pile)
+void Pile::MoveFromNormalPile(vector<Card>& pile)
 {
     if (foundation_pile1.empty() && int(pile.back().name) == 1)
     {
