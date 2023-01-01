@@ -473,7 +473,134 @@ void Pile::displayCards(RenderWindow& window)
     }
 }
 
-void Pile::MoveShuffledCard()
+void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
+    FloatRect bounds;
+
+    // Draw Pile
+    if (!draw_pile.empty())
+        bounds = draw_pile.top().card_sprite.getGlobalBounds();
+    if (bounds.contains(mouse)) {
+        MoveCard(2, foundation_pile1, normal_pile1);
+        return;
+    }
+    
+    // Shuffle Pile
+    if (!shuffled_pile.empty())
+        bounds = shuffled_pile.top().card_sprite.getGlobalBounds();
+    else if (shuffled_pile.empty())
+        MoveFromShuffledPile();
+    if (bounds.contains(mouse)) {
+        MoveCard(1, foundation_pile1, normal_pile1);
+        return;
+    }
+
+    if (!foundation_pile1.empty())
+        bounds = foundation_pile1.top().card_sprite.getGlobalBounds();
+    if (bounds.contains(mouse)) {
+        cout << "f1\n";
+        MoveCard(3, foundation_pile1, normal_pile1);
+        return;
+    }
+    if (!foundation_pile2.empty())
+        bounds = foundation_pile2.top().card_sprite.getGlobalBounds();
+    if (bounds.contains(mouse)) {
+        cout << "f2\n";
+        MoveCard(3, foundation_pile2, normal_pile1);
+        return;
+    }
+    if (!foundation_pile3.empty())
+        bounds = foundation_pile3.top().card_sprite.getGlobalBounds();
+    if (bounds.contains(mouse)) {
+        cout << "f3\n";
+        MoveCard(3, foundation_pile3, normal_pile1);
+        return;
+    }
+    if (!foundation_pile4.empty())
+        bounds = foundation_pile4.top().card_sprite.getGlobalBounds();
+    if (bounds.contains(mouse)) {
+        cout << "f4\n";
+        MoveCard(3, foundation_pile4, normal_pile1);
+        return;
+    }
+    for (int i = 0; i < normal_pile1.size(); ++i) {
+        bounds = normal_pile1[i].card_sprite.getGlobalBounds();
+        if (bounds.contains(mouse) && normal_pile1[i].is_flipped) 
+        {
+            MoveCard(4, foundation_pile1, normal_pile1);
+            cout << "n1 element " << i + 1 << "\n";
+            return;
+        }
+    }
+    for (int i = 0; i < normal_pile2.size(); ++i) {
+        bounds = normal_pile2[i].card_sprite.getGlobalBounds();
+        if (bounds.contains(mouse) && normal_pile2[i].is_flipped) {
+            MoveCard(4, foundation_pile1, normal_pile2);
+            cout << "n2 element " << i + 1 << "\n";
+            return;
+        }
+    }
+    for (int i = 0; i < normal_pile3.size(); ++i) {
+        bounds = normal_pile3[i].card_sprite.getGlobalBounds();
+        if (bounds.contains(mouse) && normal_pile3[i].is_flipped) {
+            MoveCard(4, foundation_pile1, normal_pile3);
+            cout << "n3 element " << i + 1 << "\n";
+            return;
+        }
+    }
+    for (int i = 0; i < normal_pile4.size(); ++i) {
+        bounds = normal_pile4[i].card_sprite.getGlobalBounds();
+        if (bounds.contains(mouse) && normal_pile4[i].is_flipped) {
+            MoveCard(4, foundation_pile1, normal_pile4);
+            cout << "n4 element " << i + 1 << "\n";
+            return;
+        }
+    }
+    for (int i = 0; i < normal_pile5.size(); ++i) {
+        bounds = normal_pile5[i].card_sprite.getGlobalBounds();
+        if (bounds.contains(mouse) && normal_pile5[i].is_flipped) {
+            MoveCard(4, foundation_pile1, normal_pile5);
+            cout << "n5 element " << i + 1 << "\n";
+            return;
+        }
+    }
+    for (int i = 0; i < normal_pile6.size(); ++i) {
+        bounds = normal_pile6[i].card_sprite.getGlobalBounds();
+        if (bounds.contains(mouse) && normal_pile6[i].is_flipped) {
+            MoveCard(4, foundation_pile1, normal_pile6);
+            cout << "n6 element " << i + 1 << "\n";
+            return;
+        }
+    }
+    for (int i = 0; i < normal_pile7.size(); ++i) {
+        bounds = normal_pile7[i].card_sprite.getGlobalBounds();
+        if (bounds.contains(mouse) && normal_pile7[i].is_flipped) {
+            MoveCard(4, foundation_pile1, normal_pile7);
+            cout << "n7 element " << i + 1 << "\n";
+            return;
+        }
+    }
+}
+
+void Pile::MoveCard(int pile_number, stack<Card> &fPile, vector<Card> &nPile)
+{
+    switch (pile_number)
+    {
+    case 1: // Shuffled Pile
+        MoveFromShuffledPile();
+        break;
+    case 2: // Draw Pile
+        MoveFromDrawPile();
+        return;
+    case 3: // Foundation Pile
+        MoveFromFoundationPile(fPile);
+        return;
+    case 4: // Normal Pile
+        MoveFromNormalPile(nPile);
+        return;
+    }
+}
+
+void Pile::MoveFromShuffledPile()
 {
     if (!shuffled_pile.empty())
     {
@@ -491,118 +618,6 @@ void Pile::MoveShuffledCard()
             draw_pile.pop();
             setSpriteTexture(1);
         }
-    }
-}
-
-void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
-    FloatRect bounds;
-    if (!draw_pile.empty())
-        bounds = draw_pile.top().card_sprite.getGlobalBounds();
-    if (bounds.contains(mouse)) {
-        //moveFromDrawPile();
-        return;
-    }
-
-    if (!foundation_pile1.empty())
-        bounds = foundation_pile1.top().card_sprite.getGlobalBounds();
-    if (bounds.contains(mouse)) {
-        cout << "f1\n";
-        return;
-    }
-    if (!foundation_pile2.empty())
-        bounds = foundation_pile2.top().card_sprite.getGlobalBounds();
-    if (bounds.contains(mouse)) {
-        cout << "f2\n";
-        return;
-    }
-    if (!foundation_pile3.empty())
-        bounds = foundation_pile3.top().card_sprite.getGlobalBounds();
-    if (bounds.contains(mouse)) {
-        cout << "f3\n";
-        return;
-    }
-    if (!foundation_pile4.empty())
-        bounds = foundation_pile4.top().card_sprite.getGlobalBounds();
-    if (bounds.contains(mouse)) {
-        cout << "f4\n";
-        return;
-    }
-    for (int i = 0; i < normal_pile1.size(); ++i) {
-        bounds = normal_pile1[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile1[i].is_flipped) {
-            cout << "n1 element " << i + 1 << "\n";
-            return;
-        }
-    }
-    for (int i = 0; i < normal_pile2.size(); ++i) {
-        bounds = normal_pile2[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile2[i].is_flipped) {
-            cout << "n2 element " << i + 1 << "\n";
-            return;
-        }
-    }
-    for (int i = 0; i < normal_pile3.size(); ++i) {
-        bounds = normal_pile3[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile3[i].is_flipped) {
-            cout << "n3 element " << i + 1 << "\n";
-            return;
-        }
-    }
-    for (int i = 0; i < normal_pile4.size(); ++i) {
-        bounds = normal_pile4[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile4[i].is_flipped) {
-            cout << "n4 element " << i + 1 << "\n";
-            return;
-        }
-    }
-    for (int i = 0; i < normal_pile5.size(); ++i) {
-        bounds = normal_pile5[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile5[i].is_flipped) {
-            cout << "n5 element " << i + 1 << "\n";
-            return;
-        }
-    }
-    for (int i = 0; i < normal_pile6.size(); ++i) {
-        bounds = normal_pile6[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile6[i].is_flipped) {
-            cout << "n6 element " << i + 1 << "\n";
-            return;
-        }
-    }
-    for (int i = 0; i < normal_pile7.size(); ++i) {
-        bounds = normal_pile7[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile7[i].is_flipped) {
-            cout << "n7 element " << i + 1 << "\n";
-            return;
-        }
-    }
-}
-
-void Pile::MoveCard(int pile_number)
-{
-    switch (pile_number)
-    {
-    case 2: // Draw pile
-        MoveFromDrawPile();
-        return;
-    case 3: // Foundation pile 1
-        MoveFromFoundationPile1();
-        return;
-    case 4: // Foundation pile 2
-        MoveFromFoundationPile2();
-        return;
-    case 5: // Foundation pile 3
-        MoveFromFoundationPile3();
-        return;
-    case 6: // Foundation pile 4
-        MoveFromFoundationPile4();
-        return;
-    case 7:
-        MoveFromNormalPile1();
-        return;
-    case 8:
-        MoveFromNormalPile2();
-        return;
     }
 }
 
@@ -814,721 +829,351 @@ void Pile::MoveFromDrawPile()
     return;
 }
 
-void Pile::MoveFromFoundationPile1()
+void Pile::MoveFromFoundationPile(stack<Card> &pile)
 {
-    if (foundation_pile2.empty() && int(foundation_pile1.top().name) == 1) 
+    if (foundation_pile1.empty() && int(pile.top().name) == 1)
     {
         card_click_sound.play();
-        foundation_pile2.push(foundation_pile1.top());
-        foundation_pile1.pop();
+        foundation_pile1.push(pile.top());
+        pile.pop();
+        setSpriteTexture(3/*Foundation pile 1*/);
+        return;
+    }
+    else if (foundation_pile2.empty() && int(pile.top().name) == 1)
+    {
+        card_click_sound.play();
+        foundation_pile2.push(pile.top());
+        pile.pop();
         setSpriteTexture(4/*Foundation pile 2*/);
         return;
     }
-    else if (foundation_pile3.empty() && int(foundation_pile1.top().name) == 1)
+    else if (foundation_pile3.empty() && int(pile.top().name) == 1)
     {
         card_click_sound.play();
-        foundation_pile3.push(foundation_pile1.top());
-        foundation_pile1.pop();
+        foundation_pile3.push(pile.top());
+        pile.pop();
         setSpriteTexture(5/*Foundation pile 3*/);
         return;
     }
-    else if (foundation_pile4.empty() && int(foundation_pile1.top().name) == 1)
+    else if (foundation_pile4.empty() && int(pile.top().name) == 1)
     {
         card_click_sound.play();
-        foundation_pile4.push(foundation_pile1.top());
-        foundation_pile1.pop();
+        foundation_pile4.push(pile.top());
+        pile.pop();
         setSpriteTexture(6/*Foundation pile 4*/);
         return;
     }
-    else if (int(normal_pile1.back().color) != int(foundation_pile1.top().color) \
-        && (int(normal_pile1.back().name) - int(foundation_pile1.top().name) == 1))
+    else if (int(normal_pile1.back().color) != int(pile.top().color) \
+        && (int(normal_pile1.back().name) - int(pile.top().name) == 1))
     {
         card_click_sound.play();
-        normal_pile1.push_back(foundation_pile1.top());
-        foundation_pile1.pop();
+        normal_pile1.push_back(pile.top());
+        pile.pop();
         setSpriteTexture(7/*Normal pile 1*/);
         return;
     }
-    else if (int(normal_pile2.back().color) != int(foundation_pile1.top().color) \
-        && (int(normal_pile2.back().name) - int(foundation_pile1.top().name) == 1))
+    else if (int(normal_pile2.back().color) != int(pile.top().color) \
+        && (int(normal_pile2.back().name) - int(pile.top().name) == 1))
     {
         card_click_sound.play();
-        normal_pile2.push_back(foundation_pile1.top());
-        foundation_pile1.pop();
+        normal_pile2.push_back(pile.top());
+        pile.pop();
         setSpriteTexture(8/*Normal pile 2*/);
         return;
     }
-    else if (int(normal_pile3.back().color) != int(foundation_pile1.top().color) \
-        && (int(normal_pile3.back().name) - int(foundation_pile1.top().name) == 1))
+    else if (int(normal_pile3.back().color) != int(pile.top().color) \
+        && (int(normal_pile3.back().name) - int(pile.top().name) == 1))
     {
         card_click_sound.play();
-        normal_pile3.push_back(foundation_pile1.top());
-        foundation_pile1.pop();
+        normal_pile3.push_back(pile.top());
+        pile.pop();
         setSpriteTexture(9/*Normal pile 3*/);
         return;
     }
-    else if (int(normal_pile4.back().color) != int(foundation_pile1.top().color) \
-        && (int(normal_pile4.back().name) - int(foundation_pile1.top().name) == 1))
+    else if (int(normal_pile4.back().color) != int(pile.top().color) \
+        && (int(normal_pile4.back().name) - int(pile.top().name) == 1))
     {
         card_click_sound.play();
-        normal_pile4.push_back(foundation_pile1.top());
-        foundation_pile1.pop();
+        normal_pile4.push_back(pile.top());
+        pile.pop();
         setSpriteTexture(10/*Normal pile 4*/);
         return;
     }
-    else if (int(normal_pile5.back().color) != int(foundation_pile1.top().color) \
-        && (int(normal_pile5.back().name) - int(foundation_pile1.top().name) == 1))
+    else if (int(normal_pile5.back().color) != int(pile.top().color) \
+        && (int(normal_pile5.back().name) - int(pile.top().name) == 1))
     {
         card_click_sound.play();
-        normal_pile5.push_back(foundation_pile1.top());
-        foundation_pile1.pop();
+        normal_pile5.push_back(pile.top());
+        pile.pop();
         setSpriteTexture(11/*Normal pile 5*/);
         return;
     }
-    else if (int(normal_pile6.back().color) != int(foundation_pile1.top().color) \
-        && (int(normal_pile6.back().name) - int(foundation_pile1.top().name) == 1))
+    else if (int(normal_pile6.back().color) != int(pile.top().color) \
+        && (int(normal_pile6.back().name) - int(pile.top().name) == 1))
     {
         card_click_sound.play();
-        normal_pile6.push_back(foundation_pile1.top());
-        foundation_pile1.pop();
+        normal_pile6.push_back(pile.top());
+        pile.pop();
         setSpriteTexture(12/*Normal pile 6*/);
         return;
     }
-    else if (int(normal_pile2.back().color) != int(foundation_pile1.top().color) \
-        && (int(normal_pile2.back().name) - int(foundation_pile1.top().name) == 1))
+    else if (int(normal_pile2.back().color) != int(pile.top().color) \
+        && (int(normal_pile2.back().name) - int(pile.top().name) == 1))
     {
         card_click_sound.play();
-        normal_pile7.push_back(foundation_pile1.top());
-        foundation_pile1.pop();
+        normal_pile7.push_back(pile.top());
+        pile.pop();
         setSpriteTexture(13/*Normal pile 7*/);
         return;
     }
     return;
 }
 
-void Pile::MoveFromFoundationPile2()
+void Pile::MoveFromNormalPile(vector<Card> &pile)
 {
-    if (foundation_pile3.empty() && int(foundation_pile2.top().name) == 1)
+    if (foundation_pile1.empty() && int(pile.back().name) == 1)
     {
         card_click_sound.play();
-        foundation_pile3.push(foundation_pile2.top());
-        foundation_pile2.pop();
-        setSpriteTexture(5/*Foundation pile 3*/);
-        return;
-    }
-    else if (foundation_pile4.empty() && int(foundation_pile2.top().name) == 1)
-    {
-        card_click_sound.play();
-        foundation_pile4.push(foundation_pile1.top());
-        foundation_pile2.pop();
-        setSpriteTexture(6/*Foundation pile 4*/);
-        return;
-    }
-    else if (int(normal_pile1.back().color) != int(foundation_pile2.top().color) \
-        && (int(normal_pile1.back().name) - int(foundation_pile2.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile1.push_back(foundation_pile2.top());
-        foundation_pile2.pop();
-        setSpriteTexture(7/*Normal pile 1*/);
-        return;
-    }
-    else if (int(normal_pile2.back().color) != int(foundation_pile2.top().color) \
-        && (int(normal_pile2.back().name) - int(foundation_pile2.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile2.push_back(foundation_pile2.top());
-        foundation_pile2.pop();
-        setSpriteTexture(8/*Normal pile 2*/);
-        return;
-    }
-    else if (int(normal_pile3.back().color) != int(foundation_pile2.top().color) \
-        && (int(normal_pile3.back().name) - int(foundation_pile2.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile3.push_back(foundation_pile2.top());
-        foundation_pile2.pop();
-        setSpriteTexture(9/*Normal pile 3*/);
-        return;
-    }
-    else if (int(normal_pile4.back().color) != int(foundation_pile2.top().color) \
-        && (int(normal_pile4.back().name) - int(foundation_pile2.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile4.push_back(foundation_pile2.top());
-        foundation_pile2.pop();
-        setSpriteTexture(10/*Normal pile 4*/);
-        return;
-    }
-    else if (int(normal_pile5.back().color) != int(foundation_pile2.top().color) \
-        && (int(normal_pile5.back().name) - int(foundation_pile2.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile5.push_back(foundation_pile2.top());
-        foundation_pile2.pop();
-        setSpriteTexture(11/*Normal pile 5*/);
-        return;
-    }
-    else if (int(normal_pile6.back().color) != int(foundation_pile2.top().color) \
-        && (int(normal_pile6.back().name) - int(foundation_pile2.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile6.push_back(foundation_pile2.top());
-        foundation_pile2.pop();
-        setSpriteTexture(12/*Normal pile 6*/);
-        return;
-    }
-    else if (int(normal_pile2.back().color) != int(foundation_pile2.top().color) \
-        && (int(normal_pile2.back().name) - int(foundation_pile2.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile7.push_back(foundation_pile2.top());
-        foundation_pile2.pop();
-        setSpriteTexture(13/*Normal pile 7*/);
-        return;
-    }
-    return;
-}
-
-void Pile::MoveFromFoundationPile3()
-{
-    if (foundation_pile4.empty() && int(foundation_pile3.top().name) == 1)
-    {
-        card_click_sound.play();
-        foundation_pile4.push(foundation_pile3.top());
-        foundation_pile3.pop();
-        setSpriteTexture(6/*Foundation pile 4*/);
-        return;
-    }
-    else if (int(normal_pile1.back().color) != int(foundation_pile3.top().color) \
-        && (int(normal_pile1.back().name) - int(foundation_pile3.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile1.push_back(foundation_pile3.top());
-        foundation_pile3.pop();
-        setSpriteTexture(7/*Normal pile 1*/);
-        return;
-    }
-    else if (int(normal_pile2.back().color) != int(foundation_pile3.top().color) \
-        && (int(normal_pile2.back().name) - int(foundation_pile3.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile2.push_back(foundation_pile3.top());
-        foundation_pile3.pop();
-        setSpriteTexture(8/*Normal pile 2*/);
-        return;
-    }
-    else if (int(normal_pile3.back().color) != int(foundation_pile3.top().color) \
-        && (int(normal_pile3.back().name) - int(foundation_pile3.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile3.push_back(foundation_pile3.top());
-        foundation_pile3.pop();
-        setSpriteTexture(9/*Normal pile 3*/);
-        return;
-    }
-    else if (int(normal_pile4.back().color) != int(foundation_pile3.top().color) \
-        && (int(normal_pile4.back().name) - int(foundation_pile3.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile4.push_back(foundation_pile3.top());
-        foundation_pile3.pop();
-        setSpriteTexture(10/*Normal pile 4*/);
-        return;
-    }
-    else if (int(normal_pile5.back().color) != int(foundation_pile3.top().color) \
-        && (int(normal_pile5.back().name) - int(foundation_pile3.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile5.push_back(foundation_pile3.top());
-        foundation_pile3.pop();
-        setSpriteTexture(11/*Normal pile 5*/);
-        return;
-    }
-    else if (int(normal_pile6.back().color) != int(foundation_pile3.top().color) \
-        && (int(normal_pile6.back().name) - int(foundation_pile3.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile6.push_back(foundation_pile3.top());
-        foundation_pile3.pop();
-        setSpriteTexture(12/*Normal pile 6*/);
-        return;
-    }
-    else if (int(normal_pile2.back().color) != int(foundation_pile3.top().color) \
-        && (int(normal_pile2.back().name) - int(foundation_pile3.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile7.push_back(foundation_pile3.top());
-        foundation_pile3.pop();
-        setSpriteTexture(13/*Normal pile 7*/);
-        return;
-    }
-    return;
-}
-
-void Pile::MoveFromFoundationPile4()
-{
-    if (int(normal_pile1.back().color) != int(foundation_pile4.top().color) \
-        && (int(normal_pile1.back().name) - int(foundation_pile4.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile1.push_back(foundation_pile4.top());
-        foundation_pile4.pop();
-        setSpriteTexture(7/*Normal pile 1*/);
-        return;
-    }
-    else if (int(normal_pile2.back().color) != int(foundation_pile4.top().color) \
-        && (int(normal_pile2.back().name) - int(foundation_pile4.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile2.push_back(foundation_pile4.top());
-        foundation_pile4.pop();
-        setSpriteTexture(8/*Normal pile 2*/);
-        return;
-    }
-    else if (int(normal_pile3.back().color) != int(foundation_pile4.top().color) \
-        && (int(normal_pile3.back().name) - int(foundation_pile4.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile3.push_back(foundation_pile4.top());
-        foundation_pile4.pop();
-        setSpriteTexture(9/*Normal pile 3*/);
-        return;
-    }
-    else if (int(normal_pile4.back().color) != int(foundation_pile4.top().color) \
-        && (int(normal_pile4.back().name) - int(foundation_pile4.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile4.push_back(foundation_pile4.top());
-        foundation_pile4.pop();
-        setSpriteTexture(10/*Normal pile 4*/);
-        return;
-    }
-    else if (int(normal_pile5.back().color) != int(foundation_pile4.top().color) \
-        && (int(normal_pile5.back().name) - int(foundation_pile4.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile5.push_back(foundation_pile4.top());
-        foundation_pile4.pop();
-        setSpriteTexture(11/*Normal pile 5*/);
-        return;
-    }
-    else if (int(normal_pile6.back().color) != int(foundation_pile4.top().color) \
-        && (int(normal_pile6.back().name) - int(foundation_pile4.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile6.push_back(foundation_pile4.top());
-        foundation_pile4.pop();
-        setSpriteTexture(12/*Normal pile 6*/);
-        return;
-    }
-    else if (int(normal_pile7.back().color) != int(foundation_pile4.top().color) \
-        && (int(normal_pile7.back().name) - int(foundation_pile4.top().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile7.push_back(foundation_pile4.top());
-        foundation_pile4.pop();
-        setSpriteTexture(13/*Normal pile 7*/);
-        return;
-    }
-
-    return;
-}
-
-void Pile::MoveFromNormalPile1()
-{
-    if (foundation_pile1.empty() && int(normal_pile1.back().name) == 1)
-    {
-        card_click_sound.play();
-        foundation_pile1.push(normal_pile1.back());
-        normal_pile1.pop_back();
+        foundation_pile1.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(3/*Foundation pile*/);
         return;
     }
     else if (!foundation_pile1.empty() \
-        && int(foundation_pile1.top().color) == int(normal_pile1.back().color) \
-        && int(foundation_pile1.top().suit) == int(normal_pile1.back().suit) \
-        && (int(foundation_pile1.top().name) - int(normal_pile1.back().name) == -1))
+        && int(foundation_pile1.top().color) == int(pile.back().color) \
+        && int(foundation_pile1.top().suit) == int(pile.back().suit) \
+        && (int(foundation_pile1.top().name) - int(pile.back().name) == -1))
     {
         card_click_sound.play();
-        foundation_pile1.push(normal_pile1.back());
-        normal_pile1.pop_back();
+        foundation_pile1.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(3/*Foundation pile*/);
         return;
     }
-    if (foundation_pile2.empty() && int(normal_pile1.back().name) == 1)
+    if (foundation_pile2.empty() && int(pile.back().name) == 1)
     {
         card_click_sound.play();
-        foundation_pile2.push(normal_pile1.back());
-        normal_pile1.pop_back();
+        foundation_pile2.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(4/*Foundation pile*/);
         return;
     }
     else if (!foundation_pile2.empty() \
-        && int(foundation_pile2.top().color) == int(normal_pile1.back().color) \
-        && int(foundation_pile2.top().suit) == int(normal_pile1.back().suit) \
-        && (int(foundation_pile2.top().name) - int(normal_pile1.back().name) == -1))
+        && int(foundation_pile2.top().color) == int(pile.back().color) \
+        && int(foundation_pile2.top().suit) == int(pile.back().suit) \
+        && (int(foundation_pile2.top().name) - int(pile.back().name) == -1))
     {
         card_click_sound.play();
-        foundation_pile2.push(normal_pile1.back());
-        normal_pile1.pop_back();
+        foundation_pile2.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(4/*Foundation pile*/);
         return;
     }
-    if (foundation_pile3.empty() && int(normal_pile1.back().name) == 1) // Foundation pile 3
+    if (foundation_pile3.empty() && int(pile.back().name) == 1) // Foundation pile 3
     {
         card_click_sound.play();
-        foundation_pile3.push(normal_pile1.back());
-        normal_pile1.pop_back();
+        foundation_pile3.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(5/*Foundation pile*/);
         return;
     }
     else if (!foundation_pile3.empty() \
-        && int(foundation_pile3.top().color) == int(normal_pile1.back().color) \
-        && int(foundation_pile3.top().suit) == int(normal_pile1.back().suit) \
-        && (int(foundation_pile3.top().name) - int(normal_pile1.back().name) == -1))
+        && int(foundation_pile3.top().color) == int(pile.back().color) \
+        && int(foundation_pile3.top().suit) == int(pile.back().suit) \
+        && (int(foundation_pile3.top().name) - int(pile.back().name) == -1))
     {
         card_click_sound.play();
-        foundation_pile3.push(normal_pile1.back());
-        normal_pile1.pop_back();
+        foundation_pile3.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(5/*Foundation pile*/);
         return;
     }
-    if (foundation_pile4.empty() && int(normal_pile1.back().name) == 1) // Foundation pile 4
+    if (foundation_pile4.empty() && int(pile.back().name) == 1) // Foundation pile 4
     {
         card_click_sound.play();
-        foundation_pile4.push(normal_pile1.back());
-        normal_pile1.pop_back();
+        foundation_pile4.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(6/*Foundation pile*/);
         return;
     }
     else if (!foundation_pile4.empty() \
-        && int(foundation_pile4.top().color) == int(normal_pile1.back().color) \
-        && int(foundation_pile4.top().suit) == int(normal_pile1.back().suit) \
-        && (int(foundation_pile4.top().name) - int(normal_pile1.back().name) == -1))
+        && int(foundation_pile4.top().color) == int(pile.back().color) \
+        && int(foundation_pile4.top().suit) == int(pile.back().suit) \
+        && (int(foundation_pile4.top().name) - int(pile.back().name) == -1))
     {
         card_click_sound.play();
-        foundation_pile4.push(normal_pile1.back());
-        normal_pile1.pop_back();
+        foundation_pile4.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(6/*Foundation pile*/);
         return;
     }
-    if (normal_pile2.empty() && int(normal_pile1.back().name) == 13) // Normal Pile 1
+    if (normal_pile1.empty() && int(pile.back().name) == 13) // Normal Pile 1
     {
         card_click_sound.play();
-        normal_pile2.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(8/*Foundation pile*/);
-        return;
-    }
-    else if (!normal_pile2.empty() \
-        && int(normal_pile2.back().color) != int(normal_pile1.back().color) \
-        && (int(normal_pile2.back().name) - int(normal_pile1.back().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile2.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(8/*Foundation pile*/);
-        return;
-    }
-    if (normal_pile3.empty() && int(normal_pile1.back().name) == 13) // Normal Pile 1
-    {
-        card_click_sound.play();
-        normal_pile3.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(9/*Foundation pile*/);
-        return;
-    }
-    else if (!normal_pile3.empty() \
-        && int(normal_pile3.back().color) != int(normal_pile1.back().color) \
-        && (int(normal_pile3.back().name) - int(normal_pile1.back().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile3.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(9/*Foundation pile*/);
-        return;
-    }
-    if (normal_pile4.empty() && int(normal_pile1.back().name) == 13) // Normal Pile 1
-    {
-        card_click_sound.play();
-        normal_pile4.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(10/*Foundation pile*/);
-        return;
-    }
-    else if (!normal_pile4.empty() \
-        && int(normal_pile4.back().color) != int(normal_pile1.back().color) \
-        && (int(normal_pile4.back().name) - int(normal_pile1.back().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile4.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(10/*Foundation pile*/);
-        return;
-    }
-    if (normal_pile5.empty() && int(normal_pile1.back().name) == 13) // Normal Pile 1
-    {
-        card_click_sound.play();
-        normal_pile5.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(11/*Foundation pile*/);
-        return;
-    }
-    else if (!normal_pile5.empty() \
-        && int(normal_pile5.back().color) != int(normal_pile1.back().color) \
-        && (int(normal_pile5.back().name) - int(normal_pile1.back().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile5.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(11/*Foundation pile*/);
-        return;
-    }
-    if (normal_pile6.empty() && int(normal_pile1.back().name) == 13) // Normal Pile 1
-    {
-        card_click_sound.play();
-        normal_pile6.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(12/*Foundation pile*/);
-        return;
-    }
-    else if (!normal_pile6.empty() \
-        && int(normal_pile6.back().color) != int(normal_pile1.back().color) \
-        && (int(normal_pile6.back().name) - int(normal_pile1.back().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile6.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(12/*Foundation pile*/);
-        return;
-    }
-    if (normal_pile7.empty() && int(normal_pile1.back().name) == 13) // Normal Pile 1
-    {
-        card_click_sound.play();
-        normal_pile7.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(13/*Foundation pile*/);
-        return;
-    }
-    else if (!normal_pile7.empty() \
-        && int(normal_pile7.back().color) != int(normal_pile1.back().color) \
-        && (int(normal_pile7.back().name) - int(normal_pile1.back().name) == 1))
-    {
-        card_click_sound.play();
-        normal_pile7.push_back(normal_pile1.back());
-        normal_pile1.pop_back();
-        setSpriteTexture(13/*Foundation pile*/);
-        return;
-    }
-
-    return;
-}
-
-void Pile::MoveFromNormalPile2()
-{
-    if (foundation_pile1.empty() && int(normal_pile2.back().name) == 1)
-    {
-        card_click_sound.play();
-        foundation_pile1.push(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
-        setSpriteTexture(3/*Foundation pile*/);
-        return;
-    }
-    else if (!foundation_pile1.empty() \
-        && int(foundation_pile1.top().color) == int(normal_pile2.back().color) \
-        && int(foundation_pile1.top().suit) == int(normal_pile2.back().suit) \
-        && (int(foundation_pile1.top().name) - int(normal_pile2.back().name) == -1))
-    {
-        card_click_sound.play();
-        foundation_pile1.push(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
-        setSpriteTexture(3/*Foundation pile*/);
-        return;
-    }
-    if (foundation_pile2.empty() && int(normal_pile2.back().name) == 1)
-    {
-        card_click_sound.play();
-        foundation_pile2.push(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
-        setSpriteTexture(4/*Foundation pile*/);
-        return;
-    }
-    else if (!foundation_pile2.empty() \
-        && int(foundation_pile2.top().color) == int(normal_pile2.back().color) \
-        && int(foundation_pile2.top().suit) == int(normal_pile2.back().suit) \
-        && (int(foundation_pile2.top().name) - int(normal_pile2.back().name) == -1))
-    {
-        card_click_sound.play();
-        foundation_pile2.push(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
-        setSpriteTexture(4/*Foundation pile*/);
-        return;
-    }
-    if (foundation_pile3.empty() && int(normal_pile2.back().name) == 1) // Foundation pile 3
-    {
-        card_click_sound.play();
-        foundation_pile3.push(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
-        setSpriteTexture(5/*Foundation pile*/);
-        return;
-    }
-    else if (!foundation_pile3.empty() \
-        && int(foundation_pile3.top().color) == int(normal_pile2.back().color) \
-        && int(foundation_pile3.top().suit) == int(normal_pile2.back().suit) \
-        && (int(foundation_pile3.top().name) - int(normal_pile2.back().name) == -1))
-    {
-        card_click_sound.play();
-        foundation_pile3.push(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
-        setSpriteTexture(5/*Foundation pile*/);
-        return;
-    }
-    if (foundation_pile4.empty() && int(normal_pile2.back().name) == 1) // Foundation pile 4
-    {
-        card_click_sound.play();
-        foundation_pile4.push(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
-        setSpriteTexture(6/*Foundation pile*/);
-        return;
-    }
-    else if (!foundation_pile4.empty() \
-        && int(foundation_pile4.top().color) == int(normal_pile2.back().color) \
-        && int(foundation_pile4.top().suit) == int(normal_pile2.back().suit) \
-        && (int(foundation_pile4.top().name) - int(normal_pile2.back().name) == -1))
-    {
-        card_click_sound.play();
-        foundation_pile4.push(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
-        setSpriteTexture(6/*Foundation pile*/);
-        return;
-    }
-    if (normal_pile1.empty() && int(normal_pile2.back().name) == 13) // Normal Pile 1
-    {
-        card_click_sound.play();
-        normal_pile1.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile1.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(7/*Foundation pile*/);
         return;
     }
     else if (!normal_pile1.empty() \
-        && int(normal_pile1.back().color) != int(normal_pile2.back().color) \
-        && (int(normal_pile1.back().name) - int(normal_pile2.back().name) == 1))
+        && int(normal_pile1.back().color) != int(pile.back().color) \
+        && (int(normal_pile1.back().name) - int(pile.back().name) == 1))
     {
         card_click_sound.play();
-        normal_pile1.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile1.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(7/*Foundation pile*/);
         return;
     }
-    if (normal_pile3.empty() && int(normal_pile2.back().name) == 13) // Normal Pile 1
+    if (normal_pile2.empty() && int(pile.back().name) == 13) // Normal Pile 1
     {
         card_click_sound.play();
-        normal_pile3.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile2.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(8/*Foundation pile*/);
+        return;
+    }
+    else if (!normal_pile2.empty() \
+        && int(normal_pile2.back().color) != int(pile.back().color) \
+        && (int(normal_pile2.back().name) - int(pile.back().name) == 1))
+    {
+        card_click_sound.play();
+        normal_pile2.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(8/*Foundation pile*/);
+        return;
+    }
+    if (normal_pile3.empty() && int(pile.back().name) == 13) // Normal Pile 1
+    {
+        card_click_sound.play();
+        normal_pile3.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(9/*Foundation pile*/);
         return;
     }
     else if (!normal_pile3.empty() \
-        && int(normal_pile3.back().color) != int(normal_pile2.back().color) \
-        && (int(normal_pile3.back().name) - int(normal_pile2.back().name) == 1))
+        && int(normal_pile3.back().color) != int(pile.back().color) \
+        && (int(normal_pile3.back().name) - int(pile.back().name) == 1))
     {
         card_click_sound.play();
-        normal_pile3.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile3.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(9/*Foundation pile*/);
         return;
     }
-    if (normal_pile4.empty() && int(normal_pile2.back().name) == 13) // Normal Pile 1
+    if (normal_pile4.empty() && int(pile.back().name) == 13) // Normal Pile 1
     {
         card_click_sound.play();
-        normal_pile4.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile4.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(10/*Foundation pile*/);
         return;
     }
     else if (!normal_pile4.empty() \
-        && int(normal_pile4.back().color) != int(normal_pile2.back().color) \
-        && (int(normal_pile4.back().name) - int(normal_pile2.back().name) == 1))
+        && int(normal_pile4.back().color) != int(pile.back().color) \
+        && (int(normal_pile4.back().name) - int(pile.back().name) == 1))
     {
         card_click_sound.play();
-        normal_pile4.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile4.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(10/*Foundation pile*/);
         return;
     }
-    if (normal_pile5.empty() && int(normal_pile2.back().name) == 13) // Normal Pile 1
+    if (normal_pile5.empty() && int(pile.back().name) == 13) // Normal Pile 1
     {
         card_click_sound.play();
-        normal_pile5.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile5.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(11/*Foundation pile*/);
         return;
     }
     else if (!normal_pile5.empty() \
-        && int(normal_pile5.back().color) != int(normal_pile2.back().color) \
-        && (int(normal_pile5.back().name) - int(normal_pile2.back().name) == 1))
+        && int(normal_pile5.back().color) != int(pile.back().color) \
+        && (int(normal_pile5.back().name) - int(pile.back().name) == 1))
     {
         card_click_sound.play();
-        normal_pile5.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile5.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(11/*Foundation pile*/);
         return;
     }
-    if (normal_pile6.empty() && int(normal_pile2.back().name) == 13) // Normal Pile 1
+    if (normal_pile6.empty() && int(pile.back().name) == 13) // Normal Pile 1
     {
         card_click_sound.play();
-        normal_pile6.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile6.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(12/*Foundation pile*/);
         return;
     }
     else if (!normal_pile6.empty() \
-        && int(normal_pile6.back().color) != int(normal_pile2.back().color) \
-        && (int(normal_pile6.back().name) - int(normal_pile2.back().name) == 1))
+        && int(normal_pile6.back().color) != int(pile.back().color) \
+        && (int(normal_pile6.back().name) - int(pile.back().name) == 1))
     {
         card_click_sound.play();
-        cout << "here";
-        normal_pile6.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile6.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(12/*Foundation pile*/);
         return;
     }
-    if (normal_pile7.empty() && int(normal_pile2.back().name) == 13) // Normal Pile 1
+    if (normal_pile7.empty() && int(pile.back().name) == 13) // Normal Pile 1
     {
         card_click_sound.play();
-        normal_pile7.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile7.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(13/*Foundation pile*/);
         return;
     }
     else if (!normal_pile7.empty() \
-        && int(normal_pile7.back().color) != int(normal_pile2.back().color) \
-        && (int(normal_pile7.back().name) - int(normal_pile2.back().name) == 1))
+        && int(normal_pile7.back().color) != int(pile.back().color) \
+        && (int(normal_pile7.back().name) - int(pile.back().name) == 1))
     {
         card_click_sound.play();
-        normal_pile7.push_back(normal_pile2.back());
-        normal_pile2.pop_back();
-        normal_pile2.back().is_flipped = true;
+        normal_pile7.push_back(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
         setSpriteTexture(13/*Foundation pile*/);
         return;
     }
