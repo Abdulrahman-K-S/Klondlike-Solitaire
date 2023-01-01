@@ -512,7 +512,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
         MoveCard(2, foundation_pile4, normal_pile1);
         return;
     }
-    for (int i = 0; i < normal_pile1.size(); ++i) {
+    for (int i = normal_pile1.size() - 1; i >= 0; i--) {
         bounds = normal_pile1[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile1[i].is_flipped)
         {
@@ -521,7 +521,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
             return;
         }
     }
-    for (int i = 0; i < normal_pile2.size(); ++i) {
+    for (int i = normal_pile2.size() - 1; i >= 0; i--) {
         bounds = normal_pile2[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile2[i].is_flipped) {
             MoveCard(3, foundation_pile1, normal_pile2);
@@ -529,7 +529,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
             return;
         }
     }
-    for (int i = 0; i < normal_pile3.size(); ++i) {
+    for (int i = normal_pile3.size() - 1; i >= 0; i--) {
         bounds = normal_pile3[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile3[i].is_flipped) {
             MoveCard(3, foundation_pile1, normal_pile3);
@@ -537,7 +537,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
             return;
         }
     }
-    for (int i = 0; i < normal_pile4.size(); ++i) {
+    for (int i = normal_pile4.size() - 1; i >= 0; i--) {
         bounds = normal_pile4[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile4[i].is_flipped) {
             MoveCard(3, foundation_pile1, normal_pile4);
@@ -545,7 +545,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
             return;
         }
     }
-    for (int i = 0; i < normal_pile5.size(); ++i) {
+    for (int i = normal_pile5.size() - 1; i >= 0; i--) {
         bounds = normal_pile5[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile5[i].is_flipped) {
             MoveCard(3, foundation_pile1, normal_pile5);
@@ -553,7 +553,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
             return;
         }
     }
-    for (int i = 0; i < normal_pile6.size(); ++i) {
+    for (int i = normal_pile6.size() - 1; i >= 0; i--) {
         bounds = normal_pile6[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile6[i].is_flipped) {
             MoveCard(3, foundation_pile1, normal_pile6);
@@ -561,7 +561,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse) {
             return;
         }
     }
-    for (int i = 0; i < normal_pile7.size(); ++i) {
+    for (int i = normal_pile7.size() - 1; i >= 0; i--) {
         bounds = normal_pile7[i].card_sprite.getGlobalBounds();
         if (bounds.contains(mouse) && normal_pile7[i].is_flipped) {
             MoveCard(3, foundation_pile1, normal_pile7);
