@@ -21,7 +21,7 @@ OutlinePile pilesArr[12] = {OutlinePile(290,120,410,285),OutlinePile(740,120,860
                              OutlinePile(440,370,560,535), OutlinePile(590,370,710,535), OutlinePile(740,370,860,535),
                              OutlinePile(890,370,1010,535), OutlinePile(1040,370,1160,535), OutlinePile(1190,370,1310,535)};
 
-void DrawPiles(RenderWindow& window)
+void DrawOutlinePiles(RenderWindow& window)
 {
     for (int i = 0; i < 12; i++)
         window.draw(pilesArr[i].pileOutline);
@@ -143,97 +143,9 @@ int main()
             {
             case Event::MouseButtonPressed:
                 if (event.key.code == Mouse::Left)
-                { 
-
+                {
                     Vector2f m = window.mapPixelToCoords(Mouse::getPosition(window));
                     pile.checkIfSpriteIsClicked(m);
-
-                    // If shuffled pile clicked
-                    if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
-                        if (mouse.getPosition(window).y >= 120 && mouse.getPosition(window).y <= 285)
-                        {
-                            pile.MoveShuffledCard();
-                            this_thread::sleep_for(chrono::milliseconds(100));
-                            break;
-                        }
-
-                    // If Draw pile clicked
-                    if(mouse.getPosition(window).x >= 425 && mouse.getPosition(window).x <= 590)
-                        if(mouse.getPosition(window).y >= 120 && mouse.getPosition(window).y <= 285)
-                        {
-                            if (pile.draw_pile.empty())
-                                break;
-                            pile.MoveCard(2);
-                            this_thread::sleep_for(chrono::microseconds(100));
-                            break;
-                        }
-
-                    // If foundation pile 1 clicked
-                    if (mouse.getPosition(window).x >= 740 && mouse.getPosition(window).x <= 860)
-                        if (mouse.getPosition(window).y >= 120 && mouse.getPosition(window).y <= 285)
-                        {
-                            if (pile.foundation_pile1.empty())
-                                break;
-                            pile.MoveCard(3);
-                            this_thread::sleep_for(chrono::microseconds(100));
-                            break;
-                        }
-
-                    // If foundation pile 2 clicked
-                    if (mouse.getPosition(window).x >= 890 && mouse.getPosition(window).x <= 1010)
-                        if (mouse.getPosition(window).y >= 120 && mouse.getPosition(window).y <= 285)
-                        {
-                            if (pile.foundation_pile2.empty())
-                                break;
-                            pile.MoveCard(4);
-                            this_thread::sleep_for(chrono::microseconds(100));
-                            break;
-                        }
-
-                    // If foundation pile 3 clicked
-                    if (mouse.getPosition(window).x >= 1040 && mouse.getPosition(window).x <= 1160)
-                        if (mouse.getPosition(window).y >= 120 && mouse.getPosition(window).y <= 285)
-                        {
-                            if (pile.foundation_pile3.empty())
-                                break;
-                            pile.MoveCard(5);
-                            this_thread::sleep_for(chrono::microseconds(100));
-                            break;
-                        }
-
-                    // If foundation pile 4 clicked
-                    if (mouse.getPosition(window).x >= 1190 && mouse.getPosition(window).x <= 1310)
-                        if (mouse.getPosition(window).y >= 120 && mouse.getPosition(window).y <= 285)
-                        {
-                            cout << "click";
-                            if (pile.foundation_pile4.empty())
-                                break;
-                            pile.MoveCard(6);
-                            this_thread::sleep_for(chrono::microseconds(150));
-                            break;
-                        }
-
-                    // If normal pile 1 clicked
-                    if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
-                        if (mouse.getPosition(window).y >= 370 && mouse.getPosition(window).y <= (535 + (20 * pile.normal_pile1.size())))
-                        {
-                            if (pile.normal_pile1.empty())
-                                break;
-                            pile.MoveCard(7);
-                            this_thread::sleep_for(chrono::microseconds(150));
-                            break;
-                        }
-
-                    // If normal pile 2 clicked
-                    if (mouse.getPosition(window).x >= 435 && mouse.getPosition(window).x <= 565)
-                        if (mouse.getPosition(window).y >= 370 && mouse.getPosition(window).y <= (535 + (20 * pile.normal_pile1.size())))
-                        {
-                            if (pile.normal_pile1.empty())
-                                break;
-                            pile.MoveCard(8);
-                            this_thread::sleep_for(chrono::microseconds(200));
-                            break;
-                        }
                 }
             case Event::MouseButtonReleased:
                 continue;
@@ -242,12 +154,11 @@ int main()
             }                    
         }
 
-        //MoveSuffledCard(window, pile);
         window.clear(); // Clearing the window
 
         window.draw(backgroundSpr);
         window.draw(scoreBoard);
-        DrawPiles(window);
+        DrawOutlinePiles(window);
 
         // Start of drawing the timer
         timeElapsed2 = clock.getElapsedTime() - timeElapsed1;
