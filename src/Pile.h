@@ -49,9 +49,10 @@ public:
 
     void checkIfSpriteIsClicked(Vector2f mouse);
 
-    void MoveCard(int pile_number, stack<Card>& fPile, vector<Card>& nPile);
+    void MoveCard(int pile_number, stack<Card>& fPile, vector<Card>& nPile, int index, int pileSize);
     void MoveFromShuffledPile();
     void MoveFromDrawPile();
     void MoveFromFoundationPile(stack<Card>& pile);
     void MoveFromNormalPile(vector<Card>& pile);
+    void MoveFromNormalPile(vector<Card>& pile, int index, int pileSize);
 };
