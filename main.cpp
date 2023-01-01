@@ -146,6 +146,15 @@ int main()
                 {
                     Vector2f m = window.mapPixelToCoords(Mouse::getPosition(window));
                     pile.checkIfSpriteIsClicked(m);
+
+                    // If shuffled pile clicked
+                    if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
+                        if (mouse.getPosition(window).y >= 120 && mouse.getPosition(window).y <= 285)
+                        {
+                            pile.MoveFromShuffledPile();
+                            this_thread::sleep_for(chrono::milliseconds(100));
+                            break;
+                        }
                 }
             case Event::MouseButtonReleased:
                 continue;
