@@ -55,4 +55,6 @@ public:
     void MoveFromFoundationPile(stack<Card>& pile);
     void MoveFromNormalPile(vector<Card>& pile);
     void MoveFromNormalPile(vector<Card>& pile, int index);
+    
+    bool GameWon();
 };
