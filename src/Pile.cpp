@@ -1434,3 +1434,14 @@ void Pile::MoveFromNormalPile(vector<Card>& pile, int index)
 
     return;
 }
+
+bool Pile::GameWon()
+{
+    if (!foundation_pile1.empty() && int(foundation_pile1.top().name) == 13)
+        if (!foundation_pile2.empty() && int(foundation_pile2.top().name) == 13)
+            if (!foundation_pile3.empty() && int(foundation_pile3.top().name) == 13)
+                if (!foundation_pile4.empty() && int(foundation_pile4.top().name) == 13)
+                    return true;
+
+    return false;
+}
