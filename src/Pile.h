@@ -54,5 +54,5 @@ public:
     void MoveFromDrawPile();
     void MoveFromFoundationPile(stack<Card>& pile);
     void MoveFromNormalPile(vector<Card>& pile);
-    void MoveFromNormalPile(vector<Card>& pile, int index, int pileSize);
+    void MoveFromNormalPile(vector<Card>& pile, int index);
 };
