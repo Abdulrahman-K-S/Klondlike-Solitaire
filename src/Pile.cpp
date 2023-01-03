@@ -583,7 +583,7 @@ void Pile::MoveCard(int pile_number, stack<Card>& fPile, vector<Card>& nPile, in
         MoveFromFoundationPile(fPile);
         return;
     case 3: // Normal Pile
-        MoveFromNormalPile(nPile);
+        MoveFromNormalPile(nPile, index);
         return;
     }
 }
@@ -1160,6 +1160,272 @@ void Pile::MoveFromNormalPile(vector<Card>& pile)
         card_click_sound.play();
         normal_pile7.push_back(pile.back());
         pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(13/*Foundation pile*/);
+        return;
+    }
+
+    return;
+}
+
+void Pile::MoveFromNormalPile(vector<Card>& pile, int index)
+{
+    if (foundation_pile1.empty() && int(pile.back().name) == 1)
+    {
+        card_click_sound.play();
+        foundation_pile1.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(3/*Foundation pile*/);
+        return;
+    }
+    else if (!foundation_pile1.empty() \
+        && int(foundation_pile1.top().color) == int(pile.back().color) \
+        && int(foundation_pile1.top().suit) == int(pile.back().suit) \
+        && (int(foundation_pile1.top().name) - int(pile.back().name) == -1))
+    {
+        card_click_sound.play();
+        foundation_pile1.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(3/*Foundation pile*/);
+        return;
+    }
+    if (foundation_pile2.empty() && int(pile.back().name) == 1)
+    {
+        card_click_sound.play();
+        foundation_pile2.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(4/*Foundation pile*/);
+        return;
+    }
+    else if (!foundation_pile2.empty() \
+        && int(foundation_pile2.top().color) == int(pile.back().color) \
+        && int(foundation_pile2.top().suit) == int(pile.back().suit) \
+        && (int(foundation_pile2.top().name) - int(pile.back().name) == -1))
+    {
+        card_click_sound.play();
+        foundation_pile2.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(4/*Foundation pile*/);
+        return;
+    }
+    if (foundation_pile3.empty() && int(pile.back().name) == 1) // Foundation pile 3
+    {
+        card_click_sound.play();
+        foundation_pile3.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(5/*Foundation pile*/);
+        return;
+    }
+    else if (!foundation_pile3.empty() \
+        && int(foundation_pile3.top().color) == int(pile.back().color) \
+        && int(foundation_pile3.top().suit) == int(pile.back().suit) \
+        && (int(foundation_pile3.top().name) - int(pile.back().name) == -1))
+    {
+        card_click_sound.play();
+        foundation_pile3.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(5/*Foundation pile*/);
+        return;
+    }
+    if (foundation_pile4.empty() && int(pile.back().name) == 1) // Foundation pile 4
+    {
+        card_click_sound.play();
+        foundation_pile4.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(6/*Foundation pile*/);
+        return;
+    }
+    else if (!foundation_pile4.empty() \
+        && int(foundation_pile4.top().color) == int(pile.back().color) \
+        && int(foundation_pile4.top().suit) == int(pile.back().suit) \
+        && (int(foundation_pile4.top().name) - int(pile.back().name) == -1))
+    {
+        card_click_sound.play();
+        foundation_pile4.push(pile.back());
+        pile.pop_back();
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(6/*Foundation pile*/);
+        return;
+    }
+    if (normal_pile1.empty() && int(pile.at(index).name) == 13) // Normal Pile 1
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile1.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(7/*Foundation pile*/);
+        return;
+    }
+    else if (!normal_pile1.empty() \
+        && int(normal_pile1.back().color) != int(pile.at(index).color) \
+        && (int(normal_pile1.back().name) - int(pile.at(index).name) == 1))
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile1.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(7/*Foundation pile*/);
+        return;
+    }
+    if (normal_pile2.empty() && int(pile.at(index).name) == 13) // Normal Pile 1
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile2.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(8/*Foundation pile*/);
+        return;
+    }
+    else if (!normal_pile2.empty() \
+        && int(normal_pile2.back().color) != int(pile.at(index).color) \
+        && (int(normal_pile2.back().name) - int(pile.at(index).name) == 1))
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile2.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(8/*Foundation pile*/);
+        return;
+    }
+    if (normal_pile3.empty() && int(pile.at(index).name) == 13) // Normal Pile 1
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile3.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(9/*Foundation pile*/);
+        return;
+    }
+    else if (!normal_pile3.empty() \
+        && int(normal_pile3.back().color) != int(pile.at(index).color) \
+        && (int(normal_pile3.back().name) - int(pile.at(index).name) == 1))
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile3.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(9/*Foundation pile*/);
+        return;
+    }
+    if (normal_pile4.empty() && int(pile.at(index).name) == 13) // Normal Pile 1
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile4.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(10/*Foundation pile*/);
+        return;
+    }
+    else if (!normal_pile4.empty() \
+        && int(normal_pile4.back().color) != int(pile.at(index).color) \
+        && (int(normal_pile4.back().name) - int(pile.at(index).name) == 1))
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile4.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(10/*Foundation pile*/);
+        return;
+    }
+    if (normal_pile5.empty() && int(pile.at(index).name) == 13) // Normal Pile 1
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile5.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(11/*Foundation pile*/);
+        return;
+    }
+    else if (!normal_pile5.empty() \
+        && int(normal_pile5.back().color) != int(pile.at(index).color) \
+        && (int(normal_pile5.back().name) - int(pile.at(index).name) == 1))
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile5.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(11/*Foundation pile*/);
+        return;
+    }
+    if (normal_pile6.empty() && int(pile.at(index).name) == 13) // Normal Pile 1
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile6.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(12/*Foundation pile*/);
+        return;
+    }
+    else if (!normal_pile6.empty() \
+        && int(normal_pile6.back().color) != int(pile.at(index).color) \
+        && (int(normal_pile6.back().name) - int(pile.at(index).name) == 1))
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile6.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(12/*Foundation pile*/);
+        return;
+    }
+    if (normal_pile7.empty() && int(pile.at(index).name) == 13) // Normal Pile 1
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile7.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
+        if (!pile.empty())
+            pile.back().is_flipped = true;
+        setSpriteTexture(13/*Foundation pile*/);
+        return;
+    }
+    else if (!normal_pile7.empty() \
+        && int(normal_pile7.back().color) != int(pile.at(index).color) \
+        && (int(normal_pile7.back().name) - int(pile.at(index).name) == 1))
+    {
+        card_click_sound.play();
+        for (int i = index; i < pile.size(); ++i)
+            normal_pile7.push_back(pile[i]);
+        pile.erase(pile.begin() + index, pile.end());
         if (!pile.empty())
             pile.back().is_flipped = true;
         setSpriteTexture(13/*Foundation pile*/);
