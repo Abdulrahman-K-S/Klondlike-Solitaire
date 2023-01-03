@@ -42,10 +42,10 @@ int main()
     scoreBoard.setFillColor(Color(169, 169, 169, 128));
 
     // Setting the font and adding the score text
-    Font scoreFont;
-    scoreFont.loadFromFile("Assets/Martian_Mono/MartianMono-VariableFont_wdth,wght.ttf");
+    Font font;
+    font.loadFromFile("Assets/Martian_Mono/MartianMono-VariableFont_wdth,wght.ttf");
     Text score;
-    score.setFont(scoreFont);
+    score.setFont(font);
     score.setString("Score: 00");
     score.setCharacterSize(20);
     score.setPosition(600, 30);
@@ -55,7 +55,7 @@ int main()
     Clock clock;
     Time timeElapsed1;
     Time timeElapsed2;
-    Timer.setFont(scoreFont);
+    Timer.setFont(font);
     Timer.setCharacterSize(20);
     Timer.setPosition(800, 30);
 
@@ -77,7 +77,7 @@ int main()
     StartWindowMusic.setBuffer(StartWindowBuffer);
     StartWindowMusic.play();
     Text MadeBy;
-    MadeBy.setFont(scoreFont);
+    MadeBy.setFont(font);
     MadeBy.setString("Made  By\n TRYERZ");
     MadeBy.setCharacterSize(20);
     MadeBy.setPosition(1300, 680);
@@ -106,11 +106,11 @@ int main()
         window.draw(backgroundSpr);
         Text Start;
         Text StartMessage;
-        Start.setFont(scoreFont);
+        Start.setFont(font);
         Start.setString("Start");
         Start.setCharacterSize(25);
         Start.setPosition(750, 435);
-        StartMessage.setFont(scoreFont);
+        StartMessage.setFont(font);
         StartMessage.setString("Welcome to our Solitaire!!\n\n\n\n\n\n\n   Press start to begin");
         StartMessage.setCharacterSize(25);
         StartMessage.setPosition(546, 300);
@@ -163,6 +163,9 @@ int main()
             }                    
         }
 
+        if (pile.GameWon())
+            break;
+
         window.clear(); // Clearing the window
 
         window.draw(backgroundSpr);
@@ -188,6 +191,33 @@ int main()
 
         window.draw(score);
         window.display(); // Displaying the window
+    }
+
+    while (window.isOpen())
+    {
+        Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+                window.close();
+        }
+
+        //WinAnimation(pile.foundation_pile1, pile.foundation_pile2, pile.foundation_pile3, pile.foundation_pile4);
+        
+        RectangleShape blurredPage;
+        blurredPage.setSize(Vector2f(1600, 900));
+        blurredPage.setFillColor(Color(255, 255, 255, 98));
+
+        Text YouWon;
+        YouWon.setFont(font);
+        YouWon.setString("You Won!!");
+        YouWon.setCharacterSize(50);
+        YouWon.setPosition(Vector2f(655,300));
+        YouWon.setFillColor(Color::Black);
+
+        window.draw(blurredPage);
+        window.draw(YouWon);
+        window.display();
     }
 
     return 0;
