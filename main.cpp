@@ -62,7 +62,7 @@ int main()
     // Declaring an object from the class piles to set up the whole game
     Pile pile;
     pile.setDeck();
-    pile.shuffleCards();
+    //pile.shuffleCards();
     pile.setPileCards();
     pile.setSpriteTexture();
 
@@ -89,6 +89,8 @@ int main()
 
     // Declaring an object of the class Mouse
     Mouse mouse;
+
+    bool menu = false;
 
     while (window.isOpen())
     {
@@ -133,6 +135,7 @@ int main()
     while (window.isOpen())
     {
         Event event;
+
         while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
@@ -156,15 +159,19 @@ int main()
                             break;
                         }
                 }
+            case Event::KeyPressed:
+                if (event.key.code == Keyboard::Escape)
+                    if (menu == false)
+                        menu = true;
+                    else if (menu == true)
+                        menu = false;
+                break;
             case Event::MouseButtonReleased:
                 continue;
             default:
                 break;
             }                    
         }
-
-        if (pile.GameWon())
-            break;
 
         window.clear(); // Clearing the window
 
@@ -191,6 +198,9 @@ int main()
 
         window.draw(score);
         window.display(); // Displaying the window
+
+        if (pile.GameWon())
+            break;
     }
 
     while (window.isOpen())
@@ -206,7 +216,7 @@ int main()
         
         RectangleShape blurredPage;
         blurredPage.setSize(Vector2f(1600, 900));
-        blurredPage.setFillColor(Color(255, 255, 255, 98));
+        blurredPage.setFillColor(Color(255, 255, 255, 198));
 
         Text YouWon;
         YouWon.setFont(font);
@@ -215,7 +225,7 @@ int main()
         YouWon.setPosition(Vector2f(655,300));
         YouWon.setFillColor(Color::Black);
 
-        window.draw(blurredPage);
+        //window.draw(blurredPage);
         window.draw(YouWon);
         window.display();
     }
