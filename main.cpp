@@ -1,8 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
-#include <chrono>
-#include <thread>
 #include "Pile.h"
 #include "Game.h"
 using namespace sf;
@@ -12,6 +10,8 @@ int main()
 {
     RenderWindow window(VideoMode(1600, 900), "Tryerz Solitaire");
     window.setFramerateLimit(30);
+
+gamestart:
 
     // Declaring an object of the class Game
     Game game;
@@ -68,14 +68,22 @@ int main()
                     if (Mouse::getPosition(window).x >= 285 && Mouse::getPosition(window).x <= 410)
                         if (Mouse::getPosition(window).y >= 120 && Mouse::getPosition(window).y <= 285)
                         {
-                            pile.MoveFromShuffledPile();
+                            pile.moveFromShuffledPile();
                             this_thread::sleep_for(chrono::milliseconds(100));
                             break;
                         }
                 }
                 else if (event.key.code == Mouse::Left && menu)
                 {
-                    
+                    if (Mouse::getPosition(window).x >= 650 && Mouse::getPosition(window).x <= 950)
+                        if (Mouse::getPosition(window).y >= 400 && Mouse::getPosition(window).y <= 500)
+                            menu = false;
+                    if (Mouse::getPosition(window).x >= 650 && Mouse::getPosition(window).x <= 950)
+                        if (Mouse::getPosition(window).y >= 530 && Mouse::getPosition(window).y <= 630)
+                            goto gamestart;
+                    if (Mouse::getPosition(window).x >= 650 && Mouse::getPosition(window).x <= 950)
+                        if (Mouse::getPosition(window).y >= 660 && Mouse::getPosition(window).y <= 760)
+                            window.close();
                 }
             case Event::KeyPressed:
                 if (event.key.code == Keyboard::Escape)
@@ -114,21 +122,25 @@ int main()
 
         pile.displayCards(window);
 
-        window.draw(game.score);
-
         if (menu)
         {
             window.draw(game.menu_box);
             window.draw(game.resume);
+            window.draw(game.new_game);
             window.draw(game.quit);
+            window.draw(game.menu_text);
+            window.draw(game.resume_text);
+            window.draw(game.new_game_text);
+            window.draw(game.quit_text);
             window.display();
         }
         else
             window.display(); // Displaying the window
 
-        if (pile.GameWon())
+        if (pile.gameWon())
             break;
     }
+
 
     while (window.isOpen())
     {
@@ -139,13 +151,10 @@ int main()
                 window.close();
         }
 
-        //WinAnimation(pile.foundation_pile1, pile.foundation_pile2, pile.foundation_pile3, pile.foundation_pile4);
-        
-
-        //window.draw(game.blurred_page);
+        window.draw(game.blurred_page);
         window.draw(game.you_won);
         window.display();
     }
-
+    
     return 0;
 }
