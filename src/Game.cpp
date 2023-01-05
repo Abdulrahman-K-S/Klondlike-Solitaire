@@ -18,6 +18,7 @@ Game::Game()
     setScoreboard();
 	setOutlinePiles();
 	setMenu();
+	setMenuText();
     
 	setFont();
     setTimer();
@@ -37,33 +38,70 @@ void Game::setScoreboard()
 	// color
     score_board.setSize(Vector2f(1600, 80));
     score_board.setFillColor(Color(169, 169, 169, 128));
-	score.setString("Score: 00");
-	score.setCharacterSize(20);
-	score.setPosition(600, 30);
 }
 
 void Game::setMenu()
 {
 	// The function sets the menu box and it's content (resume button &
 	// quit button)
-    menu_box.setSize(Vector2f(400, 500));
-    menu_box.setPosition(600, 200);
-    menu_box.setFillColor(Color(113, 147, 128, 245));
+    menu_box.setSize(Vector2f(400, 550));
+    menu_box.setPosition(600, 250);
+    menu_box.setFillColor(Color(69, 163, 113, 245));
+	menu_box.setOutlineColor(Color::Black);
+	menu_box.setOutlineThickness(1);
     
-    resume.setSize(Vector2f(300, 150));
-    resume.setPosition(650, 335);
-    resume.setFillColor(Color(94, 193, 140));
+    resume.setSize(Vector2f(300, 100));
+    resume.setPosition(650, 400);
+    resume.setFillColor(Color(218, 247, 166));
+	resume.setOutlineColor(Color::Black);
+	resume.setOutlineThickness(1);
     
-    quit.setSize(Vector2f(300, 150));
-    quit.setPosition(650, 520);
-    quit.setFillColor(Color(94, 193, 140));
+	new_game.setSize(Vector2f(300, 100));
+	new_game.setPosition(650, 530);
+	new_game.setFillColor(Color(218, 247, 166));
+	new_game.setOutlineColor(Color::Black);
+	new_game.setOutlineThickness(1);
+
+    quit.setSize(Vector2f(300, 100));
+    quit.setPosition(650, 660);
+    quit.setFillColor(Color(218, 247, 166));
+	quit.setOutlineColor(Color::Black);
+	quit.setOutlineThickness(1);
+}
+
+void Game::setMenuText()
+{
+	// The function sets the text that're inside
+	// the menu window
+	menu_text.setFont(font);
+	menu_text.setString("Menu");
+	menu_text.setCharacterSize(40);
+	menu_text.setPosition(740, 300);
+	menu_text.setFillColor(Color::Black);
+
+	resume_text.setFont(font);
+	resume_text.setString("Resume");
+	resume_text.setCharacterSize(40);
+	resume_text.setPosition(710, 425);
+	resume_text.setFillColor(Color::Black);
+
+	new_game_text.setFont(font);
+	new_game_text.setString("New Game");
+	new_game_text.setCharacterSize(40);
+	new_game_text.setPosition(685, 555);
+	new_game_text.setFillColor(Color::Black);
+
+	quit_text.setFont(font);
+	quit_text.setString("Quit");
+	quit_text.setCharacterSize(40);
+	quit_text.setPosition(740, 685);
+	quit_text.setFillColor(Color::Black);
 }
 
 void Game::setFont()
 {
 	// The function sets the font for the game
 	font.loadFromFile("Assets/Martian_Mono/MartianMono-VariableFont_wdth,wght.ttf");
-	score.setFont(font);
 }
 
 void Game::setTimer()
@@ -71,7 +109,7 @@ void Game::setTimer()
 	// The function sets the timer for the game
     timer.setFont(font);
     timer.setCharacterSize(20);
-    timer.setPosition(800, 30);
+    timer.setPosition(715, 30);
 }
 
 void Game::setMainMenuMusic()
