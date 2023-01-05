@@ -36,25 +36,27 @@ public:
     int offset = 25;
 
     Pile();
+    void setSounds();
     void setDeck();
     void shuffleCards();
     void swap(Card*, Card*);
 
     void setSpriteTexture();
-    void setSpriteTexture(int pile_number);
+    void setSpriteTexture(int);
     void setPileCards();
     void setXYCoordinates(Card&);
 
-    void displayCards(RenderWindow& window);
+    void displayCards(RenderWindow&);
 
-    void checkIfSpriteIsClicked(Vector2f mouse);
+    void checkIfSpriteIsClicked(Vector2f);
 
-    void MoveCard(int pile_number, stack<Card>& fPile, vector<Card>& nPile, int index, int pileSize);
+    void MoveCard(int, stack<Card>&, vector<Card>&, int, int);
     void MoveFromShuffledPile();
     void MoveFromDrawPile();
-    void MoveFromFoundationPile(stack<Card>& pile);
-    void MoveFromNormalPile(vector<Card>& pile);
-    void MoveFromNormalPile(vector<Card>& pile, int index);
+    void MoveFromFoundationPile(stack<Card>&);
+    void MoveFromNormalPile(vector<Card>& );
+    void MoveFromNormalPile(vector<Card>&, int);
     
     bool GameWon();
+    void GameWonAnimation(RenderWindow&);
 };
