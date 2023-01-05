@@ -4,11 +4,11 @@
 class Game
 {
 public:
-    RectangleShape menu_box, resume, quit, score_board, start_button, blurred_page;
+    RectangleShape menu_box, resume, quit, new_game, score_board, start_button, blurred_page;
     Texture background_texture, tryerz_texture;
     Sprite background, tryerz_image;
 	Font font;
-	Text score, timer, start, start_message, made_by, you_won;
+	Text timer, start, start_message, made_by, you_won, menu_text, resume_text, new_game_text, quit_text;
     Clock clock;
     Time time_elapsed1, time_elapsed2;
     SoundBuffer window_start_buffer, music_start_buffer;
@@ -23,6 +23,7 @@ public:
     void setBackground();
     void setTimer();
     void setMenu();
+    void setMenuText();
     void setOutlinePiles();
     void drawOutlinePiles(RenderWindow&);
     void setScoreboard();
