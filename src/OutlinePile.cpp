@@ -1,14 +1,19 @@
-#include "OutlinePile.h"
+#include "Game.h"
 
-OutlinePile::OutlinePile(int startXPosition, int startYPosition, int endXPosition, int endYPosition)
+OutlinePile::OutlinePile()
 {
-    this->startXPosition = startXPosition;
-    this->startYPosition = startYPosition;
-    this->endXPosition = endXPosition;
-    this->endYPosition = endYPosition;
+    pileOutline.setSize(Vector2f(120, 164));
+    pileOutline.setPosition(Vector2f(0, 0));
+    pileOutline.setFillColor(Color::Transparent);
+    pileOutline.setOutlineColor(Color(255, 255, 255, 127));
+    pileOutline.setOutlineThickness(1);
+}
+
+OutlinePile::OutlinePile(int startXPosition, int startYPosition)
+{
     pileOutline.setSize(Vector2f(120, 164));
     pileOutline.setPosition(Vector2f(startXPosition, startYPosition));
     pileOutline.setFillColor(Color::Transparent);
-    pileOutline.setOutlineColor(Color::White);
+    pileOutline.setOutlineColor(Color(255,255,255,127));
     pileOutline.setOutlineThickness(1);
 }
