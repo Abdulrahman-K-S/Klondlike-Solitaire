@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
+#include <chrono>
+#include <thread>
 #include "Card.h"
 #include <stack>
 #include <random>
@@ -12,8 +14,8 @@ using namespace std;
 class Pile
 {
 public:
-    SoundBuffer card_click_buffer, card_shuffle_buffer;
-    Sound card_click_sound, card_shuffle_sound;
+    SoundBuffer card_click_buffer, card_shuffle_buffer, card_error_buffer;
+    Sound card_click_sound, card_shuffle_sound, card_error_sound;
 
     vector<Card> normal_pile1;
     vector<Card> normal_pile2;
@@ -42,21 +44,31 @@ public:
     void swap(Card*, Card*);
 
     void setSpriteTexture();
+    void setSpriteTexture(vector<Card>&);
     void setSpriteTexture(int);
     void setPileCards();
     void setXYCoordinates(Card&);
 
     void displayCards(RenderWindow&);
+    void displayCards(RenderWindow&, stack<Card>&);
+    void displayCards(RenderWindow&, vector<Card>&, int);
 
     void checkIfSpriteIsClicked(Vector2f);
 
-    void MoveCard(int, stack<Card>&, vector<Card>&, int, int);
-    void MoveFromShuffledPile();
-    void MoveFromDrawPile();
-    void MoveFromFoundationPile(stack<Card>&);
-    void MoveFromNormalPile(vector<Card>& );
-    void MoveFromNormalPile(vector<Card>&, int);
+    void moveCard(int, stack<Card>&, vector<Card>&, int);
+    void moveFromShuffledPile();
     
-    bool GameWon();
-    void GameWonAnimation(RenderWindow&);
+    void moveFromDrawPile();
+    bool moveFromDrawPile(stack<Card>&, int);
+    bool moveFromDrawPile(vector<Card>&, int);
+    
+    void moveFromFoundationPile(stack<Card>&);
+    bool moveFromFoundationPile(stack<Card>&, stack<Card>&, int);
+    bool moveFromFoundationPile(vector<Card>&, stack<Card>&, int);
+
+    void moveFromNormalPile(vector<Card>&, int);
+    bool moveFromNormalPile(stack<Card>&, vector<Card>&, int, int);
+    bool moveFromNormalPile(vector<Card>&, vector<Card>&, int, int);
+    
+    bool gameWon();
 };
