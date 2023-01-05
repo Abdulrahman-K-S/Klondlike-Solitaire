@@ -3,95 +3,23 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-
-// Including the different classes
-#include "OutlinePile.h"
 #include "Pile.h"
-//#include "Game.cpp"
-
-// Using Namespace
+#include "Game.h"
 using namespace sf;
 using namespace std;
 
-// Global Variables:
-
-// The 12 outline piles
-OutlinePile pilesArr[12] = {OutlinePile(290,120,410,285),OutlinePile(740,120,860,285), OutlinePile(890,120,1010,285),
-                             OutlinePile(1040,120,1160,285), OutlinePile(1190,120,1310,285), OutlinePile(290,370,410,535),
-                             OutlinePile(440,370,560,535), OutlinePile(590,370,710,535), OutlinePile(740,370,860,535),
-                             OutlinePile(890,370,1010,535), OutlinePile(1040,370,1160,535), OutlinePile(1190,370,1310,535)};
-
-void DrawOutlinePiles(RenderWindow& window)
-{
-    for (int i = 0; i < 12; i++)
-        window.draw(pilesArr[i].pileOutline);
-}
-
 int main()
 {
-    RenderWindow window(VideoMode(1600, 900), "Solitaire");
+    RenderWindow window(VideoMode(1600, 900), "Tryerz Solitaire");
     window.setFramerateLimit(30);
 
-    // Setting up the background of the game
-    Texture backgroundTex;
-    backgroundTex.loadFromFile("Assets/Background.jpg");
-    Sprite backgroundSpr(backgroundTex);
+    // Declaring an object of the class Game
+    Game game;
 
-    // Setting up the Scoreboard
-    RectangleShape scoreBoard(Vector2f(1600, 80));
-    scoreBoard.setFillColor(Color(169, 169, 169, 128));
-
-    // Setting the font and adding the score text
-    Font font;
-    font.loadFromFile("Assets/Martian_Mono/MartianMono-VariableFont_wdth,wght.ttf");
-    Text score;
-    score.setFont(font);
-    score.setString("Score: 00");
-    score.setCharacterSize(20);
-    score.setPosition(600, 30);
-
-    // Setting the timer for the game (Which starts once the game has begun)
-    Text Timer;
-    Clock clock;
-    Time timeElapsed1;
-    Time timeElapsed2;
-    Timer.setFont(font);
-    Timer.setCharacterSize(20);
-    Timer.setPosition(800, 30);
-
-    // Declaring an object from the class piles to set up the whole game
+    // Declaring an object from the class piles to set up the cards
     Pile pile;
-    pile.setDeck();
-    //pile.shuffleCards();
-    pile.setPileCards();
-    pile.setSpriteTexture();
-
-    //Adding a sound effect for start
-    SoundBuffer StartBuffer;
-    StartBuffer.loadFromFile("Assets/Sounds/Start Sound.wav");
-    Sound StartSound;
-    StartSound.setBuffer(StartBuffer);
-    SoundBuffer StartWindowBuffer;
-    StartWindowBuffer.loadFromFile("Assets/Sounds/Start Music.wav");
-    Sound StartWindowMusic;
-    StartWindowMusic.setBuffer(StartWindowBuffer);
-    StartWindowMusic.play();
-    Text MadeBy;
-    MadeBy.setFont(font);
-    MadeBy.setString("Made  By\n TRYERZ");
-    MadeBy.setCharacterSize(20);
-    MadeBy.setPosition(1300, 680);
-    Texture TryerzTex;
-    TryerzTex.loadFromFile("Assets/Tryerz.jpg");
-    Sprite TryerzPic(TryerzTex);
-    TryerzPic.setPosition(1290, 740);
-    TryerzPic.setScale(0.23, 0.23);
-
-    // Declaring an object of the class Mouse
-    Mouse mouse;
-
-    bool menu = false;
-
+   
+    game.music_start.play();
     while (window.isOpen())
     {
         Event event;
@@ -100,64 +28,54 @@ int main()
             if (event.type == Event::Closed)
                 window.close();
         }
-        RectangleShape StartButton(Vector2f(250, 70));
-        StartButton.setPosition(Vector2f(675, 415));
-        StartButton.setFillColor(Color(0, 181, 212, 700));
-        timeElapsed1 = clock.getElapsedTime();
+        game.time_elapsed1 = game.clock.getElapsedTime();
         window.clear();
-        window.draw(backgroundSpr);
-        Text Start;
-        Text StartMessage;
-        Start.setFont(font);
-        Start.setString("Start");
-        Start.setCharacterSize(25);
-        Start.setPosition(750, 435);
-        StartMessage.setFont(font);
-        StartMessage.setString("Welcome to our Solitaire!!\n\n\n\n\n\n\n   Press start to begin");
-        StartMessage.setCharacterSize(25);
-        StartMessage.setPosition(546, 300);
-        window.draw(StartButton);
-        window.draw(Start);
-        window.draw(StartMessage);
-        window.draw(MadeBy);
-        window.draw(TryerzPic);
+        window.draw(game.background);
+        window.draw(game.start_button);
+        window.draw(game.start);
+        window.draw(game.start_message);
+        window.draw(game.made_by);
+        window.draw(game.tryerz_image);
         window.display();
-        if (mouse.getPosition(window).x >= 675 && mouse.getPosition(window).x <= 925)
-            if (mouse.getPosition(window).y >= 415 && mouse.getPosition(window).y <= 485)
-                if (event.key.code == mouse.Left)
+        if (Mouse::getPosition(window).x >= 675 && Mouse::getPosition(window).x <= 925)
+            if (Mouse::getPosition(window).y >= 415 && Mouse::getPosition(window).y <= 485)
+                if (event.key.code == Mouse::Left)
                 {
-                    StartSound.play();
-                    StartWindowMusic.stop();
+                    game.window_start.play();
+                    game.music_start.stop();
                     break;
                 }
     }
 
+    bool menu = false;
     while (window.isOpen())
     {
         Event event;
-
         while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
                 window.close();
 
-
             switch (event.type)
             {
             case Event::MouseButtonPressed:
-                if (event.key.code == Mouse::Left)
+                if (event.key.code == Mouse::Left && !menu)
                 {
                     Vector2f m = window.mapPixelToCoords(Mouse::getPosition(window));
                     pile.checkIfSpriteIsClicked(m);
 
                     // If shuffled pile clicked
-                    if (mouse.getPosition(window).x >= 285 && mouse.getPosition(window).x <= 410)
-                        if (mouse.getPosition(window).y >= 120 && mouse.getPosition(window).y <= 285)
+                    if (Mouse::getPosition(window).x >= 285 && Mouse::getPosition(window).x <= 410)
+                        if (Mouse::getPosition(window).y >= 120 && Mouse::getPosition(window).y <= 285)
                         {
                             pile.MoveFromShuffledPile();
                             this_thread::sleep_for(chrono::milliseconds(100));
                             break;
                         }
+                }
+                else if (event.key.code == Mouse::Left && menu)
+                {
+                    
                 }
             case Event::KeyPressed:
                 if (event.key.code == Keyboard::Escape)
@@ -175,29 +93,38 @@ int main()
 
         window.clear(); // Clearing the window
 
-        window.draw(backgroundSpr);
-        window.draw(scoreBoard);
-        DrawOutlinePiles(window);
+        window.draw(game.background);
+        window.draw(game.score_board);
+        game.drawOutlinePiles(window);
 
         // Start of drawing the timer
-        timeElapsed2 = clock.getElapsedTime() - timeElapsed1;
-        int Minutes = int(timeElapsed2.asSeconds()) / 60;
-        int Seconds = int(timeElapsed2.asSeconds()) % 60;
-        if (Minutes < 10 && Seconds >= 10)
-            Timer.setString("Timer: 0" + to_string(Minutes) + ":" + to_string(Seconds));
-        else if (Seconds < 10 && Minutes >= 10)
-            Timer.setString("Timer: " + to_string(Minutes) + ":0" + to_string(Seconds));
-        else if (Minutes < 10 && Seconds < 10)
-            Timer.setString("Timer: 0" + to_string(Minutes) + ":0" + to_string(Seconds));
+        game.time_elapsed2 = game.clock.getElapsedTime() - game.time_elapsed1;
+        int timer_minutes = int(game.time_elapsed2.asSeconds()) / 60;
+        int timer_seconds = int(game.time_elapsed2.asSeconds()) % 60;
+        if (timer_minutes < 10 && timer_seconds >= 10)
+            game.timer.setString("Timer: 0" + to_string(timer_minutes) + ":" + to_string(timer_seconds));
+        else if (timer_seconds < 10 && timer_minutes >= 10)
+            game.timer.setString("Timer: " + to_string(timer_minutes) + ":0" + to_string(timer_seconds));
+        else if (timer_minutes < 10 && timer_seconds < 10)
+            game.timer.setString("Timer: 0" + to_string(timer_minutes) + ":0" + to_string(timer_seconds));
         else
-            Timer.setString("Timer: " + to_string(Minutes) + ":" + to_string(Seconds));
-        window.draw(Timer);
+            game.timer.setString("Timer: " + to_string(timer_minutes) + ":" + to_string(timer_seconds));
+        window.draw(game.timer);
         // End of drawing the timer
 
         pile.displayCards(window);
 
-        window.draw(score);
-        window.display(); // Displaying the window
+        window.draw(game.score);
+
+        if (menu)
+        {
+            window.draw(game.menu_box);
+            window.draw(game.resume);
+            window.draw(game.quit);
+            window.display();
+        }
+        else
+            window.display(); // Displaying the window
 
         if (pile.GameWon())
             break;
@@ -214,19 +141,9 @@ int main()
 
         //WinAnimation(pile.foundation_pile1, pile.foundation_pile2, pile.foundation_pile3, pile.foundation_pile4);
         
-        RectangleShape blurredPage;
-        blurredPage.setSize(Vector2f(1600, 900));
-        blurredPage.setFillColor(Color(255, 255, 255, 198));
 
-        Text YouWon;
-        YouWon.setFont(font);
-        YouWon.setString("You Won!!");
-        YouWon.setCharacterSize(50);
-        YouWon.setPosition(Vector2f(655,300));
-        YouWon.setFillColor(Color::Black);
-
-        //window.draw(blurredPage);
-        window.draw(YouWon);
+        //window.draw(game.blurred_page);
+        window.draw(game.you_won);
         window.display();
     }
 
