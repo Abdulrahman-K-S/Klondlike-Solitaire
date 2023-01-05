@@ -14,7 +14,6 @@ enum class Suits
     HEARTS,
     SPADES
 };
-
 enum class CardNames
 {
     ACE = 1,
@@ -92,9 +91,7 @@ public:
     CardColor color;
     CardPile pile;
     bool is_flipped;
-    Texture front_img_file;
-    Texture back_img_file;
+    Texture front_img_file, back_img_file;
     Sprite card_sprite;
-    float xCoordinate;
-    float yCoordinate;
+    float x_coordinate, y_coordinate;
 };
