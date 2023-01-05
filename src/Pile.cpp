@@ -2,6 +2,15 @@
 
 Pile::Pile()
 {
+    setDeck();
+    shuffleCards();
+    setPileCards();
+    setSpriteTexture();
+    setSounds();
+}
+
+void Pile::setSounds()
+{
     card_click_buffer.loadFromFile("Assets/Sounds/Card Click.wav");
     card_shuffle_buffer.loadFromFile("Assets/Sounds/Card Shuffle.wav");
     card_click_sound.setBuffer(card_click_buffer);
@@ -56,40 +65,40 @@ void Pile::setXYCoordinates(Card& c)
     switch (c.pile)
     {
     case(CardPile::SHUFFLED_PILE):
-        c.xCoordinate = 285;
-        c.yCoordinate = 118;
+        c.x_coordinate = 285;
+        c.y_coordinate = 118;
         break;
     case(CardPile::DRAW_PILE):
-        c.xCoordinate = 0;
-        c.yCoordinate = 118;
+        c.x_coordinate = 0;
+        c.y_coordinate = 118;
         break;
     case(CardPile::NORMAL_PILE1):
-        c.xCoordinate = 285;
-        c.yCoordinate = 368;
+        c.x_coordinate = 285;
+        c.y_coordinate = 368;
         break;
     case(CardPile::NORMAL_PILE2):
-        c.xCoordinate = 435;
-        c.yCoordinate = 368;
+        c.x_coordinate = 435;
+        c.y_coordinate = 368;
         break;
     case(CardPile::NORMAL_PILE3):
-        c.xCoordinate = 585;
-        c.yCoordinate = 368;
+        c.x_coordinate = 585;
+        c.y_coordinate = 368;
         break;
     case(CardPile::NORMAL_PILE4):
-        c.xCoordinate = 735;
-        c.yCoordinate = 368;
+        c.x_coordinate = 735;
+        c.y_coordinate = 368;
         break;
     case(CardPile::NORMAL_PILE5):
-        c.xCoordinate = 885;
-        c.yCoordinate = 368;
+        c.x_coordinate = 885;
+        c.y_coordinate = 368;
         break;
     case(CardPile::NORMAL_PILE6):
-        c.xCoordinate = 1035;
-        c.yCoordinate = 368;
+        c.x_coordinate = 1035;
+        c.y_coordinate = 368;
         break;
     case(CardPile::NORMAL_PILE7):
-        c.xCoordinate = 1185;
-        c.yCoordinate = 368;
+        c.x_coordinate = 1185;
+        c.y_coordinate = 368;
         break;
     }
 }
@@ -154,18 +163,18 @@ void Pile::setSpriteTexture()
 {
     // First Card
     normal_pile1.front().card_sprite.setTexture(normal_pile1.front().front_img_file);
-    normal_pile1.front().card_sprite.setPosition(normal_pile1.front().xCoordinate, normal_pile1.front().yCoordinate);
+    normal_pile1.front().card_sprite.setPosition(normal_pile1.front().x_coordinate, normal_pile1.front().y_coordinate);
     normal_pile1.front().is_flipped = true;
 
     for (int i = 0; i < normal_pile2.size(); ++i)
     {
         normal_pile2.at(i).card_sprite.setTexture(normal_pile2.at(i).back_img_file);
-        normal_pile2.at(i).card_sprite.setPosition(normal_pile2.at(i).xCoordinate, normal_pile2.at(i).yCoordinate + (i * offset));
+        normal_pile2.at(i).card_sprite.setPosition(normal_pile2.at(i).x_coordinate, normal_pile2.at(i).y_coordinate + (i * offset));
 
         if (i == normal_pile2.size() - 1)
         {
             normal_pile2.at(i).card_sprite.setTexture(normal_pile2.at(i).front_img_file);
-            normal_pile2.at(i).card_sprite.setPosition(normal_pile2.at(i).xCoordinate, normal_pile2.at(i).yCoordinate + (i * offset));
+            normal_pile2.at(i).card_sprite.setPosition(normal_pile2.at(i).x_coordinate, normal_pile2.at(i).y_coordinate + (i * offset));
             normal_pile2.at(i).is_flipped = true;
         }
     }
@@ -173,12 +182,12 @@ void Pile::setSpriteTexture()
     for (int i = 0; i < normal_pile3.size(); ++i)
     {
         normal_pile3.at(i).card_sprite.setTexture(normal_pile3.at(i).back_img_file);
-        normal_pile3.at(i).card_sprite.setPosition(normal_pile3.at(i).xCoordinate, normal_pile3.at(i).yCoordinate + (i * offset));
+        normal_pile3.at(i).card_sprite.setPosition(normal_pile3.at(i).x_coordinate, normal_pile3.at(i).y_coordinate + (i * offset));
 
         if (i == normal_pile3.size() - 1)
         {
             normal_pile3.at(i).card_sprite.setTexture(normal_pile3.at(i).front_img_file);
-            normal_pile3.at(i).card_sprite.setPosition(normal_pile3.at(i).xCoordinate, normal_pile3.at(i).yCoordinate + (i * offset));
+            normal_pile3.at(i).card_sprite.setPosition(normal_pile3.at(i).x_coordinate, normal_pile3.at(i).y_coordinate + (i * offset));
             normal_pile3.at(i).is_flipped = true;
         }
     }
@@ -186,12 +195,12 @@ void Pile::setSpriteTexture()
     for (int i = 0; i < normal_pile4.size(); ++i)
     {
         normal_pile4.at(i).card_sprite.setTexture(normal_pile4.at(i).back_img_file);
-        normal_pile4.at(i).card_sprite.setPosition(normal_pile4.at(i).xCoordinate, normal_pile4.at(i).yCoordinate + (i * offset));
+        normal_pile4.at(i).card_sprite.setPosition(normal_pile4.at(i).x_coordinate, normal_pile4.at(i).y_coordinate + (i * offset));
 
         if (i == normal_pile4.size() - 1)
         {
             normal_pile4.at(i).card_sprite.setTexture(normal_pile4.at(i).front_img_file);
-            normal_pile4.at(i).card_sprite.setPosition(normal_pile4.at(i).xCoordinate, normal_pile4.at(i).yCoordinate + (i * offset));
+            normal_pile4.at(i).card_sprite.setPosition(normal_pile4.at(i).x_coordinate, normal_pile4.at(i).y_coordinate + (i * offset));
             normal_pile4.at(i).is_flipped = true;
         }
     }
@@ -199,12 +208,12 @@ void Pile::setSpriteTexture()
     for (int i = 0; i < normal_pile5.size(); ++i)
     {
         normal_pile5.at(i).card_sprite.setTexture(normal_pile5.at(i).back_img_file);
-        normal_pile5.at(i).card_sprite.setPosition(normal_pile5.at(i).xCoordinate, normal_pile5.at(i).yCoordinate + (i * offset));
+        normal_pile5.at(i).card_sprite.setPosition(normal_pile5.at(i).x_coordinate, normal_pile5.at(i).y_coordinate + (i * offset));
 
         if (i == normal_pile5.size() - 1)
         {
             normal_pile5.at(i).card_sprite.setTexture(normal_pile5.at(i).front_img_file);
-            normal_pile5.at(i).card_sprite.setPosition(normal_pile5.at(i).xCoordinate, normal_pile5.at(i).yCoordinate + (i * offset));
+            normal_pile5.at(i).card_sprite.setPosition(normal_pile5.at(i).x_coordinate, normal_pile5.at(i).y_coordinate + (i * offset));
             normal_pile5.at(i).is_flipped = true;
         }
     }
@@ -212,24 +221,24 @@ void Pile::setSpriteTexture()
     for (int i = 0; i < normal_pile6.size(); ++i)
     {
         normal_pile6.at(i).card_sprite.setTexture(normal_pile6.at(i).back_img_file);
-        normal_pile6.at(i).card_sprite.setPosition(normal_pile6.at(i).xCoordinate, normal_pile6.at(i).yCoordinate + (i * offset));
+        normal_pile6.at(i).card_sprite.setPosition(normal_pile6.at(i).x_coordinate, normal_pile6.at(i).y_coordinate + (i * offset));
 
         if (i == normal_pile6.size() - 1)
         {
             normal_pile6.at(i).card_sprite.setTexture(normal_pile6.at(i).front_img_file);
-            normal_pile6.at(i).card_sprite.setPosition(normal_pile6.at(i).xCoordinate, normal_pile6.at(i).yCoordinate + (i * offset));
+            normal_pile6.at(i).card_sprite.setPosition(normal_pile6.at(i).x_coordinate, normal_pile6.at(i).y_coordinate + (i * offset));
             normal_pile6.at(i).is_flipped = true;
         }
     }
     for (int i = 0; i < normal_pile7.size(); ++i)
     {
         normal_pile7.at(i).card_sprite.setTexture(normal_pile7.at(i).back_img_file);
-        normal_pile7.at(i).card_sprite.setPosition(normal_pile7.at(i).xCoordinate, normal_pile7.at(i).yCoordinate + (i * offset));
+        normal_pile7.at(i).card_sprite.setPosition(normal_pile7.at(i).x_coordinate, normal_pile7.at(i).y_coordinate + (i * offset));
 
         if (i == normal_pile7.size() - 1)
         {
             normal_pile7.at(i).card_sprite.setTexture(normal_pile7.at(i).front_img_file);
-            normal_pile7.at(i).card_sprite.setPosition(normal_pile7.at(i).xCoordinate, normal_pile7.at(i).yCoordinate + (i * offset));
+            normal_pile7.at(i).card_sprite.setPosition(normal_pile7.at(i).x_coordinate, normal_pile7.at(i).y_coordinate + (i * offset));
             normal_pile7.at(i).is_flipped = true;
         }
     }
@@ -241,37 +250,37 @@ void Pile::setSpriteTexture(int pile_number)
     {
     case 1: // Shuffle pile
         shuffled_pile.top().card_sprite.setTexture(shuffled_pile.top().back_img_file);
-        shuffled_pile.top().card_sprite.setPosition(shuffled_pile.top().xCoordinate, shuffled_pile.top().yCoordinate);
+        shuffled_pile.top().card_sprite.setPosition(shuffled_pile.top().x_coordinate, shuffled_pile.top().y_coordinate);
         shuffled_pile.top().is_flipped = false;
         break;
     case 2: // Draw pile
         draw_pile.top().card_sprite.setTexture(draw_pile.top().front_img_file);
-        draw_pile.top().card_sprite.setPosition(draw_pile.top().xCoordinate + 180, draw_pile.top().yCoordinate);
+        draw_pile.top().card_sprite.setPosition(draw_pile.top().x_coordinate + 180, draw_pile.top().y_coordinate);
         draw_pile.top().is_flipped = true;
         break;
     case 3: // Foundation pile 1
         foundation_pile1.top().card_sprite.setTexture(foundation_pile1.top().front_img_file);
-        foundation_pile1.top().xCoordinate = 740;
-        foundation_pile1.top().yCoordinate = 120;
-        foundation_pile1.top().card_sprite.setPosition(foundation_pile1.top().xCoordinate, foundation_pile1.top().yCoordinate);
+        foundation_pile1.top().x_coordinate = 740;
+        foundation_pile1.top().y_coordinate = 119;
+        foundation_pile1.top().card_sprite.setPosition(foundation_pile1.top().x_coordinate, foundation_pile1.top().y_coordinate);
         break;
     case 4: // Foundation pile 2
         foundation_pile2.top().card_sprite.setTexture(foundation_pile2.top().front_img_file);
-        foundation_pile2.top().xCoordinate = 890;
-        foundation_pile2.top().yCoordinate = 120;
-        foundation_pile2.top().card_sprite.setPosition(foundation_pile2.top().xCoordinate, foundation_pile2.top().yCoordinate);
+        foundation_pile2.top().x_coordinate = 890;
+        foundation_pile2.top().y_coordinate = 119;
+        foundation_pile2.top().card_sprite.setPosition(foundation_pile2.top().x_coordinate, foundation_pile2.top().y_coordinate);
         break;
     case 5: // Foundation pile 3
         foundation_pile3.top().card_sprite.setTexture(foundation_pile3.top().front_img_file);
-        foundation_pile3.top().xCoordinate = 1040;
-        foundation_pile3.top().yCoordinate = 120;
-        foundation_pile3.top().card_sprite.setPosition(foundation_pile3.top().xCoordinate, foundation_pile3.top().yCoordinate);
+        foundation_pile3.top().x_coordinate = 1040;
+        foundation_pile3.top().y_coordinate = 119;
+        foundation_pile3.top().card_sprite.setPosition(foundation_pile3.top().x_coordinate, foundation_pile3.top().y_coordinate);
         break;
     case 6: // Foundation pile 4
         foundation_pile4.top().card_sprite.setTexture(foundation_pile4.top().front_img_file);
-        foundation_pile4.top().xCoordinate = 1190;
-        foundation_pile4.top().yCoordinate = 120;
-        foundation_pile4.top().card_sprite.setPosition(foundation_pile4.top().xCoordinate, foundation_pile4.top().yCoordinate);
+        foundation_pile4.top().x_coordinate = 1190;
+        foundation_pile4.top().y_coordinate = 119;
+        foundation_pile4.top().card_sprite.setPosition(foundation_pile4.top().x_coordinate, foundation_pile4.top().y_coordinate);
         break;
     case 7: // Normal pile 1
         for (int i = 0; i < normal_pile1.size(); ++i)
@@ -279,16 +288,16 @@ void Pile::setSpriteTexture(int pile_number)
             if (normal_pile1[i].is_flipped == true)
             {
                 normal_pile1[i].card_sprite.setTexture(normal_pile1[i].front_img_file);
-                normal_pile1[i].xCoordinate = 285;
-                normal_pile1[i].yCoordinate = 368;
-                normal_pile1[i].card_sprite.setPosition(normal_pile1[i].xCoordinate, normal_pile1[i].yCoordinate + (offset * i));
+                normal_pile1[i].x_coordinate = 285;
+                normal_pile1[i].y_coordinate = 368;
+                normal_pile1[i].card_sprite.setPosition(normal_pile1[i].x_coordinate, normal_pile1[i].y_coordinate + (offset * i));
             }
             else
             {
                 normal_pile1[i].card_sprite.setTexture(normal_pile1[i].back_img_file);
-                normal_pile1[i].xCoordinate = 285;
-                normal_pile1[i].yCoordinate = 368;
-                normal_pile1[i].card_sprite.setPosition(normal_pile1[i].xCoordinate, normal_pile1[i].yCoordinate + (offset * i));
+                normal_pile1[i].x_coordinate = 285;
+                normal_pile1[i].y_coordinate = 368;
+                normal_pile1[i].card_sprite.setPosition(normal_pile1[i].x_coordinate, normal_pile1[i].y_coordinate + (offset * i));
             }
         }
         break;
@@ -298,16 +307,16 @@ void Pile::setSpriteTexture(int pile_number)
             if (normal_pile2[i].is_flipped == true)
             {
                 normal_pile2[i].card_sprite.setTexture(normal_pile2[i].front_img_file);
-                normal_pile2[i].xCoordinate = 435;
-                normal_pile2[i].yCoordinate = 368;
-                normal_pile2[i].card_sprite.setPosition(normal_pile2[i].xCoordinate, normal_pile2[i].yCoordinate + (offset * i));
+                normal_pile2[i].x_coordinate = 435;
+                normal_pile2[i].y_coordinate = 368;
+                normal_pile2[i].card_sprite.setPosition(normal_pile2[i].x_coordinate, normal_pile2[i].y_coordinate + (offset * i));
             }
             else
             {
                 normal_pile2[i].card_sprite.setTexture(normal_pile2[i].back_img_file);
-                normal_pile2[i].xCoordinate = 435;
-                normal_pile2[i].yCoordinate = 368;
-                normal_pile2[i].card_sprite.setPosition(normal_pile2[i].xCoordinate, normal_pile2[i].yCoordinate + (offset * i));
+                normal_pile2[i].x_coordinate = 435;
+                normal_pile2[i].y_coordinate = 368;
+                normal_pile2[i].card_sprite.setPosition(normal_pile2[i].x_coordinate, normal_pile2[i].y_coordinate + (offset * i));
             }
         }
         break;
@@ -317,16 +326,16 @@ void Pile::setSpriteTexture(int pile_number)
             if (normal_pile3[i].is_flipped == true)
             {
                 normal_pile3[i].card_sprite.setTexture(normal_pile3[i].front_img_file);
-                normal_pile3[i].xCoordinate = 585;
-                normal_pile3[i].yCoordinate = 368;
-                normal_pile3[i].card_sprite.setPosition(normal_pile3[i].xCoordinate, normal_pile3[i].yCoordinate + (offset * i));
+                normal_pile3[i].x_coordinate = 585;
+                normal_pile3[i].y_coordinate = 368;
+                normal_pile3[i].card_sprite.setPosition(normal_pile3[i].x_coordinate, normal_pile3[i].y_coordinate + (offset * i));
             }
             else
             {
                 normal_pile3[i].card_sprite.setTexture(normal_pile3[i].back_img_file);
-                normal_pile3[i].xCoordinate = 585;
-                normal_pile3[i].yCoordinate = 368;
-                normal_pile3[i].card_sprite.setPosition(normal_pile3[i].xCoordinate, normal_pile3[i].yCoordinate + (offset * i));
+                normal_pile3[i].x_coordinate = 585;
+                normal_pile3[i].y_coordinate = 368;
+                normal_pile3[i].card_sprite.setPosition(normal_pile3[i].x_coordinate, normal_pile3[i].y_coordinate + (offset * i));
             }
         }
         break;
@@ -336,16 +345,16 @@ void Pile::setSpriteTexture(int pile_number)
             if (normal_pile4[i].is_flipped == true)
             {
                 normal_pile4[i].card_sprite.setTexture(normal_pile4[i].front_img_file);
-                normal_pile4[i].xCoordinate = 735;
-                normal_pile4[i].yCoordinate = 368;
-                normal_pile4[i].card_sprite.setPosition(normal_pile4[i].xCoordinate, normal_pile4[i].yCoordinate + (offset * i));
+                normal_pile4[i].x_coordinate = 735;
+                normal_pile4[i].y_coordinate = 368;
+                normal_pile4[i].card_sprite.setPosition(normal_pile4[i].x_coordinate, normal_pile4[i].y_coordinate + (offset * i));
             }
             else
             {
                 normal_pile4[i].card_sprite.setTexture(normal_pile4[i].back_img_file);
-                normal_pile4[i].xCoordinate = 735;
-                normal_pile4[i].yCoordinate = 368;
-                normal_pile4[i].card_sprite.setPosition(normal_pile4[i].xCoordinate, normal_pile4[i].yCoordinate + (offset * i));
+                normal_pile4[i].x_coordinate = 735;
+                normal_pile4[i].y_coordinate = 368;
+                normal_pile4[i].card_sprite.setPosition(normal_pile4[i].x_coordinate, normal_pile4[i].y_coordinate + (offset * i));
             }
         }
         break;
@@ -355,16 +364,16 @@ void Pile::setSpriteTexture(int pile_number)
             if (normal_pile5[i].is_flipped == true)
             {
                 normal_pile5[i].card_sprite.setTexture(normal_pile5[i].front_img_file);
-                normal_pile5[i].xCoordinate = 885;
-                normal_pile5[i].yCoordinate = 368;
-                normal_pile5[i].card_sprite.setPosition(normal_pile5[i].xCoordinate, normal_pile5[i].yCoordinate + (offset * i));
+                normal_pile5[i].x_coordinate = 885;
+                normal_pile5[i].y_coordinate = 368;
+                normal_pile5[i].card_sprite.setPosition(normal_pile5[i].x_coordinate, normal_pile5[i].y_coordinate + (offset * i));
             }
             else
             {
                 normal_pile5[i].card_sprite.setTexture(normal_pile5[i].back_img_file);
-                normal_pile5[i].xCoordinate = 885;
-                normal_pile5[i].yCoordinate = 368;
-                normal_pile5[i].card_sprite.setPosition(normal_pile5[i].xCoordinate, normal_pile5[i].yCoordinate + (offset * i));
+                normal_pile5[i].x_coordinate = 885;
+                normal_pile5[i].y_coordinate = 368;
+                normal_pile5[i].card_sprite.setPosition(normal_pile5[i].x_coordinate, normal_pile5[i].y_coordinate + (offset * i));
             }
         }
         break;
@@ -374,16 +383,16 @@ void Pile::setSpriteTexture(int pile_number)
             if (normal_pile6[i].is_flipped == true)
             {
                 normal_pile6[i].card_sprite.setTexture(normal_pile6[i].front_img_file);
-                normal_pile6[i].xCoordinate = 1035;
-                normal_pile6[i].yCoordinate = 368;
-                normal_pile6[i].card_sprite.setPosition(normal_pile6[i].xCoordinate, normal_pile6[i].yCoordinate + (offset * i));
+                normal_pile6[i].x_coordinate = 1035;
+                normal_pile6[i].y_coordinate = 368;
+                normal_pile6[i].card_sprite.setPosition(normal_pile6[i].x_coordinate, normal_pile6[i].y_coordinate + (offset * i));
             }
             else
             {
                 normal_pile6[i].card_sprite.setTexture(normal_pile6[i].back_img_file);
-                normal_pile6[i].xCoordinate = 1035;
-                normal_pile6[i].yCoordinate = 368;
-                normal_pile6[i].card_sprite.setPosition(normal_pile6[i].xCoordinate, normal_pile6[i].yCoordinate + (offset * i));
+                normal_pile6[i].x_coordinate = 1035;
+                normal_pile6[i].y_coordinate = 368;
+                normal_pile6[i].card_sprite.setPosition(normal_pile6[i].x_coordinate, normal_pile6[i].y_coordinate + (offset * i));
             }
         }
         break;
@@ -393,16 +402,16 @@ void Pile::setSpriteTexture(int pile_number)
             if (normal_pile7[i].is_flipped == true)
             {
                 normal_pile7[i].card_sprite.setTexture(normal_pile7[i].front_img_file);
-                normal_pile7[i].xCoordinate = 1185;
-                normal_pile7[i].yCoordinate = 368;
-                normal_pile7[i].card_sprite.setPosition(normal_pile7[i].xCoordinate, normal_pile7[i].yCoordinate + (offset * i));
+                normal_pile7[i].x_coordinate = 1185;
+                normal_pile7[i].y_coordinate = 368;
+                normal_pile7[i].card_sprite.setPosition(normal_pile7[i].x_coordinate, normal_pile7[i].y_coordinate + (offset * i));
             }
             else
             {
                 normal_pile7[i].card_sprite.setTexture(normal_pile7[i].back_img_file);
-                normal_pile7[i].xCoordinate = 1185;
-                normal_pile7[i].yCoordinate = 368;
-                normal_pile7[i].card_sprite.setPosition(normal_pile7[i].xCoordinate, normal_pile7[i].yCoordinate + (offset * i));
+                normal_pile7[i].x_coordinate = 1185;
+                normal_pile7[i].y_coordinate = 368;
+                normal_pile7[i].card_sprite.setPosition(normal_pile7[i].x_coordinate, normal_pile7[i].y_coordinate + (offset * i));
             }
         }
         break;
@@ -1192,4 +1201,15 @@ bool Pile::GameWon()
                     return true;
 
     return false;
+}
+
+void Pile::GameWonAnimation(RenderWindow &window)
+{
+    for (int i = 0; i < 13; i++)
+    {
+        foundation_pile1.pop();
+
+    }
+
+    window.display();
 }
