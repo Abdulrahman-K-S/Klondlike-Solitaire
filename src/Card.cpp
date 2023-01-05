@@ -6,8 +6,8 @@ Card::Card()
     front_img_file.loadFromFile("Assets/Cards/BACK.png");
     back_img_file.loadFromFile("Assets/Cards/BACK.png");
     card_sprite.setTexture(back_img_file);
-    xCoordinate = 0;
-    yCoordinate = 0;
+    x_coordinate = 0;
+    y_coordinate = 0;
 }
 
 Card::Card(const Card& c)
@@ -20,8 +20,8 @@ Card::Card(const Card& c)
     front_img_file = c.front_img_file;
     back_img_file = c.back_img_file;
     card_sprite = c.card_sprite;
-    xCoordinate = c.xCoordinate;
-    yCoordinate = c.yCoordinate;
+    x_coordinate = c.x_coordinate;
+    y_coordinate = c.y_coordinate;
 }
 
 Card& Card::operator=(const Card& c)
@@ -34,7 +34,7 @@ Card& Card::operator=(const Card& c)
     front_img_file = c.front_img_file;
     back_img_file = c.back_img_file;
     card_sprite = c.card_sprite;
-    xCoordinate = c.xCoordinate;
-    yCoordinate = c.yCoordinate; 
+    x_coordinate = c.x_coordinate;
+    y_coordinate = c.y_coordinate; 
     return *this;
 }
