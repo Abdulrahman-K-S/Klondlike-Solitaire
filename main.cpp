@@ -73,7 +73,10 @@ gamestart:
                 {
                     if (Mouse::getPosition(window).x >= 650 && Mouse::getPosition(window).x <= 950)
                         if (Mouse::getPosition(window).y >= 400 && Mouse::getPosition(window).y <= 500)
+                        {
+                            game.window_start.play();
                             menu = false;
+                        }
                     if (Mouse::getPosition(window).x >= 650 && Mouse::getPosition(window).x <= 950)
                         if (Mouse::getPosition(window).y >= 530 && Mouse::getPosition(window).y <= 630)
                             goto gamestart;
@@ -84,9 +87,15 @@ gamestart:
             case Event::KeyPressed:
                 if (event.key.code == Keyboard::Escape)
                     if (menu == false)
+                    {
+                        game.window_start.play();
                         menu = true;
+                    }
                     else if (menu == true)
+                    {
+                        game.window_start.play();
                         menu = false;
+                    }
                 break;
             }
         }
@@ -95,8 +104,8 @@ gamestart:
 
         window.draw(game.background);
         window.draw(game.score_board);
-        game.drawOutlinePiles(window);
         window.draw(game.drawTimer());
+        game.drawOutlinePiles(window);
 
         pile.displayCards(window);
 
@@ -119,7 +128,7 @@ gamestart:
             break;
         }
     }
-
+    
     game.setEndMenuButton();
     game.winning_theme_music.play();
     while (window.isOpen())
@@ -134,12 +143,15 @@ gamestart:
                 if (Mouse::getPosition(window).x >= 470 && Mouse::getPosition(window).x <= 770)
                     if (Mouse::getPosition(window).y >= 555 && Mouse::getPosition(window).y <= 630)
                     {
-                        game.winning_theme_music.stop();
+                        game.window_start.play();
                         goto gamestart;
                     }
                 if (Mouse::getPosition(window).x >= 920 && Mouse::getPosition(window).x <= 1130)
                     if (Mouse::getPosition(window).y >= 555 && Mouse::getPosition(window).y <= 630)
+                    {
+                        game.window_start.play();
                         window.close();
+                    }
             }
         }
 
@@ -149,6 +161,7 @@ gamestart:
         window.draw(game.new_game);
         window.draw(game.new_game_text);
         window.draw(game.quit_text);
+        window.draw(game.timer);
         window.display();
     }
 
