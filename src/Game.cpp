@@ -22,6 +22,7 @@ Game::Game()
 
 	setFont();
 	setTimer();
+	setEndMenu();
 }
 
 void Game::setBackground()
@@ -112,6 +113,22 @@ void Game::setTimer()
 	timer.setPosition(715, 30);
 }
 
+Text Game::drawTimer()
+{
+	time_elapsed2 = clock.getElapsedTime() - time_elapsed1;
+	int timer_minutes = int(time_elapsed2.asSeconds()) / 60;
+	int timer_seconds = int(time_elapsed2.asSeconds()) % 60;
+	if (timer_minutes < 10 && timer_seconds >= 10)
+		timer.setString("Timer: 0" + to_string(timer_minutes) + ":" + to_string(timer_seconds));
+	else if (timer_seconds < 10 && timer_minutes >= 10)
+		timer.setString("Timer: " + to_string(timer_minutes) + ":0" + to_string(timer_seconds));
+	else if (timer_minutes < 10 && timer_seconds < 10)
+		timer.setString("Timer: 0" + to_string(timer_minutes) + ":0" + to_string(timer_seconds));
+	else
+		timer.setString("Timer: " + to_string(timer_minutes) + ":" + to_string(timer_seconds));
+	return timer;
+}
+
 void Game::setMainMenuMusic()
 {
 	// The function sets the main menu music
@@ -157,7 +174,7 @@ void Game::setEndMenu()
 	// The function sets the background blurred image and 
 	// the "You Won!" text
 	blurred_page.setSize(Vector2f(1600, 900));
-	blurred_page.setFillColor(Color(255, 255, 255, 75));
+	blurred_page.setFillColor(Color(255, 255, 255, 15));
 
 	you_won.setFont(font);
 	you_won.setString("You Won!!");
