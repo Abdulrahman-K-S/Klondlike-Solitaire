@@ -17,7 +17,7 @@ gamestart:
 
     game.music_start.play();
     while (window.isOpen())
-    {   
+    {
         Event event;
         while (window.pollEvent(event))
         {
@@ -88,8 +88,6 @@ gamestart:
                     else if (menu == true)
                         menu = false;
                 break;
-            default:
-                break;
             }
         }
 
@@ -98,7 +96,7 @@ gamestart:
         window.draw(game.background);
         window.draw(game.score_board);
         game.drawOutlinePiles(window);
-		window.draw(game.drawTimer());
+        window.draw(game.drawTimer());
 
         pile.displayCards(window);
 
@@ -117,11 +115,12 @@ gamestart:
         else
             window.display(); // Displaying the window
 
-        /*if (pile.gameWon()) {
+        if (pile.gameWon()) {
             break;
-        }*/
+        }
     }
-
+    
+    game.setEndMenuButton();
     while (window.isOpen())
     {
         Event event;
@@ -129,10 +128,24 @@ gamestart:
         {
             if (event.type == Event::Closed)
                 window.close();
+            else if (event.MouseButtonPressed && event.key.code == Mouse::Left)
+            {
+                if (Mouse::getPosition(window).x >= 470 && Mouse::getPosition(window).x <= 770)
+                    if (Mouse::getPosition(window).y >= 555 && Mouse::getPosition(window).y <= 630)
+                        goto gamestart;
+                if (Mouse::getPosition(window).x >= 920 && Mouse::getPosition(window).x <= 1130)
+                    if (Mouse::getPosition(window).y >= 555 && Mouse::getPosition(window).y <= 630)
+                        window.close();
+            }
         }
 
+        window.clear();
         window.draw(game.blurred_page);
         window.draw(game.you_won);
+        window.draw(game.quit);
+        window.draw(game.new_game);
+        window.draw(game.new_game_text);
+        window.draw(game.quit_text);
         window.display();
     }
 
