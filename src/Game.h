@@ -11,8 +11,8 @@ public:
     Text timer, start, start_message, made_by, you_won, menu_text, resume_text, new_game_text, quit_text;
     Clock clock;
     Time time_elapsed1, time_elapsed2;
-    SoundBuffer window_start_buffer, music_start_buffer;
-    Sound window_start, music_start;
+    SoundBuffer window_start_buffer, music_start_buffer, winning_theme_buffer;
+    Sound window_start, music_start, winning_theme_music;
     OutlinePile* outline_piles;
 
     Game();
