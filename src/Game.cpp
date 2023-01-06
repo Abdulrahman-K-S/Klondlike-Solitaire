@@ -201,7 +201,7 @@ void Game::setEndMenu()
 	// The function sets the background blurred image and 
 	// the "You Won!" text
 	blurred_page.setSize(Vector2f(1600, 900));
-	blurred_page.setFillColor(Color(255, 255, 255, 120));
+	blurred_page.setFillColor(Color(255, 255, 255, 10));
 
 	you_won.setFont(font);
 	you_won.setString("You Won!!");
@@ -218,6 +218,8 @@ void Game::setEndMenuButton()
 	// The function updates the menu buttons as to be able to be used 
 	// when the player wins again saving up space and not creating
 	// new ones
+	timer.setFillColor(Color::Black);
+
 	new_game.setPosition(470, 530);
 	new_game_text.setPosition(Vector2f(500, 555));
 
