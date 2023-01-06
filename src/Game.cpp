@@ -44,7 +44,7 @@ void Game::setScoreboard()
 void Game::setMenu()
 {
 	// The function sets the menu box and it's content (resume button &
-	// quit button)
+	// new game button & quit button)
 	menu_box.setSize(Vector2f(400, 550));
 	menu_box.setPosition(600, 250);
 	menu_box.setFillColor(Color(69, 163, 113, 245));
@@ -166,21 +166,9 @@ void Game::setMainMenuButton()
 	// The function sets the start button's (Size, Position & Color)
 	start_button.setSize(Vector2f(250, 70));
 	start_button.setPosition(Vector2f(675, 415));
-	start_button.setFillColor(Color(0, 181, 212, 700));
-}
-
-void Game::setEndMenu()
-{
-	// The function sets the background blurred image and 
-	// the "You Won!" text
-	blurred_page.setSize(Vector2f(1600, 900));
-	blurred_page.setFillColor(Color(255, 255, 255, 15));
-
-	you_won.setFont(font);
-	you_won.setString("You Won!!");
-	you_won.setCharacterSize(50);
-	you_won.setPosition(Vector2f(655, 300));
-	you_won.setFillColor(Color::Black);
+	start_button.setFillColor(Color(0, 181, 212));
+	start_button.setOutlineColor(Color::Black);
+	start_button.setOutlineThickness(1);
 }
 
 void Game::setOutlinePiles()
@@ -206,4 +194,30 @@ void Game::drawOutlinePiles(RenderWindow& window)
 {
 	for (int i = 0; i < 12; i++)
 		window.draw(outline_piles[i].pileOutline);
+}
+
+void Game::setEndMenu()
+{
+	// The function sets the background blurred image and 
+	// the "You Won!" text
+	blurred_page.setSize(Vector2f(1600, 900));
+	blurred_page.setFillColor(Color(255, 255, 255, 120));
+
+	you_won.setFont(font);
+	you_won.setString("You Won!!");
+	you_won.setCharacterSize(50);
+	you_won.setPosition(Vector2f(635, 300));
+	you_won.setFillColor(Color::Black);
+}
+
+void Game::setEndMenuButton()
+{
+	// The function updates the menu buttons as to be able to be used 
+	// when the player wins again saving up space and not creating
+	// new ones
+	new_game.setPosition(470, 530);
+	new_game_text.setPosition(Vector2f(500, 555));
+
+	quit.setPosition(830, 530);
+	quit_text.setPosition(Vector2f(920, 555));
 }
