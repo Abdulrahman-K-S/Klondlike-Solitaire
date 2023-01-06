@@ -28,6 +28,7 @@ public:
     void setOutlinePiles();
     void drawOutlinePiles(RenderWindow&);
     void setScoreboard();
-    void setEndMenu();
     void setFont();
+    void setEndMenu();
+    void setEndMenuButton();
 };
