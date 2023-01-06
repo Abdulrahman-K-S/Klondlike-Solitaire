@@ -47,10 +47,10 @@ public:
     void setSpriteTexture(vector<Card>&);
 
     void setSpriteTexture(int);
-	void setSpriteTexture(stack<Card>&, int, int);
-	void setSpriteTexture(vector<Card>&, int, int);
+    void setSpriteTexture(stack<Card>&, int, int);
+    void setSpriteTexture(vector<Card>&, int, int);
 
-	void setPileCards();
+    void setPileCards();
 
     void setXYCoordinates(Card&);
 
@@ -59,8 +59,8 @@ public:
     void displayCards(RenderWindow&, vector<Card>&, int);
 
     void checkIfSpriteIsClicked(Vector2f);
-	bool checkIfSpriteIsClicked(Vector2f, FloatRect, int, stack<Card>&, vector<Card>&);
-	bool checkIfSpriteIsClicked(Vector2f, FloatRect, int, stack<Card>&, vector<Card>&, int);
+    bool checkIfSpriteIsClicked(Vector2f, FloatRect, int, stack<Card>&, vector<Card>&);
+    bool checkIfSpriteIsClicked(Vector2f, FloatRect, int, stack<Card>&, vector<Card>&, int);
 
     void moveCard(int, stack<Card>&, vector<Card>&, int);
 
