@@ -45,8 +45,13 @@ public:
 
     void setSpriteTexture();
     void setSpriteTexture(vector<Card>&);
+
     void setSpriteTexture(int);
-    void setPileCards();
+	void setSpriteTexture(stack<Card>&, int, int);
+	void setSpriteTexture(vector<Card>&, int, int);
+
+	void setPileCards();
+
     void setXYCoordinates(Card&);
 
     void displayCards(RenderWindow&);
@@ -54,14 +59,17 @@ public:
     void displayCards(RenderWindow&, vector<Card>&, int);
 
     void checkIfSpriteIsClicked(Vector2f);
+	bool checkIfSpriteIsClicked(Vector2f, FloatRect, int, stack<Card>&, vector<Card>&);
+	bool checkIfSpriteIsClicked(Vector2f, FloatRect, int, stack<Card>&, vector<Card>&, int);
 
     void moveCard(int, stack<Card>&, vector<Card>&, int);
+
     void moveFromShuffledPile();
-    
+
     void moveFromDrawPile();
     bool moveFromDrawPile(stack<Card>&, int);
     bool moveFromDrawPile(vector<Card>&, int);
-    
+
     void moveFromFoundationPile(stack<Card>&);
     bool moveFromFoundationPile(stack<Card>&, stack<Card>&, int);
     bool moveFromFoundationPile(vector<Card>&, stack<Card>&, int);
@@ -69,6 +77,6 @@ public:
     void moveFromNormalPile(vector<Card>&, int);
     bool moveFromNormalPile(stack<Card>&, vector<Card>&, int, int);
     bool moveFromNormalPile(vector<Card>&, vector<Card>&, int, int);
-    
+
     bool gameWon();
 };
