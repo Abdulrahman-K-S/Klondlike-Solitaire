@@ -3,7 +3,7 @@
 Pile::Pile()
 {
     setDeck();
-    shuffleCards();
+    //shuffleCards();
     setPileCards();
     setSpriteTexture();
     setSounds();
@@ -621,7 +621,8 @@ bool Pile::moveFromFoundationPile(stack<Card>& foundation, stack<Card>& pile, in
 bool Pile::moveFromFoundationPile(vector<Card>& nPile, stack<Card>& pile, int pile_number)
 {
     if (!nPile.empty() && int(nPile.back().color) != int(pile.top().color) \
-		&& (int(nPile.back().name) - int(pile.top().name) == 1))
+		&& (int(nPile.back().name) - int(pile.top().name) == 1)
+        || int(pile.top().name) == 13 && nPile.empty())
 	{
 			card_click_sound.play();
             nPile.push_back(pile.top());
