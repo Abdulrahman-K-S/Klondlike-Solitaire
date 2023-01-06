@@ -35,11 +35,12 @@ Card& Card::operator=(const Card& c)
     back_img_file = c.back_img_file;
     card_sprite = c.card_sprite;
     x_coordinate = c.x_coordinate;
-    y_coordinate = c.y_coordinate;
+    y_coordinate = c.y_coordinate; 
     return *this;
 }
 
-bool operator==(const Card& lhs, const Card& rhs) {
+bool operator==(const Card& lhs, const Card& rhs)
+{
     if (lhs.color == rhs.color)
         if (lhs.name == rhs.name)
             if (lhs.suit == rhs.suit)
