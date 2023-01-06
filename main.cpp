@@ -1,10 +1,6 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include <iostream>
 #include "Pile.h"
 #include "Game.h"
-using namespace sf;
-using namespace std;
 
 int main()
 {
@@ -18,7 +14,7 @@ gamestart:
 
     // Declaring an object from the class piles to set up the cards
     Pile pile;
-   
+
     game.music_start.play();
     while (window.isOpen())
     {
@@ -96,7 +92,7 @@ gamestart:
                 continue;
             default:
                 break;
-            }                    
+            }
         }
 
         window.clear(); // Clearing the window
@@ -141,7 +137,6 @@ gamestart:
             break;
     }
 
-
     while (window.isOpen())
     {
         Event event;
@@ -155,6 +150,6 @@ gamestart:
         window.draw(game.you_won);
         window.display();
     }
-    
+
     return 0;
 }
