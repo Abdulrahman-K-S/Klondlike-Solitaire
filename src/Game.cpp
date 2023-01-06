@@ -13,58 +13,58 @@ Game::Game()
 	setMainMenuText();
 	setMainMenuMusic();
 	setMainMenuButton();
-    
+
 	setBackground();
-    setScoreboard();
+	setScoreboard();
 	setOutlinePiles();
 	setMenu();
 	setMenuText();
-    
+
 	setFont();
-    setTimer();
+	setTimer();
 }
 
 void Game::setBackground()
 {
-    // The function sets the background texture and set the sprite
-    // with that texture
-    background_texture.loadFromFile("Assets/Background.jpg");
-    background.setTexture(background_texture);
+	// The function sets the background texture and set the sprite
+	// with that texture
+	background_texture.loadFromFile("Assets/Background.jpg");
+	background.setTexture(background_texture);
 }
 
 void Game::setScoreboard()
 {
 	// The function sets the scoreboard's size and it's fill
 	// color
-    score_board.setSize(Vector2f(1600, 80));
-    score_board.setFillColor(Color(169, 169, 169, 128));
+	score_board.setSize(Vector2f(1600, 80));
+	score_board.setFillColor(Color(169, 169, 169, 128));
 }
 
 void Game::setMenu()
 {
 	// The function sets the menu box and it's content (resume button &
 	// quit button)
-    menu_box.setSize(Vector2f(400, 550));
-    menu_box.setPosition(600, 250);
-    menu_box.setFillColor(Color(69, 163, 113, 245));
+	menu_box.setSize(Vector2f(400, 550));
+	menu_box.setPosition(600, 250);
+	menu_box.setFillColor(Color(69, 163, 113, 245));
 	menu_box.setOutlineColor(Color::Black);
 	menu_box.setOutlineThickness(1);
-    
-    resume.setSize(Vector2f(300, 100));
-    resume.setPosition(650, 400);
-    resume.setFillColor(Color(218, 247, 166));
+
+	resume.setSize(Vector2f(300, 100));
+	resume.setPosition(650, 400);
+	resume.setFillColor(Color(218, 247, 166));
 	resume.setOutlineColor(Color::Black);
 	resume.setOutlineThickness(1);
-    
+
 	new_game.setSize(Vector2f(300, 100));
 	new_game.setPosition(650, 530);
 	new_game.setFillColor(Color(218, 247, 166));
 	new_game.setOutlineColor(Color::Black);
 	new_game.setOutlineThickness(1);
 
-    quit.setSize(Vector2f(300, 100));
-    quit.setPosition(650, 660);
-    quit.setFillColor(Color(218, 247, 166));
+	quit.setSize(Vector2f(300, 100));
+	quit.setPosition(650, 660);
+	quit.setFillColor(Color(218, 247, 166));
 	quit.setOutlineColor(Color::Black);
 	quit.setOutlineThickness(1);
 }
@@ -107,9 +107,9 @@ void Game::setFont()
 void Game::setTimer()
 {
 	// The function sets the timer for the game
-    timer.setFont(font);
-    timer.setCharacterSize(20);
-    timer.setPosition(715, 30);
+	timer.setFont(font);
+	timer.setCharacterSize(20);
+	timer.setPosition(715, 30);
 }
 
 void Game::setMainMenuMusic()
@@ -132,7 +132,7 @@ void Game::setMainMenuText()
 	tryerz_image.setTexture(tryerz_texture);
 	tryerz_image.setPosition(1290, 740);
 	tryerz_image.setScale(0.23, 0.23);
-	
+
 	// The "Start Game" blue button is set with the "Welcome to the Tryerz Solitare" text
 	start.setFont(font);
 	start.setString("Start Game");
@@ -167,7 +167,7 @@ void Game::setEndMenu()
 }
 
 void Game::setOutlinePiles()
-{	
+{
 	// The function sets all 12 outline piles so we can draw them
 	// through out the game
 	outline_piles = new OutlinePile[12];
@@ -180,8 +180,8 @@ void Game::setOutlinePiles()
 	outline_piles[6] = OutlinePile(440, 370);
 	outline_piles[7] = OutlinePile(590, 370);
 	outline_piles[8] = OutlinePile(740, 370);
-	outline_piles[9] = OutlinePile(890,370);
-	outline_piles[10] = OutlinePile(1040,370);
+	outline_piles[9] = OutlinePile(890, 370);
+	outline_piles[10] = OutlinePile(1040, 370);
 	outline_piles[11] = OutlinePile(1190, 370);
 }
 
