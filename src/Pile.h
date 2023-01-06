@@ -1,8 +1,15 @@
+#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <iostream>
 #include <chrono>
 #include <thread>
-#include <vector>
 #include "Card.h"
+#include <stack>
+#include <random>
+#include <vector>
+
+using namespace sf;
+using namespace std;
 
 class Pile
 {
@@ -50,11 +57,11 @@ public:
 
     void moveCard(int, stack<Card>&, vector<Card>&, int);
     void moveFromShuffledPile();
-
+    
     void moveFromDrawPile();
     bool moveFromDrawPile(stack<Card>&, int);
     bool moveFromDrawPile(vector<Card>&, int);
-
+    
     void moveFromFoundationPile(stack<Card>&);
     bool moveFromFoundationPile(stack<Card>&, stack<Card>&, int);
     bool moveFromFoundationPile(vector<Card>&, stack<Card>&, int);
@@ -62,6 +69,6 @@ public:
     void moveFromNormalPile(vector<Card>&, int);
     bool moveFromNormalPile(stack<Card>&, vector<Card>&, int, int);
     bool moveFromNormalPile(vector<Card>&, vector<Card>&, int, int);
-
+    
     bool gameWon();
 };
