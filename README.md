@@ -17,7 +17,7 @@ We hope you'll have a blast playing our game that we've put alot of effort in!!
 
 > How to win Solitaire:
 
-	- In Solitaire the objective is to get all 4 suits arranged from Ace to King
+	- The objective is to get all 4 suits arranged from Ace to King
 	on all 4 Foundation Piles (e.g a foundation pile for the spades another for the diamonds and
 	so on).
 
