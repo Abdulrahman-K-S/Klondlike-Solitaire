@@ -136,7 +136,16 @@ void Game::setMainMenuMusic()
 	window_start.setBuffer(window_start_buffer);
 	music_start_buffer.loadFromFile("Assets/Sounds/Start Music.wav");
 	music_start.setBuffer(music_start_buffer);
+
+	sound_On_texture.loadFromFile("Assets/Sound on.png");
+	sound_on.setTexture(sound_On_texture);
+	sound_on.setPosition(Vector2f(100, 750));
+
+	mute_texture.loadFromFile("Assets/Mute.png");
+	mute.setTexture(mute_texture);
+	mute.setPosition(Vector2f(100, 750));
 }
+
 
 void Game::setMainMenuText()
 {
