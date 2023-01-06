@@ -208,6 +208,9 @@ void Game::setEndMenu()
 	you_won.setCharacterSize(50);
 	you_won.setPosition(Vector2f(635, 300));
 	you_won.setFillColor(Color::Black);
+
+	winning_theme_buffer.loadFromFile("Assets/Sounds/Winning Theme.wav");
+	winning_theme_music.setBuffer(winning_theme_buffer);
 }
 
 void Game::setEndMenuButton()
