@@ -3,7 +3,7 @@
 Pile::Pile()
 {
     setDeck();
-    //shuffleCards();
+    shuffleCards();
     setPileCards();
     setSpriteTexture();
     setSounds();
