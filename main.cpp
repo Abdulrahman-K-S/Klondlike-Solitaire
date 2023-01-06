@@ -128,7 +128,7 @@ gamestart:
             break;
         }
     }
-
+    
     game.setEndMenuButton();
     game.winning_theme_music.play();
     while (window.isOpen())
@@ -146,7 +146,6 @@ gamestart:
                 if (Mouse::getPosition(window).x >= 920 && Mouse::getPosition(window).x <= 1130)
                     if (Mouse::getPosition(window).y >= 555 && Mouse::getPosition(window).y <= 630)
                         window.close();
-
             }
         }
 
