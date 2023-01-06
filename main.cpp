@@ -119,8 +119,9 @@ gamestart:
             break;
         }
     }
-    
+
     game.setEndMenuButton();
+    game.winning_theme_music.play();
     while (window.isOpen())
     {
         Event event;
@@ -132,14 +133,16 @@ gamestart:
             {
                 if (Mouse::getPosition(window).x >= 470 && Mouse::getPosition(window).x <= 770)
                     if (Mouse::getPosition(window).y >= 555 && Mouse::getPosition(window).y <= 630)
+                    {
+                        game.winning_theme_music.stop();
                         goto gamestart;
+                    }
                 if (Mouse::getPosition(window).x >= 920 && Mouse::getPosition(window).x <= 1130)
                     if (Mouse::getPosition(window).y >= 555 && Mouse::getPosition(window).y <= 630)
                         window.close();
             }
         }
 
-        window.clear();
         window.draw(game.blurred_page);
         window.draw(game.you_won);
         window.draw(game.quit);
