@@ -22,6 +22,7 @@ public:
     void setMainMenuButton();
     void setBackground();
     void setTimer();
+    Text drawTimer();
     void setMenu();
     void setMenuText();
     void setOutlinePiles();
