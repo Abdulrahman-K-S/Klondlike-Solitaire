@@ -32,6 +32,10 @@ gamestart:
         window.draw(game.start_message);
         window.draw(game.made_by);
         window.draw(game.tryerz_image);
+        if (game.music_start.getStatus() == Sound::Paused)
+            window.draw(game.mute);
+        else
+            window.draw(game.sound_on);
         window.display();
         if (Mouse::getPosition(window).x >= 675 && Mouse::getPosition(window).x <= 925)
             if (Mouse::getPosition(window).y >= 415 && Mouse::getPosition(window).y <= 485)
@@ -39,6 +43,26 @@ gamestart:
                 {
                     game.window_start.play();
                     game.music_start.stop();
+                    break;
+                }
+
+        if (Mouse::getPosition(window).x >= 100 && Mouse::getPosition(window).x <= 200)
+            if (Mouse::getPosition(window).y >= 750 && Mouse::getPosition(window).y <= 850)
+                switch (event.type)
+                {
+                case Event::MouseButtonPressed:
+                    if (event.key.code == Mouse::Left)
+                    {
+                        if (game.music_start.getStatus() == Sound::Playing)
+                            game.music_start.pause();
+
+                        else if (game.music_start.getStatus() == Sound::Paused)
+                            game.music_start.play();
+                        this_thread::sleep_for(chrono::milliseconds(200));
+                    }
+                case Event::MouseButtonReleased:
+                    continue;
+                default:
                     break;
                 }
     }
