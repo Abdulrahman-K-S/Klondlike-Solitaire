@@ -57,8 +57,8 @@ void Pile::shuffleCards()
 
 void Pile::swap(Card* a, Card* b)
 {
-    Card temp = *a; 
-    *a = *b; 
+    Card temp = *a;
+    *a = *b;
     *b = temp;
 }
 
@@ -203,162 +203,64 @@ void Pile::setSpriteTexture(int pile_number)
         draw_pile.top().is_flipped = true;
         break;
     case 3: // Foundation pile 1
-        foundation_pile1.top().card_sprite.setTexture(foundation_pile1.top().front_img_file);
-        foundation_pile1.top().x_coordinate = 740;
-        foundation_pile1.top().y_coordinate = 119;
-        foundation_pile1.top().card_sprite.setPosition(foundation_pile1.top().x_coordinate, foundation_pile1.top().y_coordinate);
+        setSpriteTexture(foundation_pile1, 740, 119);
         break;
     case 4: // Foundation pile 2
-        foundation_pile2.top().card_sprite.setTexture(foundation_pile2.top().front_img_file);
-        foundation_pile2.top().x_coordinate = 890;
-        foundation_pile2.top().y_coordinate = 119;
-        foundation_pile2.top().card_sprite.setPosition(foundation_pile2.top().x_coordinate, foundation_pile2.top().y_coordinate);
+        setSpriteTexture(foundation_pile2, 890, 119);
         break;
     case 5: // Foundation pile 3
-        foundation_pile3.top().card_sprite.setTexture(foundation_pile3.top().front_img_file);
-        foundation_pile3.top().x_coordinate = 1040;
-        foundation_pile3.top().y_coordinate = 119;
-        foundation_pile3.top().card_sprite.setPosition(foundation_pile3.top().x_coordinate, foundation_pile3.top().y_coordinate);
+        setSpriteTexture(foundation_pile3, 1040, 119);
         break;
     case 6: // Foundation pile 4
-        foundation_pile4.top().card_sprite.setTexture(foundation_pile4.top().front_img_file);
-        foundation_pile4.top().x_coordinate = 1190;
-        foundation_pile4.top().y_coordinate = 119;
-        foundation_pile4.top().card_sprite.setPosition(foundation_pile4.top().x_coordinate, foundation_pile4.top().y_coordinate);
+		setSpriteTexture(foundation_pile4, 1190, 119);
         break;
     case 7: // Normal pile 1
-        for (int i = 0; i < normal_pile1.size(); ++i)
-        {
-            if (normal_pile1[i].is_flipped == true)
-            {
-                normal_pile1[i].card_sprite.setTexture(normal_pile1[i].front_img_file);
-                normal_pile1[i].x_coordinate = 285;
-                normal_pile1[i].y_coordinate = 368;
-                normal_pile1[i].card_sprite.setPosition(normal_pile1[i].x_coordinate, normal_pile1[i].y_coordinate + (offset * i));
-            }
-            else
-            {
-                normal_pile1[i].card_sprite.setTexture(normal_pile1[i].back_img_file);
-                normal_pile1[i].x_coordinate = 285;
-                normal_pile1[i].y_coordinate = 368;
-                normal_pile1[i].card_sprite.setPosition(normal_pile1[i].x_coordinate, normal_pile1[i].y_coordinate + (offset * i));
-            }
-        }
+        setSpriteTexture(normal_pile1, 285, 368);
         break;
     case 8: // Normal pile 2
-        for (int i = 0; i < normal_pile2.size(); ++i)
-        {
-            if (normal_pile2[i].is_flipped == true)
-            {
-                normal_pile2[i].card_sprite.setTexture(normal_pile2[i].front_img_file);
-                normal_pile2[i].x_coordinate = 435;
-                normal_pile2[i].y_coordinate = 368;
-                normal_pile2[i].card_sprite.setPosition(normal_pile2[i].x_coordinate, normal_pile2[i].y_coordinate + (offset * i));
-            }
-            else
-            {
-                normal_pile2[i].card_sprite.setTexture(normal_pile2[i].back_img_file);
-                normal_pile2[i].x_coordinate = 435;
-                normal_pile2[i].y_coordinate = 368;
-                normal_pile2[i].card_sprite.setPosition(normal_pile2[i].x_coordinate, normal_pile2[i].y_coordinate + (offset * i));
-            }
-        }
+		setSpriteTexture(normal_pile2, 435, 368);
         break;
     case 9: // Normal pile 3
-        for (int i = 0; i < normal_pile3.size(); ++i)
-        {
-            if (normal_pile3[i].is_flipped == true)
-            {
-                normal_pile3[i].card_sprite.setTexture(normal_pile3[i].front_img_file);
-                normal_pile3[i].x_coordinate = 585;
-                normal_pile3[i].y_coordinate = 368;
-                normal_pile3[i].card_sprite.setPosition(normal_pile3[i].x_coordinate, normal_pile3[i].y_coordinate + (offset * i));
-            }
-            else
-            {
-                normal_pile3[i].card_sprite.setTexture(normal_pile3[i].back_img_file);
-                normal_pile3[i].x_coordinate = 585;
-                normal_pile3[i].y_coordinate = 368;
-                normal_pile3[i].card_sprite.setPosition(normal_pile3[i].x_coordinate, normal_pile3[i].y_coordinate + (offset * i));
-            }
-        }
+        setSpriteTexture(normal_pile3, 585, 368);
         break;
     case 10: // Normal pile 4
-        for (int i = 0; i < normal_pile4.size(); ++i)
-        {
-            if (normal_pile4[i].is_flipped == true)
-            {
-                normal_pile4[i].card_sprite.setTexture(normal_pile4[i].front_img_file);
-                normal_pile4[i].x_coordinate = 735;
-                normal_pile4[i].y_coordinate = 368;
-                normal_pile4[i].card_sprite.setPosition(normal_pile4[i].x_coordinate, normal_pile4[i].y_coordinate + (offset * i));
-            }
-            else
-            {
-                normal_pile4[i].card_sprite.setTexture(normal_pile4[i].back_img_file);
-                normal_pile4[i].x_coordinate = 735;
-                normal_pile4[i].y_coordinate = 368;
-                normal_pile4[i].card_sprite.setPosition(normal_pile4[i].x_coordinate, normal_pile4[i].y_coordinate + (offset * i));
-            }
-        }
+        setSpriteTexture(normal_pile4, 735, 368);
         break;
     case 11: // Normal pile 5
-        for (int i = 0; i < normal_pile5.size(); ++i)
-        {
-            if (normal_pile5[i].is_flipped == true)
-            {
-                normal_pile5[i].card_sprite.setTexture(normal_pile5[i].front_img_file);
-                normal_pile5[i].x_coordinate = 885;
-                normal_pile5[i].y_coordinate = 368;
-                normal_pile5[i].card_sprite.setPosition(normal_pile5[i].x_coordinate, normal_pile5[i].y_coordinate + (offset * i));
-            }
-            else
-            {
-                normal_pile5[i].card_sprite.setTexture(normal_pile5[i].back_img_file);
-                normal_pile5[i].x_coordinate = 885;
-                normal_pile5[i].y_coordinate = 368;
-                normal_pile5[i].card_sprite.setPosition(normal_pile5[i].x_coordinate, normal_pile5[i].y_coordinate + (offset * i));
-            }
-        }
+        setSpriteTexture(normal_pile5, 885, 368);
         break;
     case 12: // Normal pile 6
-        for (int i = 0; i < normal_pile6.size(); ++i)
-        {
-            if (normal_pile6[i].is_flipped == true)
-            {
-                normal_pile6[i].card_sprite.setTexture(normal_pile6[i].front_img_file);
-                normal_pile6[i].x_coordinate = 1035;
-                normal_pile6[i].y_coordinate = 368;
-                normal_pile6[i].card_sprite.setPosition(normal_pile6[i].x_coordinate, normal_pile6[i].y_coordinate + (offset * i));
-            }
-            else
-            {
-                normal_pile6[i].card_sprite.setTexture(normal_pile6[i].back_img_file);
-                normal_pile6[i].x_coordinate = 1035;
-                normal_pile6[i].y_coordinate = 368;
-                normal_pile6[i].card_sprite.setPosition(normal_pile6[i].x_coordinate, normal_pile6[i].y_coordinate + (offset * i));
-            }
-        }
+        setSpriteTexture(normal_pile6, 1035, 368);
         break;
     case 13: // Normal pile 7
-        for (int i = 0; i < normal_pile7.size(); ++i)
-        {
-            if (normal_pile7[i].is_flipped == true)
-            {
-                normal_pile7[i].card_sprite.setTexture(normal_pile7[i].front_img_file);
-                normal_pile7[i].x_coordinate = 1185;
-                normal_pile7[i].y_coordinate = 368;
-                normal_pile7[i].card_sprite.setPosition(normal_pile7[i].x_coordinate, normal_pile7[i].y_coordinate + (offset * i));
-            }
-            else
-            {
-                normal_pile7[i].card_sprite.setTexture(normal_pile7[i].back_img_file);
-                normal_pile7[i].x_coordinate = 1185;
-                normal_pile7[i].y_coordinate = 368;
-                normal_pile7[i].card_sprite.setPosition(normal_pile7[i].x_coordinate, normal_pile7[i].y_coordinate + (offset * i));
-            }
-        }
+        setSpriteTexture(normal_pile7, 1185, 368);
         break;
+    }
+}
+
+void Pile::setSpriteTexture(stack<Card>& pile, int x_pos, int y_pos) 
+{
+    pile.top().card_sprite.setTexture(pile.top().front_img_file);
+    pile.top().x_coordinate = x_pos;
+    pile.top().y_coordinate = y_pos;
+    pile.top().card_sprite.setPosition(pile.top().x_coordinate, pile.top().y_coordinate);
+}
+
+void Pile::setSpriteTexture(vector<Card>& pile, int x_pos, int y_pos) {
+    for (int i = 0; i < pile.size(); ++i)
+    {
+        pile[i].x_coordinate = x_pos;
+        pile[i].y_coordinate = y_pos;
+        if (pile[i].is_flipped == true)
+        {
+            pile[i].card_sprite.setTexture(pile[i].front_img_file);
+            pile[i].card_sprite.setPosition(pile[i].x_coordinate, pile[i].y_coordinate + (offset * i));
+        }
+        else
+        {
+            pile[i].card_sprite.setTexture(pile[i].back_img_file);
+            pile[i].card_sprite.setPosition(pile[i].x_coordinate, pile[i].y_coordinate + (offset * i));
+        }
     }
 }
 
@@ -376,7 +278,7 @@ void Pile::displayCards(RenderWindow& window)
     displayCards(window, normal_pile4, 10);
     displayCards(window, normal_pile5, 11);
     displayCards(window, normal_pile6, 12);
-	displayCards(window, normal_pile7, 13);
+    displayCards(window, normal_pile7, 13);
 }
 
 void Pile::displayCards(RenderWindow& window, stack<Card>& stack)
@@ -394,92 +296,60 @@ void Pile::displayCards(RenderWindow& window, vector<Card>& pile, int pile_numbe
     }
 }
 
-void Pile::checkIfSpriteIsClicked(Vector2f mouse) 
+void Pile::checkIfSpriteIsClicked(Vector2f mouse)
 {
     FloatRect bounds;
 
-    // Draw Pile
-    if (!draw_pile.empty())
-        bounds = draw_pile.top().card_sprite.getGlobalBounds();
-    if (bounds.contains(mouse)) {
-        moveCard(1, foundation_pile1, normal_pile1, 0);
+    if (checkIfSpriteIsClicked(mouse, bounds, 1, draw_pile, normal_pile1))
         return;
-    }
+    if (checkIfSpriteIsClicked(mouse, bounds, 2, foundation_pile1, normal_pile1))
+        return;
+	if (checkIfSpriteIsClicked(mouse, bounds, 2, foundation_pile2, normal_pile1))
+		return;
+	if (checkIfSpriteIsClicked(mouse, bounds, 2, foundation_pile3, normal_pile1))
+		return;
+	if (checkIfSpriteIsClicked(mouse, bounds, 2, foundation_pile4, normal_pile1))
+		return;
+	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile1, 0))
+		return;
+	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile2, 0))
+		return;
+	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile3, 0))
+		return;
+	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile4, 0))
+		return;
+	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile5, 0))
+		return;
+	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile6, 0))
+		return;
+	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile7, 0))
+		return;
+}
 
-    if (!foundation_pile1.empty())
-        bounds = foundation_pile1.top().card_sprite.getGlobalBounds();
-    if (bounds.contains(mouse)) {
-        moveCard(2, foundation_pile1, normal_pile1, 0);
-        return;
-    }
-    if (!foundation_pile2.empty())
-        bounds = foundation_pile2.top().card_sprite.getGlobalBounds();
-    if (bounds.contains(mouse)) {
-        moveCard(2, foundation_pile2, normal_pile1, 0);
-        return;
-    }
-    if (!foundation_pile3.empty())
-        bounds = foundation_pile3.top().card_sprite.getGlobalBounds();
-    if (bounds.contains(mouse)) {
-        moveCard(2, foundation_pile3, normal_pile1, 0);
-        return;
-    }
-    if (!foundation_pile4.empty())
-        bounds = foundation_pile4.top().card_sprite.getGlobalBounds();
-    if (bounds.contains(mouse)) {
-        moveCard(2, foundation_pile4, normal_pile1, 0);
-        return;
-    }
-    for (int i = normal_pile1.size() - 1; i >= 0; i--) {
-        bounds = normal_pile1[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile1[i].is_flipped)
-        {
-            moveCard(3, foundation_pile1, normal_pile1, i);
-            return;
-        }
-    }
-    for (int i = normal_pile2.size() - 1; i >= 0; i--) {
-        bounds = normal_pile2[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile2[i].is_flipped) {
-            moveCard(3, foundation_pile1, normal_pile2, i);
-            return;
-        }
-    }
-    for (int i = normal_pile3.size() - 1; i >= 0; i--) {
-        bounds = normal_pile3[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile3[i].is_flipped) {
-            moveCard(3, foundation_pile1, normal_pile3, i);
-            return;
-        }
-    }
-    for (int i = normal_pile4.size() - 1; i >= 0; i--) {
-        bounds = normal_pile4[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile4[i].is_flipped) {
-            moveCard(3, foundation_pile1, normal_pile4, i);
-            return;
-        }
-    }
-    for (int i = normal_pile5.size() - 1; i >= 0; i--) {
-        bounds = normal_pile5[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile5[i].is_flipped) {
-            moveCard(3, foundation_pile1, normal_pile5, i);
-            return;
-        }
-    }
-    for (int i = normal_pile6.size() - 1; i >= 0; i--) {
-        bounds = normal_pile6[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile6[i].is_flipped) {
-            moveCard(3, foundation_pile1, normal_pile6, i);
-            return;
-        }
-    }
-    for (int i = normal_pile7.size() - 1; i >= 0; i--) {
-        bounds = normal_pile7[i].card_sprite.getGlobalBounds();
-        if (bounds.contains(mouse) && normal_pile7[i].is_flipped) {
-            moveCard(3, foundation_pile1, normal_pile7, i);
-            return;
-        }
-    }
+bool Pile::checkIfSpriteIsClicked(Vector2f mouse, FloatRect bounds, int pile_number, stack<Card>& fPile, vector<Card>& nPile) 
+{
+	if (!fPile.empty())
+		bounds = fPile.top().card_sprite.getGlobalBounds();
+	if (bounds.contains(mouse)) 
+    {
+		moveCard(pile_number, fPile, nPile, 0);
+        return true;
+	}
+    return false;
+}
+
+bool Pile::checkIfSpriteIsClicked(Vector2f mouse, FloatRect bounds, int pile_number, stack<Card>& fpile, vector<Card>& npile, int exess)
+{
+	for (int i = npile.size() - 1; i >= 0; i--) 
+    {
+		bounds = npile[i].card_sprite.getGlobalBounds();
+		if (bounds.contains(mouse) && npile[i].is_flipped)
+		{
+			moveCard(pile_number, fpile, npile, i);
+			return true;
+		}
+	}
+    return false;
 }
 
 void Pile::moveCard(int pile_number, stack<Card>& fPile, vector<Card>& nPile, int index)
@@ -537,13 +407,13 @@ void Pile::moveFromDrawPile()
         return;
     if (moveFromDrawPile(normal_pile4, 10))
         return;
-	if (moveFromDrawPile(normal_pile5, 11))
-		return;
-	if (moveFromDrawPile(normal_pile6, 12))
-		return;
-	if (moveFromDrawPile(normal_pile7, 13))
-		return;
-    
+    if (moveFromDrawPile(normal_pile5, 11))
+        return;
+    if (moveFromDrawPile(normal_pile6, 12))
+        return;
+    if (moveFromDrawPile(normal_pile7, 13))
+        return;
+
     card_error_sound.play();
     return;
 }
@@ -551,7 +421,7 @@ void Pile::moveFromDrawPile()
 bool Pile::moveFromDrawPile(stack<Card>& stack, int pile_number)
 {
     if (stack.empty() && int(draw_pile.top().name) == 1 || (!stack.empty() && int(stack.top().color) == int(draw_pile.top().color)
-            && int(stack.top().suit) == int(draw_pile.top().suit) && (int(stack.top().name) - int(draw_pile.top().name) == -1)))
+        && int(stack.top().suit) == int(draw_pile.top().suit) && (int(stack.top().name) - int(draw_pile.top().name) == -1)))
     {
         card_click_sound.play();
         stack.push(draw_pile.top());
@@ -565,7 +435,7 @@ bool Pile::moveFromDrawPile(stack<Card>& stack, int pile_number)
 bool Pile::moveFromDrawPile(vector<Card>& pile, int pile_number)
 {
     if (pile.empty() && int(draw_pile.top().name) == 13 || (!pile.empty()
-            && int(pile.back().color) != int(draw_pile.top().color) && (int(pile.back().name) - int(draw_pile.top().name) == 1)))
+        && int(pile.back().color) != int(draw_pile.top().color) && (int(pile.back().name) - int(draw_pile.top().name) == 1)))
     {
         card_click_sound.play();
         pile.push_back(draw_pile.top());
@@ -600,7 +470,7 @@ void Pile::moveFromFoundationPile(stack<Card>& pile)
         return;
     if (moveFromFoundationPile(normal_pile7, pile, 13))
         return;
-    
+
     card_error_sound.play();
     return;
 }
@@ -620,15 +490,15 @@ bool Pile::moveFromFoundationPile(stack<Card>& foundation, stack<Card>& pile, in
 
 bool Pile::moveFromFoundationPile(vector<Card>& nPile, stack<Card>& pile, int pile_number)
 {
-    if (!nPile.empty() && int(nPile.back().color) != int(pile.top().color) \
-		&& (int(nPile.back().name) - int(pile.top().name) == 1)
+    if (!nPile.empty() && int(nPile.back().color) != int(pile.top().color)
+        && (int(nPile.back().name) - int(pile.top().name) == 1)
         || int(pile.top().name) == 13 && nPile.empty())
-	{
-			card_click_sound.play();
-            nPile.push_back(pile.top());
-			pile.pop();
-			setSpriteTexture(pile_number);
-			return true;
+    {
+        card_click_sound.play();
+        nPile.push_back(pile.top());
+        pile.pop();
+        setSpriteTexture(pile_number);
+        return true;
     }
     return false;
 }
@@ -669,7 +539,7 @@ bool Pile::moveFromNormalPile(stack<Card>& foundation, vector<Card>& pile, int p
             && int(foundation.top().color) == int(pile.at(index).color)
             && int(foundation.top().suit) == int(pile.at(index).suit)
             && (int(foundation.top().name) - int(pile.at(index).name) == -1))
-            && pile.back() == pile.at(index))
+        && pile.back() == pile.at(index))
     {
         card_click_sound.play();
         foundation.push(pile.at(index));
