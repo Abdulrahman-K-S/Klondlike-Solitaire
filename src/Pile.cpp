@@ -212,13 +212,13 @@ void Pile::setSpriteTexture(int pile_number)
         setSpriteTexture(foundation_pile3, 1040, 119);
         break;
     case 6: // Foundation pile 4
-		setSpriteTexture(foundation_pile4, 1190, 119);
+        setSpriteTexture(foundation_pile4, 1190, 119);
         break;
     case 7: // Normal pile 1
         setSpriteTexture(normal_pile1, 285, 368);
         break;
     case 8: // Normal pile 2
-		setSpriteTexture(normal_pile2, 435, 368);
+        setSpriteTexture(normal_pile2, 435, 368);
         break;
     case 9: // Normal pile 3
         setSpriteTexture(normal_pile3, 585, 368);
@@ -238,7 +238,7 @@ void Pile::setSpriteTexture(int pile_number)
     }
 }
 
-void Pile::setSpriteTexture(stack<Card>& pile, int x_pos, int y_pos) 
+void Pile::setSpriteTexture(stack<Card>& pile, int x_pos, int y_pos)
 {
     pile.top().card_sprite.setTexture(pile.top().front_img_file);
     pile.top().x_coordinate = x_pos;
@@ -304,51 +304,51 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse)
         return;
     if (checkIfSpriteIsClicked(mouse, bounds, 2, foundation_pile1, normal_pile1))
         return;
-	if (checkIfSpriteIsClicked(mouse, bounds, 2, foundation_pile2, normal_pile1))
-		return;
-	if (checkIfSpriteIsClicked(mouse, bounds, 2, foundation_pile3, normal_pile1))
-		return;
-	if (checkIfSpriteIsClicked(mouse, bounds, 2, foundation_pile4, normal_pile1))
-		return;
-	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile1, 0))
-		return;
-	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile2, 0))
-		return;
-	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile3, 0))
-		return;
-	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile4, 0))
-		return;
-	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile5, 0))
-		return;
-	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile6, 0))
-		return;
-	if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile7, 0))
-		return;
+    if (checkIfSpriteIsClicked(mouse, bounds, 2, foundation_pile2, normal_pile1))
+        return;
+    if (checkIfSpriteIsClicked(mouse, bounds, 2, foundation_pile3, normal_pile1))
+        return;
+    if (checkIfSpriteIsClicked(mouse, bounds, 2, foundation_pile4, normal_pile1))
+        return;
+    if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile1, 0))
+        return;
+    if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile2, 0))
+        return;
+    if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile3, 0))
+        return;
+    if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile4, 0))
+        return;
+    if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile5, 0))
+        return;
+    if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile6, 0))
+        return;
+    if (checkIfSpriteIsClicked(mouse, bounds, 3, foundation_pile1, normal_pile7, 0))
+        return;
 }
 
-bool Pile::checkIfSpriteIsClicked(Vector2f mouse, FloatRect bounds, int pile_number, stack<Card>& fPile, vector<Card>& nPile) 
+bool Pile::checkIfSpriteIsClicked(Vector2f mouse, FloatRect bounds, int pile_number, stack<Card>& fPile, vector<Card>& nPile)
 {
-	if (!fPile.empty())
-		bounds = fPile.top().card_sprite.getGlobalBounds();
-	if (bounds.contains(mouse)) 
+    if (!fPile.empty())
+        bounds = fPile.top().card_sprite.getGlobalBounds();
+    if (bounds.contains(mouse))
     {
-		moveCard(pile_number, fPile, nPile, 0);
+        moveCard(pile_number, fPile, nPile, 0);
         return true;
-	}
+    }
     return false;
 }
 
 bool Pile::checkIfSpriteIsClicked(Vector2f mouse, FloatRect bounds, int pile_number, stack<Card>& fpile, vector<Card>& npile, int exess)
 {
-	for (int i = npile.size() - 1; i >= 0; i--) 
+    for (int i = npile.size() - 1; i >= 0; i--)
     {
-		bounds = npile[i].card_sprite.getGlobalBounds();
-		if (bounds.contains(mouse) && npile[i].is_flipped)
-		{
-			moveCard(pile_number, fpile, npile, i);
-			return true;
-		}
-	}
+        bounds = npile[i].card_sprite.getGlobalBounds();
+        if (bounds.contains(mouse) && npile[i].is_flipped)
+        {
+            moveCard(pile_number, fpile, npile, i);
+            return true;
+        }
+    }
     return false;
 }
 
