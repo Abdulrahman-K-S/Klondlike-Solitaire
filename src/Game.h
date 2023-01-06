@@ -5,8 +5,8 @@ class Game
 {
 public:
     RectangleShape menu_box, resume, quit, new_game, score_board, start_button, blurred_page;
-    Texture background_texture, tryerz_texture;
-    Sprite background, tryerz_image;
+    Texture background_texture, tryerz_texture, sound_On_texture, mute_texture;
+    Sprite background, tryerz_image, sound_on, mute;
     Font font;
     Text timer, start, start_message, made_by, you_won, menu_text, resume_text, new_game_text, quit_text;
     Clock clock;
