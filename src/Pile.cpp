@@ -57,8 +57,8 @@ void Pile::shuffleCards()
 
 void Pile::swap(Card* a, Card* b)
 {
-    Card temp = *a; 
-    *a = *b; 
+    Card temp = *a;
+    *a = *b;
     *b = temp;
 }
 
@@ -376,7 +376,7 @@ void Pile::displayCards(RenderWindow& window)
     displayCards(window, normal_pile4, 10);
     displayCards(window, normal_pile5, 11);
     displayCards(window, normal_pile6, 12);
-	displayCards(window, normal_pile7, 13);
+    displayCards(window, normal_pile7, 13);
 }
 
 void Pile::displayCards(RenderWindow& window, stack<Card>& stack)
@@ -394,7 +394,7 @@ void Pile::displayCards(RenderWindow& window, vector<Card>& pile, int pile_numbe
     }
 }
 
-void Pile::checkIfSpriteIsClicked(Vector2f mouse) 
+void Pile::checkIfSpriteIsClicked(Vector2f mouse)
 {
     FloatRect bounds;
 
@@ -537,13 +537,13 @@ void Pile::moveFromDrawPile()
         return;
     if (moveFromDrawPile(normal_pile4, 10))
         return;
-	if (moveFromDrawPile(normal_pile5, 11))
-		return;
-	if (moveFromDrawPile(normal_pile6, 12))
-		return;
-	if (moveFromDrawPile(normal_pile7, 13))
-		return;
-    
+    if (moveFromDrawPile(normal_pile5, 11))
+        return;
+    if (moveFromDrawPile(normal_pile6, 12))
+        return;
+    if (moveFromDrawPile(normal_pile7, 13))
+        return;
+
     card_error_sound.play();
     return;
 }
@@ -551,7 +551,7 @@ void Pile::moveFromDrawPile()
 bool Pile::moveFromDrawPile(stack<Card>& stack, int pile_number)
 {
     if (stack.empty() && int(draw_pile.top().name) == 1 || (!stack.empty() && int(stack.top().color) == int(draw_pile.top().color)
-            && int(stack.top().suit) == int(draw_pile.top().suit) && (int(stack.top().name) - int(draw_pile.top().name) == -1)))
+        && int(stack.top().suit) == int(draw_pile.top().suit) && (int(stack.top().name) - int(draw_pile.top().name) == -1)))
     {
         card_click_sound.play();
         stack.push(draw_pile.top());
@@ -565,7 +565,7 @@ bool Pile::moveFromDrawPile(stack<Card>& stack, int pile_number)
 bool Pile::moveFromDrawPile(vector<Card>& pile, int pile_number)
 {
     if (pile.empty() && int(draw_pile.top().name) == 13 || (!pile.empty()
-            && int(pile.back().color) != int(draw_pile.top().color) && (int(pile.back().name) - int(draw_pile.top().name) == 1)))
+        && int(pile.back().color) != int(draw_pile.top().color) && (int(pile.back().name) - int(draw_pile.top().name) == 1)))
     {
         card_click_sound.play();
         pile.push_back(draw_pile.top());
@@ -600,7 +600,7 @@ void Pile::moveFromFoundationPile(stack<Card>& pile)
         return;
     if (moveFromFoundationPile(normal_pile7, pile, 13))
         return;
-    
+
     card_error_sound.play();
     return;
 }
@@ -621,13 +621,13 @@ bool Pile::moveFromFoundationPile(stack<Card>& foundation, stack<Card>& pile, in
 bool Pile::moveFromFoundationPile(vector<Card>& nPile, stack<Card>& pile, int pile_number)
 {
     if (int(nPile.back().color) != int(pile.top().color) \
-		&& (int(nPile.back().name) - int(pile.top().name) == 1))
-	{
-			card_click_sound.play();
-            nPile.push_back(pile.top());
-			pile.pop();
-			setSpriteTexture(pile_number);
-			return true;
+        && (int(nPile.back().name) - int(pile.top().name) == 1))
+    {
+        card_click_sound.play();
+        nPile.push_back(pile.top());
+        pile.pop();
+        setSpriteTexture(pile_number);
+        return true;
     }
     return false;
 }
@@ -667,7 +667,8 @@ bool Pile::moveFromNormalPile(stack<Card>& foundation, vector<Card>& pile, int p
         || (!foundation.empty()
             && int(foundation.top().color) == int(pile.at(index).color)
             && int(foundation.top().suit) == int(pile.at(index).suit)
-            && (int(foundation.top().name) - int(pile.at(index).name) == -1)))
+            && (int(foundation.top().name) - int(pile.at(index).name) == -1))
+            && pile.back() == pile.at(index))
     {
         card_click_sound.play();
         foundation.push(pile.at(index));
