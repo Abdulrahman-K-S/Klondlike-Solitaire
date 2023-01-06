@@ -17,7 +17,7 @@ gamestart:
 
     game.music_start.play();
     while (window.isOpen())
-    {
+    {   
         Event event;
         while (window.pollEvent(event))
         {
@@ -57,8 +57,8 @@ gamestart:
             case Event::MouseButtonPressed:
                 if (event.key.code == Mouse::Left && !menu)
                 {
-                    Vector2f m = window.mapPixelToCoords(Mouse::getPosition(window));
-                    pile.checkIfSpriteIsClicked(m);
+                    Vector2f mouse_position = window.mapPixelToCoords(Mouse::getPosition(window));
+                    pile.checkIfSpriteIsClicked(mouse_position);
 
                     // If shuffled pile clicked
                     if (Mouse::getPosition(window).x >= 285 && Mouse::getPosition(window).x <= 410)
@@ -88,8 +88,6 @@ gamestart:
                     else if (menu == true)
                         menu = false;
                 break;
-            case Event::MouseButtonReleased:
-                continue;
             default:
                 break;
             }
@@ -100,21 +98,7 @@ gamestart:
         window.draw(game.background);
         window.draw(game.score_board);
         game.drawOutlinePiles(window);
-
-        // Start of drawing the timer
-        game.time_elapsed2 = game.clock.getElapsedTime() - game.time_elapsed1;
-        int timer_minutes = int(game.time_elapsed2.asSeconds()) / 60;
-        int timer_seconds = int(game.time_elapsed2.asSeconds()) % 60;
-        if (timer_minutes < 10 && timer_seconds >= 10)
-            game.timer.setString("Timer: 0" + to_string(timer_minutes) + ":" + to_string(timer_seconds));
-        else if (timer_seconds < 10 && timer_minutes >= 10)
-            game.timer.setString("Timer: " + to_string(timer_minutes) + ":0" + to_string(timer_seconds));
-        else if (timer_minutes < 10 && timer_seconds < 10)
-            game.timer.setString("Timer: 0" + to_string(timer_minutes) + ":0" + to_string(timer_seconds));
-        else
-            game.timer.setString("Timer: " + to_string(timer_minutes) + ":" + to_string(timer_seconds));
-        window.draw(game.timer);
-        // End of drawing the timer
+		window.draw(game.drawTimer());
 
         pile.displayCards(window);
 
@@ -133,8 +117,9 @@ gamestart:
         else
             window.display(); // Displaying the window
 
-        if (pile.gameWon())
+        /*if (pile.gameWon()) {
             break;
+        }*/
     }
 
     while (window.isOpen())
