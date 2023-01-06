@@ -37,7 +37,7 @@ enum class CardColor
     BLACK
 };
 
-enum class CardPile 
+enum class CardPile
 {
     SHUFFLED_PILE,
     DRAW_PILE,
@@ -54,7 +54,7 @@ enum class CardPile
     FOUNDATION_PILE4
 };
 
-static string convert_suits[] = 
+static string convert_suits[] =
 {
         stringify(CLUBS),
         stringify(DIAMONDS),
@@ -62,7 +62,7 @@ static string convert_suits[] =
         stringify(SPADES)
 };
 
-static string convert_names[] = 
+static string convert_names[] =
 {
         stringify(ACE),
         stringify(TWO),
@@ -85,6 +85,7 @@ public:
     Card();
     Card(const Card&);
     Card& operator=(const Card&);
+    friend bool operator==(const Card&, const Card&);
 
     Suits suit;
     CardNames name;
