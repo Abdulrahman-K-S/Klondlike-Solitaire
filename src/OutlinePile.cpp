@@ -2,7 +2,7 @@
 
 OutlinePile::OutlinePile()
 {
-    pileOutline.setSize(Vector2f(120, 164));
+    pileOutline.setSize(Vector2f(112, 158));
     pileOutline.setPosition(Vector2f(0, 0));
     pileOutline.setFillColor(Color::Transparent);
     pileOutline.setOutlineColor(Color(255, 255, 255, 127));
@@ -11,7 +11,7 @@ OutlinePile::OutlinePile()
 
 OutlinePile::OutlinePile(int startXPosition, int startYPosition)
 {
-    pileOutline.setSize(Vector2f(120, 164));
+    pileOutline.setSize(Vector2f(112, 158));
     pileOutline.setPosition(Vector2f(startXPosition, startYPosition));
     pileOutline.setFillColor(Color::Transparent);
     pileOutline.setOutlineColor(Color(255,255,255,127));

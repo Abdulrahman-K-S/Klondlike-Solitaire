@@ -10,13 +10,13 @@ using namespace std;
 Game::Game()
 {
 	// Using all the functions once the object is created to save time
-	setMainMenuText();
+	setStartMenu();
 	setMainMenuMusic();
 	setMainMenuButton();
 
 	setBackground();
-	setScoreboard();
-	setOutlinePiles();
+	//setScoreboard();
+	//setOutlinePiles();
 	setMenu();
 	setMenuText();
 
@@ -29,7 +29,7 @@ void Game::setBackground()
 {
 	// The function sets the background texture and set the sprite
 	// with that texture
-	background_texture.loadFromFile("Assets/Background.jpg");
+	background_texture.loadFromFile("Assets/Background.png");
 	background.setTexture(background_texture);
 }
 
@@ -45,7 +45,11 @@ void Game::setMenu()
 {
 	// The function sets the menu box and it's content (resume button &
 	// new game button & quit button)
-	menu_box.setSize(Vector2f(400, 550));
+	menu_texture.loadFromFile("Assets/Menu.png");
+	menu.setTexture(menu_texture);
+	menu.setPosition(600, 250);
+
+	/*menu_box.setSize(Vector2f(400, 550));
 	menu_box.setPosition(600, 250);
 	menu_box.setFillColor(Color(69, 163, 113, 245));
 	menu_box.setOutlineColor(Color::Black);
@@ -67,7 +71,7 @@ void Game::setMenu()
 	quit.setPosition(650, 660);
 	quit.setFillColor(Color(218, 247, 166));
 	quit.setOutlineColor(Color::Black);
-	quit.setOutlineThickness(1);
+	quit.setOutlineThickness(1);*/
 }
 
 void Game::setMenuText()
@@ -139,35 +143,17 @@ void Game::setMainMenuMusic()
 
 	sound_On_texture.loadFromFile("Assets/Sound on.png");
 	sound_on.setTexture(sound_On_texture);
-	sound_on.setPosition(Vector2f(100, 750));
+	sound_on.setPosition(Vector2f(100, 788));
 
 	mute_texture.loadFromFile("Assets/Mute.png");
 	mute.setTexture(mute_texture);
-	mute.setPosition(Vector2f(100, 750));
+	mute.setPosition(Vector2f(96, 788));
 }
 
-
-void Game::setMainMenuText()
+void Game::setStartMenu()
 {
-	// The function sets the main menu text which includes the "Made By Tryerz" text and image of the team
-	made_by.setFont(font);
-	made_by.setString("Made  By\n TRYERZ");
-	made_by.setCharacterSize(20);
-	made_by.setPosition(1300, 680);
-	tryerz_texture.loadFromFile("Assets/Tryerz.jpg");
-	tryerz_image.setTexture(tryerz_texture);
-	tryerz_image.setPosition(1290, 740);
-	tryerz_image.setScale(0.23, 0.23);
-
-	// The "Start Game" blue button is set with the "Welcome to the Tryerz Solitare" text
-	start.setFont(font);
-	start.setString("Start Game");
-	start.setCharacterSize(25);
-	start.setPosition(700, 435);
-	start_message.setFont(font);
-	start_message.setString("Welcome to the Tryerz Solitaire!!\n\n\n\n\n\n\n");
-	start_message.setCharacterSize(25);
-	start_message.setPosition(490, 300);
+	main_background_texture.loadFromFile("Assets/MainBackground.png");
+	main_background.setTexture(main_background_texture);
 }
 
 void Game::setMainMenuButton()

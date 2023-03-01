@@ -203,16 +203,16 @@ void Pile::setSpriteTexture(int pile_number)
         draw_pile.top().is_flipped = true;
         break;
     case 3: // Foundation pile 1
-        setSpriteTexture(foundation_pile1, 740, 119);
+        setSpriteTexture(foundation_pile1, 735, 117);
         break;
     case 4: // Foundation pile 2
-        setSpriteTexture(foundation_pile2, 890, 119);
+        setSpriteTexture(foundation_pile2, 885, 117);
         break;
     case 5: // Foundation pile 3
-        setSpriteTexture(foundation_pile3, 1040, 119);
+        setSpriteTexture(foundation_pile3, 1035, 117);
         break;
     case 6: // Foundation pile 4
-        setSpriteTexture(foundation_pile4, 1190, 119);
+        setSpriteTexture(foundation_pile4, 1185, 117);
         break;
     case 7: // Normal pile 1
         setSpriteTexture(normal_pile1, 285, 368);
