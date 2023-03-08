@@ -7,6 +7,10 @@ int main()
     RenderWindow window(VideoMode(1600, 900), "Tryerz Solitaire");
     window.setFramerateLimit(30);
 
+    Image icon;
+    icon.loadFromFile("Assets/Tryerz.jpg"); // File/Image/Pixel
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
 gamestart:
 
     // Declaring an object of the class Game
@@ -26,19 +30,16 @@ gamestart:
         }
         game.time_elapsed1 = game.clock.getElapsedTime();
         window.clear();
-        window.draw(game.background);
-        window.draw(game.start_button);
-        window.draw(game.start);
-        window.draw(game.start_message);
-        window.draw(game.made_by);
-        window.draw(game.tryerz_image);
+        window.draw(game.main_background);
+        
         if (game.music_start.getStatus() == Sound::Paused)
             window.draw(game.mute);
         else
             window.draw(game.sound_on);
+        
         window.display();
-        if (Mouse::getPosition(window).x >= 675 && Mouse::getPosition(window).x <= 925)
-            if (Mouse::getPosition(window).y >= 415 && Mouse::getPosition(window).y <= 485)
+        if (Mouse::getPosition(window).x >= 575 && Mouse::getPosition(window).x <= 1030)
+            if (Mouse::getPosition(window).y >= 570 && Mouse::getPosition(window).y <= 700)
                 if (event.key.code == Mouse::Left)
                 {
                     game.window_start.play();
@@ -46,8 +47,8 @@ gamestart:
                     break;
                 }
 
-        if (Mouse::getPosition(window).x >= 100 && Mouse::getPosition(window).x <= 200)
-            if (Mouse::getPosition(window).y >= 750 && Mouse::getPosition(window).y <= 850)
+        if (Mouse::getPosition(window).x >= 80 && Mouse::getPosition(window).x <= 150)
+            if (Mouse::getPosition(window).y >= 810 && Mouse::getPosition(window).y <= 875)
                 switch (event.type)
                 {
                 case Event::MouseButtonPressed:
@@ -127,14 +128,15 @@ gamestart:
         window.clear(); // Clearing the window
 
         window.draw(game.background);
-        window.draw(game.score_board);
+        //window.draw(game.score_board);
         window.draw(game.drawTimer());
-        game.drawOutlinePiles(window);
+        //game.drawOutlinePiles(window);
 
         pile.displayCards(window);
 
         if (menu)
         {
+            /*window.draw(game.menu);
             window.draw(game.menu_box);
             window.draw(game.resume);
             window.draw(game.new_game);
@@ -142,7 +144,8 @@ gamestart:
             window.draw(game.menu_text);
             window.draw(game.resume_text);
             window.draw(game.new_game_text);
-            window.draw(game.quit_text);
+            window.draw(game.quit_text);*/
+            window.draw(game.menu);
             window.display();
         }
         else
@@ -152,7 +155,7 @@ gamestart:
             break;
         }
     }
-    
+
     game.setEndMenuButton();
     game.winning_theme_music.play();
     while (window.isOpen())
