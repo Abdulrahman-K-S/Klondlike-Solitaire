@@ -328,6 +328,7 @@ void Pile::checkIfSpriteIsClicked(Vector2f mouse)
 
 bool Pile::checkIfSpriteIsClicked(Vector2f mouse, FloatRect bounds, int pile_number, stack<Card>& fPile, vector<Card>& nPile)
 {
+    // Foundation
     if (!fPile.empty())
         bounds = fPile.top().card_sprite.getGlobalBounds();
     if (bounds.contains(mouse))
