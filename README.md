@@ -1,26 +1,19 @@
-# Solitaire
+# Tryerz Klondlike-Solitaire
+Welcome to Tryerz Solitaire! This is a classic solitaire card game that is similar to the Microsoft Klondike game. In this game, you will need to use your strategy and skills to move all the cards to the foundation piles in the correct order to win.
 
-Welcome to our version of Microsoft's Solitaire!
+# How to Play
+The game is played with a standard deck of 52 cards. The cards are dealt face down into seven columns with the first column containing one card, the second column containing two cards, and so on until the seventh column containing seven cards.
 
-We hope you'll have a blast playing our game that we've put alot of effort in!!
+The top card of each column is turned face up, and the remaining cards are left face down. The remaining cards are placed in a draw pile, which is located at the top left corner of the screen.
 
-> Instructions on how to play Solitaire:
+Your goal is to move all the cards to the foundation piles in the correct order. The foundation piles are located at the top right corner of the screen and are built up in suit from Ace to King.
 
-	- Solitaire is arranged into a shuffled pile on the top left beside it is the draw pile and
-	to their right are 4 piles called the foundation piles and benith them are 7 piles called the
-	normal piles.
+To move a card, you can click on it only and it will move to the first valid destination. Valid destinations include the foundation piles and the tableau columns. In the tableau columns, cards can be moved onto a card that is one rank higher and of the opposite color. For example, a black seven can be placed on a red eight.
 
-	- Solitaire's rules:
-		- In solitaire moving cards have specific rules behind them where you can't place a card
-		under another card in one of the normal piles unless it's opposite that card in color and
-		less than that card by 1 (e.g King then queen then jack and so on)
+If a column becomes empty, you can move a King to that column to start a new pile.
 
-> How to win Solitaire:
+# How to Win
+To win the game, you need to move all the cards to the foundation piles in the correct order. The order is Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, and King. Once all the cards are in the foundation piles in the correct order, you have won the game.
 
-	- The objective is to get all 4 suits arranged from Ace to King
-	on all 4 Foundation Piles (e.g a foundation pile for the spades another for the diamonds and
-	so on).
-
-> Keybinds:
-
-	- [Esc] : opens up a menu where you can click on one of three buttons (Resume, New Game or Quit)
+# Conclusion
+Tryerz Solitaire is a classic solitaire card game that can provide hours of entertainment. With its simple rules and challenging gameplay, it is a game that can be enjoyed by players of all skill levels. So, what are you waiting for? Give Tryerz Solitaire a try and see if you can win the game!
